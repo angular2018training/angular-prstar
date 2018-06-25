@@ -1,0 +1,217 @@
+<div class="content-match" id="main-content">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Match</li>
+    </ol>
+    <div class="row mb-32">
+
+        <div class="col-12 col-md-4">
+            <a [routerLink]="['/create-pro-request/project']" class="card card-notification item-dashboard-new bg-blue">
+                <div class="card-body p-16">
+                    <div class="media">
+                        <div class="media-body align-self-center text-center">
+                            <p class="text-large mb-0">REQUEST - MATCH</p>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a [routerLink]="['/create-post/project']" class="card card-notification item-dashboard-new bg-green">
+                <div class="card-body p-16">
+                    <div class="media">
+                        <div class="media-body align-self-center text-center">
+                            <p class="text-large mb-0">POST - BID</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-notification item-dashboard-new">
+                <div class="card-body p-16">
+
+                    <div class="media" style="cursor: pointer;">
+                        <div class="align-self-center d-flex mr-12 item-large text-center color-yellow border-yellow">
+                            <a (click)="onContract()">
+                                <i class="mdi mdi-file-document"></i>
+                            </a>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <div class="row">
+                                <div class="col-6 text-center p-0">
+                                    <p class="text-large mb-0 color-yellow">{{countInprocess}}</p>
+                                    <p class="mb-0 break-word">
+                                        <a (click)="onInprocessContractBiz()">Inprogress Contract</a>
+                                    </p>
+                                </div>
+                                <div class="col-6 text-center p-0" >
+                                    <p class="text-large mb-0 color-yellow">{{countCompleted}}</p>
+                                    <p class="mb-0 break-word">
+                                        <a (click)="onCompletedContractBiz()">Completed Contract</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">MATCH REPORT
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{proRequsets?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-role-status table-layout-fixed">
+                    <tbody>
+                        <tr>
+                            <td class="align-top">
+                                <div class="number">3</div>
+                                <div class="unit">OPEN MATCH REPORTS</div>
+                            </td>
+                            <td class="align-top">
+                                <div class="number">3</div>
+                                <div class="unit">OUTSTANDING MATCH REQUESTS</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let proRequset of proRequsets">
+                                    <td class="pt-10 pb-10">
+                                        <a class="color-blue" (click)="onSelectedRequest(proRequset)">{{proRequset?.project.projectName}}</a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <span class="badge badge-status-awaiting-review" *ngIf="proRequset.commonStatus =='Awaiting Review'">{{proRequset.commonStatus}}</span>
+                                        <span class="badge badge-status-in-review" *ngIf="proRequset.commonStatus == 'In Review'">{{proRequset.commonStatus}}</span>
+                                        <span class="badge badge-status-review-completed" *ngIf="proRequset.commonStatus == 'Reviewed'">{{proRequset.commonStatus}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">YOUR BIDS
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{posts?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-role-status table-layout-fixed">
+                    <tbody>
+                        <tr>
+                            <td class="align-top">
+                                <div class="number">2</div>
+                                <div class="unit">ACTIVE POSTS</div>
+                            </td>
+                            <td class="align-top">
+                                <div class="number">3</div>
+                                <div class="unit">CLOSED POSTS</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let post of posts">
+                                    <td class="pt-10 pb-10">
+                                        <a class="color-blue" (click)="onSelectedPost(post)">{{post?.project.projectName}}</a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <span class="badge badge-status-open" *ngIf="post?.isOpen">Open</span>
+                                        <span class="badge badge-status-closed" *ngIf="!post?.isOpen">Cloded</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">INTERVIEWS
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{projectExistedInterview?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-role-status table-layout-fixed">
+                    <tbody>
+                        <tr>
+                            <td class="align-top">
+                                <div class="number">1</div>
+                                <div class="unit">OFFERS</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of projectExistedInterview">
+                                    <td class="pt-10 pb-10">
+                                        <a class="color-blue" [routerLink]="[ '/biz-interview', item.id]">{{item.projectName}}</a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <span class="badge badge-status-open" *ngIf="!item.isClosed">Open</span>
+                                        <span class="badge badge-status-closed" *ngIf="item.isClosed">Closed</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

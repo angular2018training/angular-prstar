@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "answer",
+            "otherEntityName": "suggestedAnswer",
+            "otherEntityRelationshipName": "question"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "question",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "questionType",
+            "fieldType": "QuestionType",
+            "fieldValues": "FREE,RADIO,CHECKBOX"
+        }
+    ],
+    "changelogDate": "20180419075329",
+    "entityTableName": "question",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,28 @@
+{
+    "reset": {
+        "request": {
+            "title": "FORGOT PASSWORD",
+            "form": {
+                "button": "Reset password",
+                "get_confirmation_code": "GET CONFIRMATION CODE"
+            },
+            "messages": {
+                "info": "Enter your email below. We'll send you a confirmation code to access your ProStars account.",
+                "success": "Check your email for confirmation code, and enter it below.",
+                "notfound": "<p><strong>We don't have this email address registered to any ProStars member</strong></p><p>Please enter the email linked to your ProStars account</p>"
+            }
+        },
+        "finish" : {
+            "title": "<strong>CONFIRM YOUR<br/>NEW PASSWORD</strong>",
+            "form": {
+                "button": "SUBMIT"
+            },
+            "messages": {
+                "info": "Choose a new password",
+                "success": "<strong>Your password has been reset.</strong> Please ",
+                "keymissing": "The reset key is missing.",
+                "error": "Your password couldn't be reset. Remember a password request is only valid for 24 hours."
+            }
+        }
+    }
+}

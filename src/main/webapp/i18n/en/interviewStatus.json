@@ -1,0 +1,14 @@
+{
+    "prostarsWebApp": {
+        "InterviewStatus" : {
+            "null": "",
+            "PENDING_AVAILABILITY": "PENDING_AVAILABILITY",
+            "DECLINE_AVAILABILITY": "DECLINE_AVAILABILITY",
+            "SCHEDULED": "SCHEDULED",
+            "COMPLETED": "COMPLETED",
+            "PENDING_ACCEPTANCE": "PENDING_ACCEPTANCE",
+            "ACCEPTED": "ACCEPTED",
+            "DECLINED": "DECLINED"
+        }
+    }
+}

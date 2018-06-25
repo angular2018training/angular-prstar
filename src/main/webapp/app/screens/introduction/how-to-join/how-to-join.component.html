@@ -1,0 +1,53 @@
+
+<form name="summaryForm" role="form" validate (ngSubmit)="createSummaryProfile()" #summaryForm="ngForm"
+      [ngSwitch]="invitee?.inviter != null">
+    <!--REFERRALS-->
+    <div *ngSwitchCase="true">
+        <h1 class="title" jhiTranslate="prostarsWebApp.introduction.howToJoin.title">How to Join ProStars</h1>
+
+        <p jhiTranslate="prostarsWebApp.introduction.howToJoin.description"
+              translateValues="{invited: '{{invitee?.inviter?.account?.login}}',sponsorName: '{{invitee?.inviter.account.firstName + invitee?.inviter.account.lastName}}'}">
+
+            Becoming a Pro with ProStars
+        </p>
+        <button type="submit" class="btn btn-primary waves-light btn-create-profile"
+                mdbRippleRadius jhiTranslate="prostarsWebApp.introduction.howToJoin.action.createSummaryProfile">
+            CREATE PROFILE
+        </button>
+    </div>
+
+    <!--NON REFERRALS-->
+    <div *ngSwitchCase="false">
+        <h1 class="title" jhiTranslate="prostarsWebApp.introduction.howToJoin.nonReferrals.title">
+            You can become a Pro with ProStars in two ways:
+        </h1>
+
+        <p jhiTranslate="prostarsWebApp.introduction.howToJoin.nonReferrals.description.line1">
+            by email or text invite from an existing Pro, or
+        </p>
+        <p jhiTranslate="prostarsWebApp.introduction.howToJoin.nonReferrals.description.line2">
+            by submitting a summary profile of your capabilities. A Pro with similar capabilities will review your profile and approve your membership(this typically takes less than a day).
+        </p>
+        <p jhiTranslate="prostarsWebApp.introduction.howToJoin.nonReferrals.description.line3">
+            If you received an invite from a member, click on the link in the invite. If you've deleted the email, all you need to do is enter the Pro's email below.
+        </p >
+        <p jhiTranslate="prostarsWebApp.introduction.howToJoin.email.title">Member Pro’s email:</p>
+        <div class="md-form">
+            <i class="prefix prefix-intro-email"><img src="../../../../content/img/svg/icon-intro-email.svg" class="img-responsive"></i>
+            <input type="text" class="form-control" name="email" id="field_email"
+                   [(ngModel)]="invitee.inviterEmail" >
+            <label for="field_email" [ngClass]="{'active':invitee.inviterEmail}">Member Pro’s email:</label>
+        </div>
+        <div [hidden]="!showErrorMessage">
+            <small class="form-text text-danger"
+                   jhiTranslate="prostarsWebApp.introduction.howToJoin.email.unExisted">
+                Email not valid, member not found.
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary waves-light btn-create-profile"
+                mdbRippleRadius jhiTranslate="prostarsWebApp.introduction.howToJoin.action.createSummaryProfile">
+            CREATE PROFILE
+        </button>
+    </div>
+</form>

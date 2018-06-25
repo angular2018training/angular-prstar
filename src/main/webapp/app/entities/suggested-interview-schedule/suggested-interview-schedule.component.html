@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.home.title">Suggested Interview Schedules</span>
+        <button class="btn btn-primary float-right jh-create-entity create-suggested-interview-schedule" [routerLink]="['/', { outlets: { popup: ['suggested-interview-schedule-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.home.createLabel">
+            Create new Suggested Interview Schedule
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="suggestedInterviewSchedules">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.interviewDate">Interview Date</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.fromTime">From Time</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.duration">Duration</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.timezone">Timezone</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.note">Note</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.proAccepted">Pro Accepted</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.bizAccepted">Biz Accepted</span></th>
+            <th><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.interviewSession">Interview Session</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let suggestedInterviewSchedule of suggestedInterviewSchedules ;trackBy: trackId">
+                <td><a [routerLink]="['../suggested-interview-schedule', suggestedInterviewSchedule.id ]">{{suggestedInterviewSchedule.id}}</a></td>
+                <td>{{suggestedInterviewSchedule.interviewDate | date:'medium'}}</td>
+                <td>{{suggestedInterviewSchedule.fromTime}}</td>
+                <td>{{suggestedInterviewSchedule.duration}}</td>
+                <td>{{suggestedInterviewSchedule.timezone}}</td>
+                <td>{{suggestedInterviewSchedule.note}}</td>
+                <td>{{suggestedInterviewSchedule.proAccepted}}</td>
+                <td>{{suggestedInterviewSchedule.bizAccepted}}</td>
+                <td>
+                    <div *ngIf="suggestedInterviewSchedule.interviewSessionId">
+                        <a [routerLink]="['../interview-session', suggestedInterviewSchedule.interviewSessionId  ]" >{{suggestedInterviewSchedule.interviewSessionId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../suggested-interview-schedule', suggestedInterviewSchedule.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'suggested-interview-schedule/'+ suggestedInterviewSchedule.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'suggested-interview-schedule/'+ suggestedInterviewSchedule.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

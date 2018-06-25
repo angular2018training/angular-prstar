@@ -1,0 +1,54 @@
+<div class="card border-light mb-3">
+    <div class="card-header">INVITE BIZ USER</div>
+    <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
+        <strong>Email is already in use!</strong> Please choose another one.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorEmptyEmail">
+        <strong>Please input Email</strong>
+    </div>
+    <div class="card-body">
+       <div class="row" *ngFor="let bizUser of bizUsers; index as i">
+            <div class="col">
+                <div class="md-form form-group">
+                    
+                     <!--name="{{bizUser.authorities}}"-->
+                    <angular2-multiselect class="form-control"
+                        [(ngModel)]="bizUser.user.checkedAuthorities"
+                        [data]="dropdownAuthorityList"
+                        [settings]="dropdownAuthoritySettings"
+                        [ngModelOptions]="{standalone: true}"
+                        (addNewItem)="addNewItem($event)"
+                    ></angular2-multiselect>
+                </div>
+            </div>
+            <div class="col">
+                <div class="md-form form-group">
+                    <input type="text" class="form-control" placeholder="admin@company.com"
+                           [(ngModel)]="bizUser.user.login" [ngModelOptions]="{standalone: true}"
+                           (focusout)="validateEmail(bizUser.user.login)">
+                           <!--name="{{bizUser.login}}"-->
+                    <label class="active">Role Contact</label>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+
+
+        <div class="md-form form-group">
+            <button type="button" class="btn btn-add-skill btn-rounded waves-effect"
+                    (click)="onAddMoreRole()">Add More</button>
+        </div>
+
+        <div class="md-form">
+            <hr/>
+        </div>
+        <div class="mt-24 text-right">
+            <button class="btn btn-primary m-0" type="button" routerLinkActive="active"
+                    (click)="onNext()" [disabled]="errorEmailExists">
+                NEXT
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div *ngIf="!isPro" class="row mt-8">
+    <div class="col-12">
+        <button class="btn btn-primary none-margin-all" type="submit" (click)="openDialog()">REQUEST CHANGE</button>    
+    </div>
+</div>
+
+<div class="row mt-32">
+    <div class="col-12">
+        <h4>Change Request History</h4>
+    </div>
+</div>
+<div class="row mt-0">
+    <div class="col-12 col-md-2 align-self-center">
+        <span class="small fake-label">Date</span>
+    </div>
+    <div class="col-12 col-md-5 align-self-center">
+        <span class="small fake-label">Comment</span>
+    </div>
+    <div class="col-12 col-md-3 align-self-center">
+        <span class="small fake-label">Revised Proposal</span>
+    </div>
+    <div class="col-12 col-md-2 align-self-center">
+        <span class="small fake-label">Sent By</span>
+    </div>
+</div>
+<div class="row mt-3" *ngFor="let changeRequest of changeRequestList">
+    <div class="col-12 col-md-2">
+        {{changeRequest.createdDate | date: 'MM.dd.yyyy'}}
+    </div>
+    <div class="col-12 col-md-5">
+        <span *ngIf="changeRequest.comment">{{changeRequest.comment}}</span>
+    </div>
+    <div class="col-12 col-md-3 color-blue text-truncate">
+        <a *ngIf="changeRequest.proposal" (click)="download(changeRequest.proposal.path, changeRequest.proposal.name)" 
+        class="text-underline">{{changeRequest.proposal.name}}</a>
+    </div>
+    <div class="col-12 col-md-2">
+        {{changeRequest.owner.firstName}} {{changeRequest.owner.lastName}}
+    </div>
+</div>

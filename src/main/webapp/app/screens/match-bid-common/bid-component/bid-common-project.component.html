@@ -1,0 +1,49 @@
+<div class="content-match">
+<ol class="breadcrumb mb-16">
+    <li class="breadcrumb-item"><a href="#dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#create-pro-request">Match</a></li>
+    <li class="breadcrumb-item active"><a href="#match-project">Match Report</a></li>
+</ol>
+<div class="content-match" id="main-content">
+    <div class="card card-match-report">
+        
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <h5>MATCH REPORT</h5>
+                </div>
+                <div class="col-12 col-md-8 col-lg-9 text-left text-md-right">
+                    <h5 class="text-primary mb-8">{{matchReport.proRequest.project.projectName}}</h5>
+                    <p>Project Id: {{matchReport.proRequest.project.id}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <p>Inside, you'll find a total of {{matchReport.totalMatch}} potential Pros to consider for your <strong>{{matchReport.proRequest.project.projectName}}</strong>. You'll get a chance to review each Pro, and choose whether you'd like to interview them for the role. Lastly, you'll get the chance to select any interviewers from your Biz, and propose interview times.</p>
+                    <p>Click <button (click)="onNext()" type="button" class="btn btn-primary btn-sm">REVIEW MATCHES</button> to start the process!</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let roleMatch of matchReport.roleMatches; let i = index">
+                    <div class="card card-match">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-12 col-md-auto">
+                                    <h1 class="number">{{roleMatch.totalMatch}}</h1>
+                                    <p class="unit">MATCHES</p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="role text-center text-sm-center text-md-left"><strong>{{roleMatch.roleName}}</strong> Role</h6>
+                                    <p class="status text-center text-sm-center text-md-left">Status: <span class="badge badge-status-review-completed">{{roleMatch.status}}</span></p>
+                                    <div class="action text-center text-sm-center text-md-left"><button [routerLink]="['/match-individual']" [queryParams]="{id: i}" type="button" class="btn btn-primary">REVIEW MATCHES</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

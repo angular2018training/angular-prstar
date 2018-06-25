@@ -1,0 +1,88 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+/* Import MDB Pro SCSS */
+/* Override common components for all pages*/
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+ 
+/* CSS for items at dropdown list (multi-select) [start] */
+.dropdown-list[_ngcontent-c0]   ul[_ngcontent-c0]   li[_ngcontent-c0] {
+    padding: 5px 10px !important;
+  }
+  
+  [type=checkbox]+label, [type=radio]+label {
+    height: auto;
+  }
+
+  .skill-custom{
+    margin-top: 2em;
+  }
+
+  .skill-custom .c-btn{
+    padding: 17.5px !important;
+  }
+
+  .skillBtn-custom {
+    margin-top:20px;
+  }
+  /* CSS for items at dropdown list (multi-select) [end] */
+
+  /* CSS for asterisk for required field */
+  /* .asterisk-label label:after{
+    color: #dc3545 !important;
+    content: ' *';
+    display: inline;
+} */
+
+.asterisk :after{
+    color: #dc3545 !important;
+    content: ' *';
+    display: inline;
+}
+.matchTable-custom{
+
+  display: inline-table;
+}
+
+.rating {
+  width: auto;
+}
+.rating span i {
+  font-size: 1em !important;
+}
+.rating span.readonly {
+  background-color: inherit !important;
+}
+.media-body .h5_custom {
+  width: calc(100% - 50px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-img-top-avatar{
+  width: 100px;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+}
+
+.wraptext-custom {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 992px){
+  .wraptext-custom {
+    width: 91px;
+  }
+}
+
+@media (min-width: 1200px){
+  .wraptext-custom {
+    width: 98px;
+  }
+}

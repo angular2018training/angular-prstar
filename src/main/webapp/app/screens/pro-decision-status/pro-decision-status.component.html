@@ -1,0 +1,45 @@
+<!-- Modal sponsor -->
+<!-- TODO: change to class="modal fade modal-pro-applicant-status" id="modal-status" -->
+<div class="modal-pro-applicant-status" id="modal-status">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <h4 class="modal-title" jhiTranslate="prostarsWebApp.pro.status.modalTitle">Pro Applicant Status</h4>
+      </div>
+      <button type="button" (click)="close()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+      <p jhiTranslate="prostarsWebApp.pro.status.info">Please enter the information below to see Pro Applicant Status.</p>
+      <p class="mb-0" jhiTranslate="prostarsWebApp.pro.status.email">Email Address:</p>
+      <div class="md-form mt-8">
+        <i class="prefix prefix-intro-email">
+          <img src="../../../content/img/svg/icon-intro-email.svg" class="img-responsive">
+        </i>
+        <input type="email" id="email" name="email" #email="ngModel" class="form-control" [(ngModel)]="proEmail" placeholder="name@email.com"
+          (focusin)="showError()" email required>
+        <div *ngIf="email.dirty && email.invalid">
+          <small class="form-text text-danger" *ngIf="email.errors.required;else invalidMail" jhiTranslate="global.messages.validate.email.required">
+            Your email is required.
+          </small>
+          <ng-template #invalidMail>
+            <small class="form-text text-danger" jhiTranslate="prostarsWebApp.pro.status.emailInvalid">
+              This isn't a valid email!
+            </small>
+          </ng-template>
+        </div>
+      </div>
+      <jhi-alert></jhi-alert>
+      <div *ngIf="!isExisted">
+        <!-- class="alert alert-danger"  -->
+        <small class="form-text text-danger" jhiTranslate="prostarsWebApp.pro.status.isNotExist">
+          "An application has not been submitted with this email!
+          <br>Please apply and then re-check your status."
+        </small>
+      </div>
+    </div>
+    <div class="modal-footer text-right">
+      <button type="button" (click)="submit()" class="btn btn-primary" data-dismiss="modal" jhiTranslate="prostarsWebApp.pro.status.submitButton"
+        [disabled]="email.invalid">SUBMIT</button>
+    </div>
+  </div>
+</div>

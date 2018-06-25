@@ -1,0 +1,20 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+.chip {
+	white-space: nowrap;
+	max-width: 150px;
+	max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 30px;
+    position: relative;
+	i {
+	    position: absolute;
+	    top: 0;
+	    right: 12px;
+	}
+}
+

@@ -1,0 +1,51 @@
+<div class="content-match content-create-post" id="main-content">
+  <ol class="breadcrumb mb-16">
+      <li class="breadcrumb-item">
+          <a href="#dashboard">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item">
+          <a href="#pro-landing">Match</a>
+      </li>
+      <li class="breadcrumb-item">
+          <a>Interview</a>
+      </li>
+  </ol>
+
+  <div class="card card-create">
+      <div class="card-body">
+          <div class="tab-box">
+              <!-- Nav tabs -->
+              <div class="tabs-wrapper">
+                  <ul class="nav" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link waves-light font-weight-bold active" data-toggle="tab" href="#panel51" role="tab">PROJECT</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link waves-light font-weight-bold" data-toggle="tab" href="#panel50" role="tab">INTERVIEW DATE/TIME</a>
+                      </li>
+                  </ul>
+
+              </div>
+
+              <!-- Tab panels -->
+              <div class="tab-content pl-0 pr-0">
+
+                  <!--Panel 1-->
+                  <div class="tab-pane fade in show active" id="panel51" role="tabpanel">
+                      <jhi-pro-interview-project-tab [currentInterview]="interview" (refreshData)="reciveRefresh()"></jhi-pro-interview-project-tab>
+                  </div>
+                  <!--/.Panel 1-->
+
+                  <div class="tab-pane fade" id="panel50" role="tabpanel">
+                      <pro-interview-schedule-tab [interview]="interview" (refreshData)="reciveRefresh()"></pro-interview-schedule-tab>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <!-- <div class="card-footer">
+          <button class="btn mr-16 none-margin-all text-primary waves-effect waves-light" type="submit">BACK</button><button class="btn btn-primary btn-primary-profile none-margin-all waves-effect waves-light" type="submit">NEXT</button>
+      </div> -->
+  </div>
+
+</div>

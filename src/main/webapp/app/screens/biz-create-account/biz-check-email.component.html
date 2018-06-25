@@ -1,0 +1,20 @@
+<!-- Modal sponsor -->
+<div class="modal-profile" id="modal-checkemail">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <img src="../../../content/img/icon-modal-check.svg" />
+        <h4 class="modal-title" *ngIf="!bizService.error" jhiTranslate="prostarsWebApp.biz.summaryProfile.noticeMessage">Notice</h4>
+        <h4 class="modal-title" *ngIf="bizService.error" jhiTranslate="prostarsWebApp.biz.summaryProfile.errorMessage">Error</h4>
+      </div>
+      <button type="button" (click)="close()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body" *ngIf="!bizService.error">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <p>Please check your email to activate your account!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

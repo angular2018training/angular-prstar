@@ -1,0 +1,80 @@
+<div *ngIf="proRequirement" class="content-match" id="main-content">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item"><a href="#dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="#biz-landing">Match</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/bid-wall']" [queryParams]="{postId: postId}">Bid Wall</a></li>
+        <li class="breadcrumb-item active">{{proRequirement.roleName}}</li>
+    </ol>
+
+    <div class="card card-match-role">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4 col-title">{{proRequirement.roleName}} ROLE</div>
+                <div class="col-lg-9 col-xl-8 text-right">
+                    <button class="btn btn-link btn-project-detail text-capitalize collapsed" type="button" data-toggle="collapse" data-target="#collapse-1">Project Details 
+                        <span class="mdi mdi-chevron-down indicator"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse" id="collapse-1">
+            <div class="card-body">
+                <h4 class="project-title">{{proRequirement.project.projectName}}</h4>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="form-control input-data">{{proRequirement.project.description}}</div>
+                            <label class="active">Description</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col col-xl-6">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{proRequirement.project.startDate | date:'MM/dd/yyyy'}}</div>
+                                    <label class="active">Project Start Date</label>
+                                </div>
+                            </div>
+                            <div class="col col-xl-6">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{proRequirement.project.endDate | date:'MM/dd/yyyy'}}</div>
+                                    <label class="active">Project End Date</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-role-status">
+            <tbody>
+                <tr>
+                    <td style="cursor: pointer;" [ngClass]="{'active': tab == 0}" class="active" (click)="viewInReviewProList()">
+                        <div class="number">{{proRequirement.numberOfBids}}</div>
+                        <div class="unit">PROS</div>
+                    </td>
+                    <td style="cursor: pointer;" [ngClass]="{'active': tab == 1}" (click)="viewSavedProList()">
+                        <div class="number">{{proRequirement.numberOfSaved}}</div>
+                        <div class="unit">SAVED</div>
+                    </td>
+                    <td style="cursor: pointer;" (click)="viewInterviewProList()">
+                        <div class="number">{{proRequirement.numberOfInterview || 0}}</div>
+                        <div class="unit">INTERVIEW</div>
+                    </td>
+                    <td>
+                        <div class="number">0</div>
+                        <div class="unit">OFFER</div>
+                    </td>
+                    <td>
+                        <div class="number">0</div>
+                        <div class="unit">CONTRACT</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div jhi-bid-report #yourChild [roleId]="roleID" [tab]="tab" [proRequirementDetail]="proRequirement" (onSavePro)="updateProRequirementDetail()" class="card-body" (increase)="onIncreaseInterview($event)"></div>
+    </div>
+</div>
+</div>

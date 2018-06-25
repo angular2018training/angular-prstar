@@ -1,0 +1,145 @@
+<div class="content-contract" id="main-content">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard" jhiTranslate="global.menu.dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/biz-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/contract-pending" jhiTranslate="prostarsWebApp.contract.contractPending">Pending</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.contract.developerContract">
+            CONTRACT
+        </li>
+    </ol>
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">DEVELOPER CONTRACT</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+        <div *ngIf="contractList" class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{contractList.name}}</div>
+                        <label class="active">Contract Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{contractList.proRequirement.project.projectName}}</div>
+                        <label class="active">Project Name</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{contractList.proRequirement.role.name}}</div>
+                        <label class="active">Role Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{contractList.pro.account.firstName + contractList.pro.account.lastName }}</div>
+                        <label class="active">Pro Name</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">
+                            <span>{{contractList.bizStatus}}</span>
+                        </div>
+                        <label class="active">Biz Status</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="md-form">
+                        <div class="form-control input-data">
+                            <span>{{contractList.proStatus}}</span>
+                        </div>
+                        <label class="active">Pro Status</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="md-form">
+                        <a class="mdi mdi-file-word fa-lg" (click)="onClickDownloadContractTemplate(contractList.histories[contractList.histories.length-1].file.path, contractList.histories[contractList.histories.length-1].file.name, contractList.histories[contractList.histories.length-1].file.contentType)">
+                            <a class="mdi mdi-file-word fa-lg" (click)="onClickDownloadContractTemplate(item.file.path, item.file.name, item.file.contentType)">
+                                <div class="form-control input-data">{{contractList.histories[contractList.histories.length-1].file.name}}</div>
+                            </a>
+                            <label class="active">Contract File</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{contractList.histories[contractList.histories.length-1].note}} </div>
+                        <label class="active">Comment</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="contractList">
+            <div class="row mt-32">
+                <div class="col-12">
+                    <h4>Change Request History</h4>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <div class="col-12 col-md-2 align-self-center">
+                    <span class="small fake-label">Date</span>
+                </div>
+                <div class="col-12 col-md-3 align-self-center">
+                    <span class="small fake-label">File Name</span>
+                </div>
+                <div class="col-12 col-md-5 align-self-center">
+                    <span class="small fake-label">Comment</span>
+                </div>
+                <div class="col-12 col-md-2 align-self-center">
+                    <span class="small fake-label">Sent By</span>
+                </div>
+            </div>
+            <div *ngFor="let item of contractList.histories">
+                <div class="row mt-3">
+                    <div class="col-12 col-md-2">
+                        {{item.createdDate | date:'MM/dd/yyyy'}}
+                    </div>
+                    <div class="col-12 col-md-3 color-blue text-truncate">
+                        <a class="mdi mdi-file-word fa-lg" (click)="onClickDownloadContractTemplate(item.file.path, item.file.name, item.file.contentType)">
+                            {{item.file.name}}
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        {{item.note}}
+                    </div>
+                    <div class="col-12 col-md-2">
+                        {{item.createdBy.lastName + item.createdBy.firstName}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="openChangeRequestDialog(contractList.id,contractList.name)">CHANGE REQUEST</button>
+            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="onClickReject(contractList.id)">PASS ON OPPORTUNITY</button>
+            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="onClickAccept(contractList.id)">ACCEPT</button>
+        </div>
+    </div>
+</div>

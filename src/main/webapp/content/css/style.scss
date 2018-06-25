@@ -1,0 +1,39 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+/* Import MDB Pro SCSS */
+// @import "../scss/mdb.scss";
+
+/* Override common components for all pages*/
+@import "components/nexa";
+@import "components/roboto-condensed";
+@import "components/fontawesomeicons";
+@import "components/materialdesignicons";
+@import "components/common";
+@import "components/layout";
+@import "components/buttons";
+@import "components/form";
+@import "components/checkbox";
+@import "components/radio";
+@import "components/stepper.scss";
+@import "components/chip.scss";
+@import "components/datepicker.scss";
+@import "components/tooltip.scss";
+@import "components/select.scss";
+@import "components/slider.scss";
+@import "components/range-slider.scss";
+@import "components/admin";
+@import "components/alert.scss";
+
+/* Style sheet for a specific pages*/
+@import "pages/login";
+@import "pages/home";
+@import "pages/intro";
+@import "pages/profile";
+@import "pages/dashboard";
+@import "pages/create-post";
+@import "pages/vet";
+@import "pages/match";
+@import "pages/contract";

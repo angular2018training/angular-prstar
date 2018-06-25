@@ -1,0 +1,222 @@
+<div *ngIf="bid" class="content-match">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="#">Match</a></li>
+        <li class="breadcrumb-item"><a href="#">Post Wall</a></li>
+        <li class="breadcrumb-item active">Bid</li>
+    </ol>
+
+    <div class="card card-post-wall">
+
+        <div class="card-body pt-20 pb-20">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-lg-9">
+                    <h4 class="project-title blue-text">Ongoing project - {{bid.proRequirement.project.projectName}}</h4>
+                    <div class="row">
+                        <div class="col-md-8 col-lg-9">
+                            <strong class="mr-8 text-secondary">{{ bid?.proRequirement?.role.name }}</strong>
+                            <span>Bid Deadline: 
+                                <strong *ngIf="bid?.proRequirement?.bidDeadline">{{ bid?.proRequirement?.bidDeadline | date: 'MM.dd.yyyy' }}</strong>
+                            </span>
+                        </div>
+                        <div class="col-md-4 col-lg-3 text-right">
+                            <button class="btn btn-link btn-project-detail text-capitalize collapsed" type="button" data-toggle="collapse" data-target="#collapse-1">Project Details 
+                                <span class="mdi mdi-chevron-down indicator"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="collapse" id="collapse-1">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{ bid?.proRequirement?.project.description }}</div>
+                                    <label class="active">Description</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col col-xl-6">
+                                        <div class="md-form">
+                                            <div class="form-control input-data">{{ bid?.proRequirement?.project.startDate | date: 'MM.dd.yyyy' }}</div>
+                                            <label class="active">Project Start Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col col-xl-6">
+                                        <div class="md-form">
+                                            <div class="form-control input-data">{{ bid?.proRequirement?.project.endDate | date: 'MM.dd.yyyy' }} </div>
+                                            <label class="active">Project End Date</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 p-8 d-flex bdr-top-left-4 bdr-top-right-4 bdr-bottom-right-4 bdr-bottom-left-4 bg-primary color-white"
+                        *ngIf="bid?.status=='CHANGE'">
+                        <div class="align-self-center font-weight-normal">
+                            You got a change request for your Bid by {{ bid?.bidChangeRequestHistories[0].owner.firstName }} {{ bid?.bidChangeRequestHistories[0].owner.lastName}}
+                        </div>
+
+                        <div class="flex-grow-1"></div>
+
+                        <button class="btn btn-primary none-margin-all" id="btnUpdateBid" type="button" (click)="onClickUpdateBid()">UPDATE BID</button>
+                    </div>
+
+                    <div class="row mt-16">
+                        <div class="col-12">
+                            <span class="small fake-label">Proposal</span>
+                        </div>
+                        <div class="col-12">
+                            <p>{{ bid?.proposalText }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-16">
+                        <div class="col-4">
+                            <span class="small fake-label">Proposal Price</span>
+                            <p>{{ bid?.proposedPrice | currency }}</p>
+                        </div>
+                        <div class="col-4">
+                            <span class="small fake-label">Start Date</span>
+                            <p>{{ bid?.startDate | date: 'MM.dd.yyyy' }}</p>
+                        </div>
+                        <div class="col-4">
+                            <span class="small fake-label">End Date</span>
+                            <p>{{ bid?.endDate | date: 'MM.dd.yyyy' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-16">
+                        <div class="col-12">
+                            <span class="small fake-label">Proposal Document</span>
+                        </div>
+                    </div>
+                    <div class="row mt-8" *ngIf="bid?.proposalFile">
+                        <div class="col-12 col-md-3 color-blue align-self-center">
+                            <a (click)="downloadFile(bid?.proposalFile?.path, bid?.proposalFile?.name);" class="text-underline" *ngIf="bid?.proposalFile?.name">{{ bid?.proposalFile?.name }}</a>
+                            <a class="text-underline" *ngIf="!bid?.proposalFile?.name"><i class="mdi mdi-file-word fa-lg"></i> Proposal File</a>
+                        </div>
+                        <div class="col-12 col-md-3 text-center align-self-center">
+
+                        </div>
+                        <div class="col-12 col-md-3 text-center align-self-center">
+
+                        </div>
+                        <div class="col-12 col-md-3 text-right">
+                            <button (click)="downloadFile(bid?.proposalFile?.path, bid?.proposalFile?.name);" class="btn text-black btn-proposal-download">
+                                <i class="fa fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-16">
+                        <div class="col-12">
+                            <span class="small fake-label">Portfolios</span>
+                        </div>
+                    </div>
+                    <div *ngFor="let portfolio of bid.portfolios" class="row mt-8">
+                        <div class="col-12 col-md-3 color-blue align-self-center">
+                            <a (click)="downloadFile(portfolio.path, portfolio.name);" class="text-underline" *ngIf="portfolio.name">{{ portfolio.name }}</a>
+                            <a (click)="downloadFile(portfolio.path, portfolio.name);" class="text-underline" *ngIf="!portfolio.name">Portfolio File</a>
+                        </div>
+                        <div class="col-12 col-md-3 text-center align-self-center">
+
+                        </div>
+                        <div class="col-12 col-md-3 text-center align-self-center">
+
+                        </div>
+                        <div class="col-12 col-md-3 text-right">
+                            <button (click)="downloadFile(portfolio.path, portfolio.name);" class="btn text-black btn-proposal-download">
+                                <i class="fa fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-16">
+                        <div class="col-12">
+                            <span class="small fake-label">Additional Comments</span>
+                        </div>
+                        <div class="col-12">
+                            <p>{{ bid?.note }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-32">
+                        <div class="col-12">
+                            <h4>Change Request History</h4>
+                        </div>
+                    </div>
+                    <div class="row mt-0">
+                        <div class="col-12 col-md-2 align-self-center">
+                            <span class="small fake-label">Date</span>
+                        </div>
+                        <div class="col-12 col-md-5 align-self-center">
+                            <span class="small fake-label">Comment</span>
+                        </div>
+                        <div class="col-12 col-md-3 align-self-center">
+                            <span class="small fake-label">Revised Proposal</span>
+                        </div>
+                        <div class="col-12 col-md-2 align-self-center">
+                            <span class="small fake-label">Sent By</span>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let changeReq of bid?.bidChangeRequestHistories">
+                        <div class="row mt-3">
+                            <div class="col-12 col-md-2">
+                                {{ changeReq.createdDate | date: 'MM.dd.yyyy' }}
+                            </div>
+                            <div class="col-12 col-md-5">
+                                {{ changeReq.comment }}
+                            </div>
+                            <div class="col-12 col-md-3 color-blue text-truncate">
+                                <div *ngIf="changeReq?.proposal">
+                                    <a (click)="downloadFile(changeReq.proposal.path, changeReq.proposal.name);" class="text-underline"><i class="mdi mdi-file-word fa-lg"></i> {{ changeReq.proposal.name }}</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-2">
+                                {{ changeReq.owner.firstName }} {{ changeReq.owner.lastName }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-sm-4 col-lg-3">
+                    <div class="content-wrap">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <img src="../../../../content/img/avatar-placeholder.jpg" class="card-img-top" *ngIf="!bid?.owner?.pictureFile">
+                                <img [src]="'data:' + bid?.owner?.pictureFile?.contentType + ';base64,' + bid?.owner?.pictureFile?.content" class="card-img-top" *ngIf="bid?.owner?.pictureFile">
+                            </div>
+                        </div>
+                        <p class="mt-16">
+                            <strong class="blue-text">{{ bid?.owner.account.firstName }} {{ bid?.owner.account.lastName }}</strong>
+                            <ul class="rating">
+                                <rating *ngIf="bid.owner.rating" [(ngModel)]="bid.owner.rating" [max]="5" [readonly]="true"></rating> 
+                            </ul>
+                        </p>
+
+                        <div *ngIf="bid.owner.account.city" class="md-form">
+                            <div class="form-control input-data">{{ bid?.owner.account.city.name }}, {{ bid?.owner.account.city.stateName }}</div>
+                            <label class="active">Location</label>
+                        </div>
+                        <div *ngIf="bid.owner.summaryBio" class="md-form">
+                            <div class="form-control input-data">{{ bid?.owner.summaryBio }}</div>
+                            <label class="active">Summary Bio</label>
+                        </div>
+                        <div class="md-form">
+                            <div class="form-control input-data" *ngFor="let skill of bid?.owner.skills">
+                                <div class="chip none-margin-all mt-3px pr-12 text-center">{{ skill.skill.name }}</div>
+                            </div>
+                            <label class="active">Skill</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+.tooltip {
+	&.bs-tooltip-auto[x-placement^=top] .arrow::before,
+	&.bs-tooltip-top .arrow::before {
+	    // border-top-color: #13caa8;
+	}
+	.tooltip-inner {
+	    // max-width: 200px;
+	    // background-color: #13caa8;
+	}
+}
+

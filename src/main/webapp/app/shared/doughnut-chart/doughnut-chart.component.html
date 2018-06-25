@@ -1,0 +1,14 @@
+<div class="col">
+    <div class="pie-box">
+        <div class="pie-graph">
+            <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="30" class="pie-circle"></circle>
+                <circle [attr.data-index]="index" id='graph' cx="40" cy="40" r="30" class="pie-line goal-0"></circle>
+            </svg>
+        </div>
+        <div class="pie-line-data">
+            <p>{{percent}}%</p>
+        </div>
+    </div>
+    <div class="text-center text-muted mt-8">Compatibility Score</div>                                                
+</div>

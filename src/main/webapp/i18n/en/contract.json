@@ -1,0 +1,51 @@
+
+{
+    "prostarsWebApp": {
+        "contract" : {
+            "home": {
+                "title": "Contracts",
+                "createLabel": "Create a new Contract",
+                "createOrEditLabel": "Create or edit a Contract"
+            },
+            "created": "A new Contract is created with identifier {{ param }}",
+            "updated": "A Contract is updated with identifier {{ param }}",
+            "deleted": "A Contract is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contract ?",
+                 "ButonOK": "OK",
+                 "Waring": "Warning !!"
+            },
+            "detail": {
+                "title": "Contract"
+            },
+            "contractPending": "Contract Pending",
+            "developerContract": "Developer Contract",
+            "completedContract": "Completed Contract",
+            "name": "Name",
+            "note": "Note",
+            "createdDate": "Created Date",
+            "bizStatus": "Biz Status",
+            "proStatus": "Pro Status",
+            "histories": "Histories"
+        },
+        "contractTemplate" : {
+            "home": {
+                "title": "Contract Templates",
+                "createLabel": "Create a new Contract Template",
+                "createOrEditLabel": "Create or edit a Contract Template"
+            },
+            "created": "A new Contract Template is created with identifier {{ param }}",
+            "updated": "A Contract Template is updated with identifier {{ param }}",
+            "deleted": "A Contract Template is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contract Template {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract Template"
+            },
+            "name": "Name",
+            "createdDate": "Created Date"
+        }
+
+    }
+}

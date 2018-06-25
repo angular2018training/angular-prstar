@@ -1,0 +1,20 @@
+/* after changing this file run 'yarn run webpack:build' */
+$fa-font-path: '~font-awesome/fonts';
+
+/***************************
+put Sass variables here:
+eg $input-color: red;
+****************************/
+// Override Boostrap variables
+@import "bootstrap-variables";
+// @import 'node_modules/font-awesome/scss/font-awesome';
+// @import 'node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap';
+// @import 'materialdesignicons.css';
+// @import 'bootstrap.min.css';
+// @import 'mdb.min.css';
+// @import 'style.css';
+// @import 'src/main/webapp/content/scss/style';
+
+// @import "~css-star-rating/scss/star-rating";
+
+/* jhipster-needle-scss-add-vendor JHipster will add new css style */

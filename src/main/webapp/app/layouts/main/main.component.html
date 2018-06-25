@@ -1,0 +1,157 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="false">
+        <div class="brand-name" [ngSwitch]="isColorLogo">
+            <img *ngSwitchCase="false" src="../../../content/img/logo.png" />
+            <img *ngSwitchCase="true" src="../../../content/img/logo-color.png" />
+        </div>
+        <div class="dropdown dropdown-menu-main">
+            <a class="btn-floating btn-lg btn-light btn-menu-toggle mdi mdi-menu" data-toggle="dropdown">
+            </a>
+            <div class="dropdown-menu" [ngSwitch]="isAuthenticated()">
+                <a class="dropdown-item" href="/#/">Home</a>
+                <a class="dropdown-item" href="javascript:void(0);">Learn More</a>
+                <a class="dropdown-item" href="javascript:void(0);">About</a>
+                <!--<a class="dropdown-item" href="javascript:void(0);">Register</a>-->
+                <a class="dropdown-item" href="/#/login">Sign in</a>
+                <a class="dropdown-item" (click)="proDecisionStatus()">Applicant Status</a>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+    <div class="page-dashboard" *ngSwitchCase="true">
+        <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dashboard"> -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dashboard" id="navbar-top" [ngClass]="{open : !isCollapsed()}">
+            <div class="col-auto col-left">
+                <div class="row">
+                    <div class="col-auto col-left">
+                        <!-- <button id="menu-close" class="btn btn-link menu-collapsed"><i class="mdi mdi-backburger mdi-24px"></i></button> -->
+                    </div>
+                    <div class="col col-center">
+                        <img class="logo-dashboard" src="../../../content/img/logo.png">
+                        <img class="logo-dashboard-compact" src="../../../content/img/logo-compact.png">
+                    </div>
+                    <div class="col-auto col-right">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col col-right">
+                <div class="row">
+                    <div class="col-auto col-left">
+                        <button class="btn btn-link m-0" id="menu-open" (click)="toggleMenu()"><i class="mdi mdi-menu mdi-24px"></i></button>
+                    </div>
+                    <div class="col col-center">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text md-addon"><i class="mdi mdi-magnify mdi-24px"></i></span>
+                            </div>
+                            <div class="waves-input-wrapper waves-effect waves-light"><input type="text" class="form-control input-search-top" placeholder="Search"></div>
+                        </div>
+                    </div>
+                    <!--<div class="col col-center">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text md-addon"><i class="mdi mdi-magnify mdi-24px"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control input-search-top" placeholder="Search">
+                                </div>
+                            </div>-->
+                    <div class="col-auto col-right">
+                            <ul class="navbar-nav ml-auto nav-flex-icons user-info">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown">                                      
+                                       <span>
+                                           <ng-container *ngIf="!backgroundData?.avatarPhoto; else elseTemplate">
+                                               <img src="../../../content/img/avatar-04.jpg" class="rounded-circle z-depth-0 avatar">
+                                            </ng-container>
+                                            <ng-template #elseTemplate>
+                                                <img [src]="'data:' + backgroundData?.avatarPhotoContentType + ';base64,' + backgroundData?.avatarPhoto" class="rounded-circle z-depth-0 avatar">
+                                            </ng-template>
+                                        </span>   
+                                       
+                                        <span class="logged-in-name">
+                                            <span *ngIf="firstName">{{firstName}}</span>
+                                            <span *ngIf="companyName">|| {{companyName}}</span>
+                                        </span>
+                                    </a>  
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item waves-effect waves-light" href="javascript:void(0);">Profile</a>
+                                        <a class="dropdown-item waves-effect waves-light" href="javascript:void(0);">Change Password</a>
+                                        <a class="dropdown-item waves-effect waves-light" href="javascript:void(0);" (click)="logout()">Log Out</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"><i class="mdi mdi-dots-vertical mdi-24px"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!--<a class="dropdown-item waves-effect waves-light" href="javascript:void(0);" (click)="goHome()">Home</a>-->
+                                        <a class="dropdown-item waves-effect waves-light" href="javascript:void(0);">Learn More</a>
+                                        <a class="dropdown-item waves-effect waves-light" href="javascript:void(0);">About</a>
+                                        <a class="dropdown-item waves-effect waves-light" href="/#/dashboard">Dashboard</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-main-menu" id="main-menu" [ngClass]="{open : !isCollapsed()}">
+                    <div class="menu-header">
+                        <div class="row">
+                            <div class="col-auto col-left">
+                                <button id="menu-close" class="btn btn-link menu-collapsed" (click)="toggleMenu()"><i class="mdi mdi-backburger mdi-24px"></i></button>
+                            </div>
+                            <div class="col col-center">
+                                <img class="logo-dashboard" src="../../../content/img/logo.png">
+                            </div>
+                            <div class="col-auto col-right">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="left-menu-wrapper">
+                        <div class="left-menu">
+                            <div *jhiHasAnyAuthority="['ROLE_PRO','ROLE_BIZ']" class="list-group">
+                                <a href="/#/dashboard" class="list-group-item waves-light"><span class="mdi mdi-monitor"></span><span class="list-group-item-label">Dashboard</span></a>
+                                <a href="/#/create-pro-request"  *jhiHasAnyAuthority="['ROLE_BIZ']" class="list-group-item waves-light"><span class="mdi mdi-clipboard-check-outline"></span><span class="list-group-item-label">Find Pros</span></a>
+                                <a href="/#/create-post" *jhiHasAnyAuthority="['ROLE_BIZ']" class="list-group-item waves-light"><span class="mdi mdi-briefcase"></span><span class="list-group-item-label">Projects</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-currency-usd"></span><span class="list-group-item-label">Payments</span></a>
+                                <a href="/#/pro-network" *jhiHasAnyAuthority="['ROLE_PRO']" class="list-group-item waves-light"><span class="mdi mdi-file-find"></span><span class="list-group-item-label">Refer</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-star"></span><span class="list-group-item-label">Rate</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-file-chart"></span><span class="list-group-item-label">Report</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-checkbox-multiple-marked-outline"></span><span class="list-group-item-label">To Dos</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-bell-ring"></span><span class="list-group-item-label">Notifications</span></a>
+                                <a href="javascript:void(0);" class="list-group-item waves-light"><span class="mdi mdi-comment-check"></span><span class="list-group-item-label">Deliverables</span></a>
+                            </div>
+                            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="list-group">
+                                <a href="/#/dashboard" class="list-group-item waves-light"><span class="mdi mdi-monitor"></span><span class="list-group-item-label">Dashboard</span></a>
+                                <a href="/#/vetting" class="list-group-item waves-light"><span class="mdi mdi-clipboard-check-outline"></span><span class="list-group-item-label">Pro Applicants Report</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-main-content" id="main-content" [ngClass]="{open : !isCollapsed()}">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loading" *ngIf="loaderService.isLoading | async">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,198 @@
+<ng-container *ngIf="interview">
+
+  <div class="row">
+    <div class="col-6">
+      <div class="md-form">
+        <div class="form-control input-data">
+          <span class="badge badge-blue" [ngClass]="setStatusClasses(interview.status)">{{ interview.status }}</span>
+        </div>
+        <label class="active" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblInterviewStatus">Interview Status</label>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="project">
+    <div class="mt-16">
+      <div class="card card-project">
+        <div class="pt-12 pb-12 card-header collapsed" data-toggle="collapse" data-target="#collapse-2">
+          {{ project.projectName }}
+          <span class="mdi mdi-chevron-down indicator"></span>
+        </div>
+        <div class="collapse" id="collapse-2">
+          <div class="card-body">
+            <div class="md-form">
+              <div class="form-control input-data">
+                {{ project.description }}
+              </div>
+              <label class="active" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblProjectDesc">Description</label>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="md-form">
+                  <div class="form-control input-data">{{ project.startDate | date: 'MM.dd.yyyy' }}</div>
+                  <label class="active">Project Start Date</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="md-form">
+                  <div class="form-control input-data">{{ project.endDate | date: 'MM.dd.yyyy' }}</div>
+                  <label class="active">Project End Date</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="session">
+    <!-- Skill -->
+    <div class="row mt-24">
+      <div class="col-12">
+        <h5 class="section-name" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblInterviewScore">
+          Interview Score
+        </h5>
+        <div class="md-form">
+          <div class="row">
+            <div class="col-6 col-md-4">
+              <h6>
+                <small class="grey-text" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblCriteria">Criteria</small>
+              </h6>
+            </div>
+            <div class="col-6 col-md-8">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <h6>
+                    <small class="grey-text" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblScore">Score</small>
+                  </h6>
+                </div>
+                <div class="col-12 col-md-6 d-none d-md-block">
+                  <h6>
+                    <small class="grey-text" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblResult">Result</small>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngFor="let item of interviewScores; let i=index">
+            <div class="col-6 col-md-4">
+              <div class="md-form">
+                <div class="chip none-margin-all mt-3px">
+                  {{ item.criteria }}
+                  <i class="mdi mdi-close-circle" (click)="onRemoveScore(i)"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-8">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="md-form">
+                    <div class="range-field" >
+                      <input max="10" min="1" type="range" [(ngModel)]="item.score" (change)="onUpdateTotalScore()" [disabled]="!session.isEnableEdited">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="md-form">
+                    <div class="form-control input-data none-mb">
+                      {{ item.score }}/10
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Skill -->
+    <!-- Add skill -->
+    <div class="row" *ngIf="session.isEnableEdited">
+      <div class="col-6 col-md-4">
+        <div class="md-form" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblAddSkill">
+          Add skill
+        </div>
+      </div>
+      <div class="col-6 col-md-6">
+        <div class="md-form">
+          <input class="form-control none-mb" #newSkill type="text" (keyup.enter)="onAddNewSkill($event)">
+        </div>
+      </div>
+    </div>
+    <!-- Total skill -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6 col-md-4">
+            <div class="md-form" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblTotalScore">
+              Total Score
+            </div>
+          </div>
+          <div class="col-6 col-md-8">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="md-form">
+                  <div class="range-field pt-3px">
+                    <input max="10" min="1" type="range" disabled [(ngModel)]="totalScore">
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="md-form">
+                  {{ totalScore }}/10
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-24">
+      <div class="col-12">
+        <div class="md-form">
+          <ng-container *ngIf="!session.isEnableEdited; else elseTemplate">
+            <p>{{ session.note }}</p>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <textarea [(ngModel)]="session.note" class="md-textarea form-control" maxlength="500" rows="3" type="text" placeholder="500 characters max"></textarea>
+          </ng-template>
+          <div class="text-right" *ngIf="session.isEnableEdited">
+            <ng-container *ngIf="session.note; else elseTemplate">
+              <small class="grey-text">{{ session.note.length }}/500</small>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <small class="grey-text">0/500</small>
+            </ng-template>
+          </div>
+          <label for="Form-pass1" class="active" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblInterviewNotes">Interview Notes</label>
+        </div>
+      </div>
+
+    </div>
+    <h5 class="section-name mt-24" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblInterviewDecision">
+      Interview decision
+    </h5>
+    <div class="form-inline">
+      <fieldset [disabled]="((interview && interview.status != 'SCHEDULED') || !session.isEnableEdited)">
+        <div class="form-check pull-left">
+          <input class="form-check-input with-gap" name="group20" type="radio" id="radio120" [disabled]="((interview && interview.status != 'SCHEDULED') || !session.isEnableEdited)"
+            [(ngModel)]="session.decision" value="GO">
+          <label class="form-check-label" for="radio120" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblGo">Go</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input with-gap" name="group20" type="radio" id="radio121" [disabled]="((interview && interview.status != 'SCHEDULED') || !session.isEnableEdited)"
+            [(ngModel)]="session.decision" value="NO_GO">
+          <label class="form-check-label" for="radio121" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.projectTab.lblNoGo">No Go</label>
+        </div>
+      </fieldset>
+    </div>
+    <hr>
+    <div class="text-right">
+      <button class="btn mr-16 none-margin-all text-primary" type="submit" jhiTranslate="prostarsWebApp.interview.interviewListPerRole.scheduleTab.lblButtonSave"
+        (click)="onSave()">SAVE NOTES & CRITERIAS</button>
+      <button [disabled]="interview.status !== 'SCHEDULED'" class="btn btn-primary btn-primary-profile none-margin-all" type="submit"
+        jhiTranslate="prostarsWebApp.interview.interviewListPerRole.scheduleTab.lblButtonNext" (click)="onNext()">SUBMIT DECISION</button>
+    </div>
+  </ng-container>
+</ng-container>

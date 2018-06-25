@@ -1,0 +1,91 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "account",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pro"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "proCommission",
+            "otherEntityName": "proCommission",
+            "otherEntityRelationshipName": "pro"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "skill",
+            "otherEntityName": "proSkill",
+            "otherEntityRelationshipName": "pro"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "backgroundQuestion",
+            "otherEntityName": "backgroundQuestion",
+            "otherEntityRelationshipName": "pro"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "pros",
+            "relationshipName": "role",
+            "otherEntityName": "role",
+            "otherEntityField": "name",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "decision",
+            "fieldType": "Decision",
+            "fieldValues": "NO,YES,AWAITING"
+        },
+        {
+            "fieldName": "updatedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "picture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "resume",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "summaryBio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lowDesiredRate",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "hightDesiredRate",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180327112511",
+    "entityTableName": "pro",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
+}

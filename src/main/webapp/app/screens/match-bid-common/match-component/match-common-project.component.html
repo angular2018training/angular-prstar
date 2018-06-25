@@ -1,0 +1,56 @@
+<div class="content-match">
+<ol class="breadcrumb mb-16">
+    <li class="breadcrumb-item"><a href="#dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#biz-landing">Match</a></li>
+    <li class="breadcrumb-item active">Match Report</li>
+</ol>
+<div class="content-match" id="main-content">
+    <div class="card card-match-report">
+        
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <h5 class="mb-0">MATCH REPORT</h5>
+                    <span class="badge badge-status-awaiting-review" *ngIf="projectData.status =='Awaiting Review'">{{projectData.status}}</span>
+                    <span class="badge badge-status-in-review" *ngIf="projectData.status == 'In Review'">{{projectData.status}}</span>
+                    <span class="badge badge-status-review-completed" *ngIf="projectData.status == 'Reviewed'">{{projectData.status}}</span>
+                </div>
+                <div class="col-12 col-md-8 col-lg-9 text-left text-md-right">
+                    <h5 class="text-primary mb-8">{{projectData.projectName}}</h5>
+                    <p>Project Id: {{projectData.id}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <p>Inside, you'll find a total of {{totalMatch}} potential Pros to consider for your <strong>{{projectData.projectName}}</strong>. You'll get a chance to review each Pro, and choose whether you'd like to interview them for the role. Lastly, you'll get the chance to select any interviewers from your Biz, and propose interview times.</p>
+                    <p>Click <button [disabled]="roleMatchs.length == 0" (click)="onReviewMatch(roleMatchs[0])" type="button" class="btn btn-primary btn-sm">REVIEW MATCHES</button> to start the process!</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let roleMatch of roleMatchs; let i = index">
+                    <div class="card card-match">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-12 col-md-auto">
+                                    <h1 class="number">{{roleMatch.numberOfPros}}</h1>
+                                    <p class="unit">MATCHES</p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="role text-center text-sm-center text-md-left"><strong>{{roleMatch.roleName}}</strong> Role</h6>
+                                    <p class="status text-center text-sm-center text-md-left">Status: 
+                                        <span class="badge badge-status-awaiting-review" *ngIf="roleMatch.status == 'Awaiting Review'">{{roleMatch.status}}</span>
+                                        <span class="badge badge-status-in-review" *ngIf="roleMatch.status == 'In Review'">{{roleMatch.status}}</span>
+                                        <span class="badge badge-status-review-completed" *ngIf="roleMatch.status == 'Review Completed'">{{roleMatch.status}}</span>
+                                    </p>
+                                    <div class="action text-center text-sm-center text-md-left"><button type="button" class="btn btn-primary" (click)="onReviewMatch(roleMatch)">REVIEW MATCHES</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

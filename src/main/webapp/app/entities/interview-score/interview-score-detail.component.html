@@ -1,0 +1,36 @@
+
+<div *ngIf="interviewScore">
+    <h2><span jhiTranslate="prostarsWebApp.interviewScore.detail.title">Interview Score</span> {{interviewScore.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="prostarsWebApp.interviewScore.criteria">Criteria</span></dt>
+        <dd>
+            <span>{{interviewScore.criteria}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewScore.score">Score</span></dt>
+        <dd>
+            <span>{{interviewScore.score}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewScore.interviewSession">Interview Session</span></dt>
+        <dd>
+            <div *ngIf="interviewScore.interviewSessionId">
+                <a [routerLink]="['/interview-session', interviewScore.interviewSessionId]">{{interviewScore.interviewSessionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'interview-score/'+ interviewScore.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

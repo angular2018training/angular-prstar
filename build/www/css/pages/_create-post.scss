@@ -1,0 +1,187 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+.content-create-post {
+    .card-create {
+        box-shadow: none;
+        border-radius: 0;
+        .card-header {
+            position: relative;
+            background-color: #fff;
+            border: solid 1px #e0e0e0;
+            // border-bottom: none;
+            border-radius: 0;
+            padding-left: 24px;
+            padding-right: 48px;
+            .col-total {
+                text-align: right;
+            }
+        }
+        .card-body {
+            border-left: solid 1px #e0e0e0;
+            border-right: solid 1px #e0e0e0;
+            border-bottom: solid 1px #e0e0e0;
+        }
+        .card-footer {
+            background-color: #fff;
+            border: solid 1px #e0e0e0;
+            border-top: none;
+            border-radius: 0;
+            padding: 24px;
+            text-align: right;
+        }
+    }
+    .form-inline {
+    	.md-form {
+    		margin-top: -14px;
+    	}
+    }
+    .form-position {
+    	background-color: #d2eafd;
+    	margin-top: -20px;
+    	margin-right: -20px;
+    	margin-left: -20px;
+    	padding-top: 20px;
+    	padding-right: 20px;
+    	padding-left: 20px;
+    	@media (min-width: 1200px) {
+    		justify-content: center;
+    	}
+    	.form-check {
+    		label {
+    			color: rgba(51, 51, 51, 0.5);
+    			&:before, &:after {
+    				opacity: 0.5;
+    			}
+    		}
+    		input:checked + label {
+    			color: rgba(51, 51, 51, 1);
+    			&:before, &:after {
+    				opacity: 1;
+    			}
+    		}
+    	}
+    }
+
+    h4.project-title {
+        font-size: 20px;
+    }
+
+    .card-pro {
+        box-shadow: none;
+        border-radius: 0;
+        & + .card-pro {
+            margin-top: 24px;
+        }
+        .card-header {
+            position: relative;
+            background-color: #fff;
+            border: solid 1px #e0e0e0;
+            // border-bottom: none;
+            border-radius: 0;
+            padding-left: 24px;
+            padding-right: 48px;
+            .col-total {
+                text-align: right;
+            }
+            .indicator {
+                position: absolute;
+                top: 12px;
+                right: 20px;
+                transition: transform 0.2s;
+            }
+            &.collapsed {
+                .indicator {
+                    transform: rotate(180deg);
+                } 
+            }
+            .badge-total {
+                background-color: transparent;
+                box-shadow: none;
+                font-size: 16px;
+                font-weight: 300;
+                color: #333 !important;
+                margin-right: 40px;
+                padding-left: 0;
+                padding-right: 0;
+
+                > i {
+                    color: #1976d3;
+                    font-weight: 300;
+                    font-style: normal;
+                }
+            }
+        }
+        .collapse {
+            
+        }
+
+    }
+    .card-company-summary {
+        box-shadow: none;
+        border: none;
+        .card-img-top {
+            border: solid 1px #e0e0e0;
+            border-radius: 0;
+            display: block;
+            @media (min-width: 576px) {
+                max-width: 200px;
+            }
+        }
+        .card-body {
+            border: none;
+            padding: 0px;
+            
+        }
+    }
+
+    .block-target-rate {
+        
+        .expense {
+            @media (min-width: 768px) {
+                text-align: right;
+            }
+        }
+        .budget {
+            font-size: 20px;
+            margin-top: -6px;
+            font-weight: 500;
+            @media (min-width: 768px) {
+                text-align: right;
+            }
+        }
+
+        .form-control-expense, .form-control-budget,
+        .form-control-expense:focus, .form-control-budget:focus {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+         @media (min-width: 768px) {
+            .col-prefix-to:before {
+                display: block;
+                content: 'to';
+                font-size: 16px;
+                padding-top: .3rem;
+                position: absolute;
+                margin-top: 2rem;
+                left: -8px;
+            }
+            .col-prefix-plus:before {
+                display: block;
+                content: '+';
+                font-size: 16px;
+                padding-top: .3rem;
+                position: absolute;
+                margin-top: 2rem;
+                left: -8px;
+            }
+            .col-budget {
+                border-top: solid 1px #d1d1d1;
+            }
+        }
+    }
+
+    
+}

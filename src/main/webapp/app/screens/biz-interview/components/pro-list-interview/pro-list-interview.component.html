@@ -1,0 +1,80 @@
+<ng-container *ngIf="listInterview; else elseTemplate">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 300px;">Match Pros</th>
+        <th style="width: 200px;">RATING</th>
+        <th style="width: 150px;">LOCATION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listInterview; let i=index" (click)="onSetCurrentInterview(item)" [class.active]="currentInterview.id === item.id">
+        <td>
+          <div class="media media-user">
+            <img src="../../../../../content/img/svg/icon-company-avatar.svg" class="img-fluid" *ngIf="!item.pro.pictureFile || !item.pro.pictureFile.content">
+            <img [src]="'data:' + item.pro.pictureFile.contentType + ';base64,' + item.pro.pictureFile.content" class="img-fluid" *ngIf="item.pro.pictureFile && item.pro.pictureFile.content">
+            <div class="media-body">
+              <h5>
+                {{ item.pro.account.firstName }} {{ item.pro.account.lastName }}
+              </h5>
+            </div>
+          </div>
+        </td>
+        <td>
+          <ng-container *ngIf="item.pro.rating">
+            <ul class="rating">
+              <li>
+                <span [ngClass]="{ 
+                  'mdi': true,
+                  'mdi-star' : item.pro.rating >=1,
+                  'mdi-star-outline' : item.pro.rating <1  
+                }"></span>
+              </li>
+              <li>
+                <span [ngClass]="{ 
+                  'mdi': true,
+                  'mdi-star' : item.pro.rating >=2,
+                  'mdi-star-outline' : item.pro.rating <2
+                }"></span>
+              </li>
+              <li>
+                <span [ngClass]="{ 
+                  'mdi': true,
+                  'mdi-star' : item.pro.rating >=3,
+                  'mdi-star-outline' : item.pro.rating <3  
+                }"></span>
+              </li>
+              <li>
+                <span [ngClass]="{ 
+                  'mdi': true,
+                  'mdi-star' : item.pro.rating >=4,
+                  'mdi-star-outline' : item.pro.rating <4 
+                }"></span>
+              </li>
+              <li>
+                <span [ngClass]="{ 
+                  'mdi': true,
+                  'mdi-star' : item.pro.rating >=5,
+                  'mdi-star-outline' : item.pro.rating <5 
+                }"></span>
+              </li>
+            </ul>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngIf="item.pro.account.city">
+            <ng-container *ngIf="item.pro.account.city.state; else elseTemplate">
+              {{ item.pro.account.city.state?.name }}, {{ item.pro.account.city.name }}
+            </ng-container>
+            <ng-template #elseTemplate>
+              {{ item.pro.account.city.name }}
+            </ng-template>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #elseTemplate>
+  No records found...
+</ng-template>

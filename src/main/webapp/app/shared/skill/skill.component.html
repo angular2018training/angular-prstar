@@ -1,0 +1,82 @@
+  <h5 class="section-name mt-24" jhiTranslate="prostarsWebApp.skill.keySkill">Skills</h5>
+  <div>
+    <div class="row" *ngIf="showTitle || skills">
+      <div class="col-6 col-md-4">
+        <h6 class="hidden-xs">
+          <small class="grey-text" jhiTranslate="prostarsWebApp.skill.skillName">Skill</small>
+        </h6>
+      </div>
+      <div class="col-6 col-md-8">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <h6 class="hidden-xs">
+              <small class="grey-text" jhiTranslate="prostarsWebApp.skill.skillStrength">Skill Strength (out of 5)</small>
+            </h6>
+          </div>
+          <div class="col-12 col-md-6 d-none d-md-block">
+            <h6 class="hidden-xs">
+              <small class="grey-text" jhiTranslate="prostarsWebApp.skill.yearOfSkill">Years of Experience</small>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="skills">
+      <div class="row" *ngFor="let proSkill of skills; index as i">
+        <div class="col-6 col-md-4">
+          <div class="md-form">
+            <div class="chip none-margin-all mt-3px">
+              {{proSkill.skill.itemName}}
+              <i *ngIf="addMoreRowsFlag" class="mdi mdi-close-circle" (click)="deleteProSkill(i)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-8">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="md-form">
+                <div class="range-field pt-3px">
+                  <input [disabled]="!addMoreRowsFlag" type="range" min="1" max="5" [(ngModel)]="proSkill.strength" />
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="md-form">
+                <input [disabled]="!addMoreRowsFlag" type="text" id="form1" class="form-control none-mb" [(ngModel)]="proSkill.yearsOfExperience">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="showAddMoreControl">
+      <div class="col-6 col-md-4 skill-custom">
+        <div class="md-form-customize">
+          <angular2-multiselect [data]="dropdownSkillList" [(ngModel)]="selectedSkills" [settings]="dropdownSkillSettings"
+            [ngModelOptions]="{standalone: true}" (onSelect)="onItemSelect($event)">
+          </angular2-multiselect>
+        </div>
+      </div>
+      <div class="col-6 col-md-8">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div class="md-form">
+              <div class="range-field pt-3px">
+                <input type="range" min="1" max="5" [(ngModel)]="selectedSkillStrength" name="selectedSkillStrength" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="md-form">
+              <input type="text" id="form1" class="form-control none-mb" [(ngModel)]="selectedSkillYears" name="selectedSkillYears" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="skillBtn-custom" *ngIf="addMoreRowsFlag">
+    <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="onAddMoreSkillClick()">Add More Skills</button>
+  </div>

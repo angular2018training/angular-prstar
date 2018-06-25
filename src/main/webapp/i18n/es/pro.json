@@ -1,0 +1,101 @@
+{
+    "prostarsWebApp": {
+        "pro" : {
+            "home": {
+                "title": "Pros",
+                "createLabel": "Create a new Pro",
+                "createOrEditLabel": "Create or edit a Pro"
+            },
+            "created": "A new Pro is created with identifier {{ param }}",
+            "updated": "A Pro is updated with identifier {{ param }}",
+            "deleted": "A Pro is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pro {{ id }}?"
+            },
+            "detail": {
+                "title": "Pro"
+            },
+            "name": "Name",
+            "email": "Email",
+            "address": "Address",
+            "phone": "Phone",
+            "background": "Background",
+            "picture": "Picture",
+            "summaryBio": "Summary Bio",
+            "desiredRateLow": "Desired Rate Low",
+            "desiredRateHigh": "Desired Rate High",
+            "account": "Account",
+            "sponsor": "Sponsor",
+            "role": "Role",
+            "summaryProfile": {
+                "emailText": "Email Address",
+                "emailPlaceHolder": "Jane.doe@email.com",
+                "passwordText": "Password",
+                "passwordPlaceHolder": "8-30 characters; must include 1 number",
+                "buttonNext": "NEXT",
+                "buttonBack": "BACK",
+                "bioPlaceHolder": "500 characters max",
+                "summaryBioRequired": "Your summaryBio is required.",
+                "summaryBioMaxLength": "Your summaryBio cannot be longer than 500 characters.",
+                "errorMessage": "Error",
+                "successTitle": "Congratulations!",
+                "successMessage": "You have taken the first step to becoming a Pro!<br>Your summary profile will be reviewed by other Pros with similar skills, and we will notify you within the next 1-2 days regarding your membership.<br>You can also check back anytime using your email.",
+                "noticeTitle": "Notice!",
+                "noticeMessage": "Please check your email to activate your account!",
+                "buttonClose": "GOT IT"
+            },
+            "detailProfile":{
+                "successMessage": "You have taken the first step to becoming a ProStars Pro! Check your email <br/> for verification steps"
+            },
+            "status": {
+                "modalTitle": "Pro Applicant Status",
+                "info": "Please enter the information below to see Pro Applicant Status.",
+                "email": "Email Address:",
+                "rejectTitle": "Thank You",
+                "rejectMessage": "We are sorry to say that...<br>Unfortunately, this Pro application was not accepted at this time.",
+                "acceptTitle": "Congratulations!",
+                "acceptMessage": "This user has been accepted to ProStars! An email had been sent to their email inbox to help them proceed.<br><br>Can't find your original acceptance email?<br>We'll be happy to resend it to you!",
+                "reviewTitle": "In Review",
+                "reviewMessage": "The application is currently being reviewed;<br>we will send the applicant an email once a decision has been made.",
+                "notice": "Notice",
+                "closeButton": "GOT IT",
+                "submitButton": "SUBMIT",
+                "resendEmailButton": "Resend Acceptance Email",
+                "emailSentMessage": "Email sent! Please check your email inbox!",
+                "emailSendingError": "Oops! Something happened. We could not send the activation email.",
+                "isNotExist": "An application has not been submitted with this email! <br>Please apply and then re-check your status.",
+                "isExist": "This email is already in use by a registered Pro!",
+                "isReferral": "This individual was referred,<br>but hasn't yet applied to ProStars.",
+                "emailInvalid": "This isn't a valid email!",
+                "alreadyExist": "This email is already in use by a registered Pro!",
+                "toolTipRateRole": "Enter your low and high hourly bill rates for each role"
+            },
+            "network": {
+                "ytd": "YTD",
+                "qtd": "QTD",
+                "mtd": "MTD",
+                "title": "Pro Networks",
+                "levelOne": "Level One",
+                "leveTwo": "Level Two",
+                "total": "Total",
+                "contracts": "Contracts",
+                "commission": "Commission",
+                "prosISponsored": "Pro's I sponsored",
+                "prosTheySponsored": "Pro's they sponsored",
+                "sponsorAPro": "Sponsor a Pro"
+            },
+            "referral": {
+                "allStatus": "ALL STATUS",
+                "sent": "Referral Sent",
+                "inReview": "In Review",
+                "accepted": "Accepted",
+                "rejected": "Rejected",
+                "profileSetup": "Profile Setup"
+
+            },
+            "vetting" : {
+                "applicationsReport" : "Upon clicking this button, ProStars will automatically send an 'accepted' or 'rejected' communication to any Pro Applicant with a Status of 'Ready to Inform Applicant'."
+            }
+        }
+    }
+}

@@ -1,0 +1,233 @@
+<div class="content-match" id="main-content">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Match</li>
+    </ol>
+    <div class="row mb-32">
+
+        <div class="col-12 col-md-3">
+            <a [routerLink]="['/postWall']" class="card card-notification item-dashboard-new bg-blue">
+                <div class="card-body p-16">
+
+                    <div class="media">
+                        <div class="align-self-center d-flex mr-12 item-large text-center color-white border-white border-0">
+                            <img src="../../../../../content/img/icon-biz-post.png" alt="">
+                        </div>
+                        <div class="media-body align-self-center">
+                            <p class="text-large mb-0">252</p>
+                            <p class="mb-0">Biz Post For You To Consider</p>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card card-notification item-dashboard-new bg-green">
+                <div class="card-body p-16">
+
+                    <div class="media">
+                        <div class="align-self-center d-flex mr-12 item-large text-center color-white border-white">
+                            <i class="mdi mdi-heart"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <p class="text-large mb-0">10</p>
+                            <p class="mb-0">Saved Posts</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card card-notification item-dashboard-new">
+                <div class="card-body p-16">
+
+                    <div class="media">
+                        <div class="align-self-center d-flex mr-12 item-large text-center color-blue border-blue">
+                            <i class="mdi mdi-share-variant"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <p class="text-large mb-0 color-blue">126</p>
+                            <p class="mb-0">Active Referral Bids</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card card-notification item-dashboard-new">
+                <div class="card-body p-16">
+
+                    <div class="media">
+                        <div class="align-self-center d-flex mr-12 item-large text-center color-yellow border-yellow">
+                            <i class="mdi mdi-file-document"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <div class="row">
+                                <div class="col-6 text-center p-0">
+                                    <p class="text-large mb-0 color-yellow">{{countInprocess}}</p>
+                                    <p class="mb-0 break-word">
+                                        <a (click)="onInprocessContractPro()">Inprogress Contract</a>
+                                    </p>
+                                </div>
+                                <div class="col-6 text-center p-0">
+                                    <p class="text-large mb-0 color-yellow">{{countCompleted}}</p>
+                                    <p class="mb-0 break-word">
+                                        <a (click)="onCompletedContractPro()">Completed Contract</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">BIZ MATCH REQUESTS
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{proRequests?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">ROLE</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let proRequest of proRequests; let i = index">
+                                    <td class="pt-10 pb-10">
+                                        <a class="color-blue" [routerLink]="['/pro-interview']" [queryParams]="{roleId : proRequest.role.id}">
+                                            <div class="wraptext-custom">{{proRequest.projectName}}</div>
+                                        </a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <div class="wraptext-custom">
+                                            <span class="badge badge-status-in-review">{{proRequest.role.roleName}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <div class="wraptext-custom">
+                                            <span class="badge badge-status-open" [ngClass]="setStatusClasses(proRequest.role.interviewStatus)">{{proRequest.role.interviewStatus}}</span>
+                                        </div>
+                                        <!-- <span class="badge badge-status-closed" *ngIf="proRequest.isClosed == true">Closed</span> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">YOUR BIDS
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{pids?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let bid of bids">
+                                    <td class="pt-10 pb-10">
+                                        <a (click)="onSelectedBid(bid)">{{bid?.projectName}}</a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <span class="badge badge-status-open" *ngIf="bid.status == 'PASS'">{{bid?.status}}</span>
+                                        <span class="badge badge badge-blue" *ngIf="bid.status == 'SAVE'">{{bid?.status}}</span>
+                                        <span class="badge badge-status-open" *ngIf="bid.status == 'PENDING'">{{bid?.status}}</span>
+                                        <span class="badge badge-status-closed" *ngIf="bid.status == 'CHANGE'">{{bid?.status}}</span>
+                                        <span class="badge badge badge-gray" *ngIf="bid.status == 'CANCEL'">{{bid?.status}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-match-landing">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9 col-title">INTERVIEWS
+                        </div>
+                        <div class="col-3 text-right">
+                            <span class="badge badge-blue badge-total">{{interviews?.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0 border-right-0 border-left-0">
+                    <div class="card card-matching-pro">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-36">PROJECTS</th>
+                                    <th class="pt-36">ROLE</th>
+                                    <th class="pt-36">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let interview of interviews; let i = index">
+                                    <td class="pt-10 pb-10">
+                                        <a [routerLink]="['/pro-interview']" [queryParams]="{roleId : interview.role.id}">
+                                            <div class="wraptext-custom">{{interview.projectName}}</div>
+                                        </a>
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <div class="wraptext-custom">
+                                            <span class="badge badge-status-in-review">{{interview.role.roleName}}</span>
+                                        </div>
+                                        <!-- <span class="badge badge-status-closed" *ngIf="interview.role.isClosed == true">Closed</span> -->
+                                    </td>
+                                    <td class="pt-10 pb-10">
+                                        <div class="wraptext-custom">
+                                            <span [ngClass]="setStatusClasses(interview.role.interviewStatus)">{{interview.role.interviewStatus}}</span>
+                                        </div>
+                                        <!-- <span class="badge badge-status-closed" *ngIf="interview.role.isClosed == true">Closed</span> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

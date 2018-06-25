@@ -1,0 +1,45 @@
+<div class="wrapper-main-center page-profile">
+    <div class="container-main-center">
+        <!-- Horizontal Steppers -->
+        <div class="col-sm-12">
+            <!-- Stepers Wrapper -->
+            <h1 class="account-type">I’M A BIZ</h1>
+            <div class="text-center" jhiTranslate="prostarsWebApp.biz.welcome">
+                <p>Welcome to ProStars! Please create your profile to get started. Once you're on board, you'll be able to
+                    add other users from your organization.</p>
+            </div>
+            <ul class="stepper stepper-horizontal">
+                <!-- First Step -->
+                <li [ngClass]="{ 'active': this.bizService.currentStep === 1, '' : this.bizService.currentStep !== 1}">
+                    <a href="#!">
+                        <span class="circle">1</span>
+                        <!-- <span [ngClass]="{'circle check': this.bizService.currentStep !== 1}">
+                            <span class="mdi mdi-check"></span>
+                        </span> -->
+                        <span class="label hidden-sm">Contact Info</span>
+                    </a>
+                </li>
+                <!-- Second Step -->
+                <li [ngClass]="{ 'active': this.bizService.currentStep === 2, '' : this.bizService.currentStep !== 2}">
+                    <a href="#!">
+                        <span class="circle">2</span>
+                        <!-- <span [ngClass]="{'circle check': this.bizService.currentStep === 3}">
+                            <span class="mdi mdi-check"></span>
+                        </span> -->
+                        <span class="label hidden-sm">Company Bio</span>
+                    </a>
+                </li>
+                <!-- Third Step -->
+                <li [ngClass]="{ 'active': this.bizService.currentStep === 3, '' : this.bizService.currentStep !== 3}">
+                    <a href="#!">
+                        <span class="circle">3</span>
+                        <span class="label hidden-sm">Summary</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.Stepers Wrapper -->
+            <!-- /.Horizontal Steppers -->
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

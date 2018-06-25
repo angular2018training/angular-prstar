@@ -1,0 +1,50 @@
+<div class="content-create-post">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a href="/#/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/#/biz-landing" *ngIf="isCreatePost;else match1">Math</a>
+            <ng-template #match1><a href="/#/biz-landing" jhiTranslate="prostarsWebApp.dashboard.leftMenu.findPro"></a></ng-template>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.post.detailProgress.post" *ngIf="isCreatePost;else match2">Post</li>
+        <ng-template #match2>
+            <li class="breadcrumb-item active">Pro-request</li>
+        </ng-template>
+    </ol>
+    <ul class="stepper stepper-horizontal">
+        <!-- First Step -->
+        <li class="active" [routerLink]="['./project']" routerLinkActive="active">
+            <!-- completed | active | warning -->
+            <a href="#!">
+                <span class="circle number">1</span>
+                <span class="circle check">
+                    <span class="mdi mdi-check"></span>
+                </span>
+                <span class="label hidden-sm" jhiTranslate="prostarsWebApp.post.detailProgress.project">Project</span>
+            </a>
+        </li>
+        <!-- Second Step -->
+        <li [routerLink]="['./pro-request']" routerLinkActive="active">
+            <a href="#!">
+                <span class="circle number">2</span>
+                <span class="circle check">
+                    <span class="mdi mdi-check"></span>
+                </span>
+                <span class="label hidden-sm" jhiTranslate="prostarsWebApp.post.detailProgress.proRequest">Pro Request</span>
+            </a>
+        </li>
+        <!-- Third Step -->
+        <li [routerLink]="['./proof-post']" routerLinkActive="active">
+            <a href="#!">
+                <span class="circle number">3</span>
+                <span class="circle check">
+                    <span class="mdi mdi-check"></span>
+                </span>
+                <span *ngIf="isCreatePost" class="label hidden-sm" jhiTranslate="prostarsWebApp.post.detailProgress.post">Post</span>
+                <span *ngIf="!isCreatePost" class="label hidden-sm">Match</span>
+            </a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,497 @@
+<div class="content-match">
+<div class="row">
+    <div class="col-12 col-sm-8 col-lg-9">
+        <div class="row">
+
+            <div [hidden]="isBizUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-yellow" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        INCOME
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row item-dashboard">
+                            <div class="col-6 item-border-right">
+                                <p class="text-center mb-0">
+                                    <span>$</span>
+                                    <span class="item-large">100</span>
+                                </p>
+                                <p class="text-center mb-0">From My Projects YTD</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-center mb-0">
+                                    <span>$</span>
+                                    <span class="item-large">2600</span>
+                                </p>
+                                <p class="text-center mb-0">From My Pro Network YTD</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isBizUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-blue" [routerLink]="['/pro-network']">
+                    <div class="card-header border-bottom-0">
+                        NETWORKS
+                    </div>
+                    <div class="card-body pt-0" *ngIf="prodashboardDTO">
+                        <div class="row item-dashboard">
+                            <div class="col-5">
+                                <p class="item-large text-center mb-0">{{prodashboardDTO.proNetwork1}}</p>
+                                <p class="text-center mb-0">1<sup>ST</sup> Degree Connections</p>
+                            </div>
+                            <div class="col-2">
+                                <p class="text-center mb-0">
+                                    <span class="item-large">
+                                        <i class="mdi mdi-share-variant"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-5">
+                                <p class="item-large text-center mb-0">{{prodashboardDTO.proNetwork2}}</p>
+                                <p class="text-center mb-0">2<sup>ND</sup> Degree Connections</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isBizUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-green" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        PROJECTS
+                    </div>
+                    <div class="card-body pt-24">
+                        <div class="row item-dashboard">
+                            <div class="col-4 item-border-right p-0">
+                                <p class="item-large text-center mb-0">0</p>
+                                <p class="text-center mb-0 text-nowrap">Completed</p>
+                            </div>
+                            <div class="col-4 item-border-right p-0">
+                                <p class="item-large text-center mb-0">2</p>
+                                <p class="text-center mb-0 text-nowrap">Current</p>
+                            </div>
+                            <div class="col-4 p-0">
+                                <p class="item-large text-center mb-0">1</p>
+                                <p class="text-center mb-0 text-nowrap">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isProUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-green" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        PROJECTS
+                    </div>
+                    <div class="card-body pt-12 pb-32">
+                        <div class="row item-dashboard">
+                            <div class="col-4 item-border-right p-0">
+                                <p class="item-large text-center mb-0">0</p>
+                                <p class="text-center mb-0 text-nowrap">Completed</p>
+                            </div>
+                            <div class="col-4 item-border-right p-0">
+                                <p class="item-large text-center mb-0">2</p>
+                                <p class="text-center mb-0 text-nowrap">Current</p>
+                            </div>
+                            <div class="col-4 p-0">
+                                <p class="item-large text-center mb-0">1</p>
+                                <p class="text-center mb-0 text-nowrap">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div [hidden]="isProUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-yellow" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        PAYMENTS
+                    </div>
+                    <div class="card-body pt-12 pb-32">
+                        <div class="row item-dashboard">
+                            <div class="col-6 item-border-right p-0">
+                                <p class="text-center mb-0">
+                                    <span>$</span>
+                                    <span class="item-large">11,000</span>
+                                </p>
+                                <p class="text-center mb-0">This Month</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <p class="text-center mb-0">
+                                    <span>$</span>
+                                    <span class="item-large">260,000</span>
+                                </p>
+                                <p class="text-center mb-0">This Year</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div [hidden]="isProUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-grey" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        PERFORMANCE
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row item-dashboard">
+                            <div class="col-6 item-border-right item-border-color-gray p-0">
+                                <p class="text-center mb-0 item-star">
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                </p>
+                                <p class="text-center mb-0">My Rating (5.0)</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <p class="text-center mb-0">
+                                    <span class="item-large">178</span>
+                                </p>
+                                <p class="text-center mb-0">Biz Performance Snapshots ITD</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div [hidden]="isBizUser" class="col-12 col-lg-8">
+                <a class="card card-notification mb-30 bg-black" [routerLink]="['/pro-landing']">
+                    <div class="card-header border-bottom-0">
+                        MATCH
+                    </div>
+                    <div class="card-body pt-24">
+                        <div class="row item-dashboard">
+                            <div class="col-2 item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">{{bidSavedCount}}</p>
+                                <p class="text-center mb-0">Bids Saved</p>
+                            </div>
+                            <div class="col-2 item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">{{bidSummitedCount}}</p>
+                                <p class="text-center mb-0">Bids Submitted</p>
+                            </div>
+                            <div class="col-2 item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">8</p>
+                                <p class="text-center mb-0">Biz Match Requests</p>
+                            </div>
+                            <div class="col-2 item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">6</p>
+                                <p class="text-center mb-0">Interviews</p>
+                            </div>
+                            <div class="col-2 item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">2</p>
+                                <p class="text-center mb-0">Offers</p>
+                            </div>
+                            <div class="col-2">
+                                <p class="item-large text-center mb-0">1</p>
+                                <p class="text-center mb-0">Contracts</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isProUser" class="col-12 col-lg-8">
+                <a class="card card-notification mb-30 bg-black" [routerLink]="['/biz-landing']">
+                    <div class="card-header border-bottom-0">
+                        <div class="row">
+                            <div class="col-2">MATCH</div>
+                            <div class="flex-grow-1"></div>
+
+                            <div class="col p-0 text-nowrap">
+                                <span class="item-border-right item-border-color-gray pr-16">
+                                    <span class="item-large-1-6 pr-6">5</span> Active Posts
+                                </span>
+                                <span class="pl-16">
+                                    <span class="item-large-1-6 pr-6">10</span> Closed Posts
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row item-dashboard">
+                            <div class="pl-0 pr-0 w-20 col item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">12</p>
+                                <p class="text-center mb-0">Open Match Reports</p>
+                            </div>
+                            <div class="pl-0 pr-0 w-20 col item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">10</p>
+                                <p class="text-center mb-0">Outstanding Match Requests</p>
+                            </div>
+                            <div class="pl-0 pr-0 w-20 col item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">6</p>
+                                <p class="text-center mb-0">Interviews</p>
+                            </div>
+                            <div class="pl-0 pr-0 w-20 col item-border-right item-border-color-gray">
+                                <p class="item-large text-center mb-0">2</p>
+                                <p class="text-center mb-0">Offers</p>
+                            </div>
+                            <div class="pl-0 pr-0 w-20 col">
+                                <p class="item-large text-center mb-0">1</p>
+                                <p class="text-center mb-0">Contracts</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isBizUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-grey" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        PERFORMANCE
+                    </div>
+                    <div class="card-body pt-24">
+                        <div class="row item-dashboard">
+                            <div class="col-6 item-border-right item-border-color-gray">
+                                <p class="text-center mb-0 item-star">
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                    <i class="fa fa-star amber-text"></i>
+                                </p>
+                                <p class="text-center mb-0">My Rating (5.0)</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-center mb-0">
+                                    <span class="item-large">178</span>
+                                </p>
+                                <p class="text-center mb-0">Biz Performance Snapshots ITD</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div [hidden]="isProUser" class="col-12 col-lg-4">
+                <a class="card card-notification mb-30 bg-blue" [routerLink]="['/dummy']">
+                    <div class="card-header border-bottom-0">
+                        REPORTS
+                    </div>
+                    <div class="card-body pt-36 pb-44 item-report">
+                        <div class="row item-dashboard">
+                            <div class="col-12 align-self-center">
+                                <span class="item-large pr-20 align-middle">3</span>
+                                <span class="align-middle">New Reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div [hidden]="isBizUser" class="col-12 col-lg-4">
+                <div class="card card-notification mb-30">
+                    <div class="card-header border-bottom-0 pt-30 pb-0 pl-20">
+                        DELIVERABLES
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20 text-center"><strong>TYPE</strong></th>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>NAME</strong></th>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>DATE</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center pl-20">
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </td>
+                                        <td class="pl-20">
+                                            <a href="">Package 1</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center pl-20">
+                                            <i class="fa  fa-file-image-o"></i>
+                                        </td>
+                                        <td class="pl-20">
+                                            <a href="">Package 2</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center pl-20">
+                                            <i class="fa  fa-file-image-o"></i>
+                                        </td>
+                                        <td class="pl-20">
+                                            <a href="">Package 3</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center pl-20">
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </td>
+                                        <td class="pl-20">
+                                            <a href="">Package 4</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center pl-20">
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </td>
+                                        <td class="pl-20">
+                                            <a href="">Package 5</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div [hidden]="isBizUser" class="col-12 col-lg-8">
+                <div class="card card-notification mb-30">
+                    <div class="card-header border-bottom-0 pt-30 pb-0 pl-20">
+                        TO DOS
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>TASK</strong></th>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>TIME</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div [hidden]="isProUser" class="col-12">
+                <div class="card card-notification mb-30">
+                    <div class="card-header border-bottom-0 pt-30 pb-0 pl-20">
+                        TO DOS
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>TASK</strong></th>
+                                        <th class="border-bottom-0 font-weight-bold dark-grey-text pl-20"><strong>TIME</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-20">
+                                            <a href="#">Etiam pretium erat non mauris accumsan ultrices</a>
+                                        </td>
+                                        <td class="pl-20">3.31.2018 2:30PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-12 col-sm-4 col-lg-3">
+        <div class="card card-notification">
+            <div class="card-header">
+                NOTIFICATIONS
+            </div>
+            
+            <div class="card-body pb-0" *ngIf="notificationList">
+
+                <ul class="stepper stepper-vertical timeline-simple pl-0 pr-0 mb-0">
+
+                    <li *ngFor="let notification of notificationList">
+                        <!--Section Title -->
+                        <a href="#{{notification?.link}}">
+                            <span class="circle active"></span>
+                        </a>
+
+                        <!-- Section Description -->
+                        <div class="step-content ml-xl-0 pt-0 pl-32 pb-0">
+                            <p class="text-muted mt-0 mb-6 time">{{notification.createdDate}}</p>
+                            <p class="mb-0 pb-24">
+                                <a href="#{{notification?.link}}">
+                                    {{notification.description}}
+                                </a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

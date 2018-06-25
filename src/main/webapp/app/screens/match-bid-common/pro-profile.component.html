@@ -1,0 +1,37 @@
+<div class="col-12 col-sm-auto" *ngIf="currentPro">
+    <div class="card card-avatar-display">
+        <img src="../../../content/img/avatar-placeholder.jpg" class="card-img-top" *ngIf="!currentPro.pictureFile || !currentPro.pictureFile.content">
+        <img [src]="'data:' + currentPro.pictureFile.contentType + ';base64,' + currentPro.pictureFile.content" class="card-img-top" *ngIf="currentPro.pictureFile && currentPro.pictureFile.content">
+        <div class="card-body">
+            <div class="username mt-8">
+                {{currentPro.account.firstName}} {{currentPro.account.lastName}}
+                <ul class="rating" *ngIf="currentPro.rating">
+                    <rating [(ngModel)]="currentPro.rating" [max]="5" [readonly]="true">
+                </ul>
+            </div>
+            <div *ngIf="currentPro.resumeFile" class="attachment">
+                Resume <a (click)="openFile(currentPro.resumeFile.path, currentPro.account.email, currentPro.resumeFile.contentType)"><span class="mdi mdi-paperclip mdi-24px" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col" *ngIf="currentPro">
+    <ul class="profile-contact">
+        <li><i class="mdi mdi-24px mdi-email-outline"></i> <span>{{currentPro.account.login}}</span></li>
+        <li *ngFor="let phoneItem of currentPro.account.phones; let i = index"><i class="mdi mdi-24px mdi-cellphone"></i> <span>{{phoneItem.number}}</span></li>
+        <li><i class="mdi mdi-24px mdi-map-marker-outline"></i> <span *ngIf="currentPro.account.city && currentPro.account.city.name">{{currentPro.account.city.name}}</span><span *ngIf="currentPro.account.city && currentPro.account.city.state && currentPro.account.city.state.name">, {{currentPro.account.city.state.name}}</span></li>
+        <li><i class="mdi mdi-24px mdi-clipboard-account"></i> 
+            <div class="chip-group">
+                <div class="chip" *ngFor="let role of currentPro.roles">{{role.role.name}}</div>
+            </div>
+        </li>
+        <li><i class="mdi mdi-24px mdi-earth" ></i> 
+            <div class="chip-group">
+                <div class="chip" *ngFor="let industry of currentPro.proIndustries">{{industry.industry.name}}</div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+<doughnut-chart *ngIf="currentPro" [percent] = 'currentPro?.matchPercentage'></doughnut-chart>

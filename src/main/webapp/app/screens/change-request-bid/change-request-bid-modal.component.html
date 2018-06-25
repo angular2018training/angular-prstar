@@ -1,0 +1,54 @@
+<!-- Modal sponsor -->
+<div class="modal-profile save-popup">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="text-left">
+        <h5 class="modal-title">Request Bid Change</h5>
+      </div>
+      <button type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true" (click)="close()"></button>
+    </div>
+    <div class="modal-body text-left">
+      <div class="row">
+        <div class="col-12">
+          <div class="md-form">
+            <div class="file-field">
+              <div class="btn btn-primary float-right">
+                <span>Choose file</span>
+                <input type="file" (change)="setFileData($event)" />
+              </div>
+              <div class="file-path-wrapper pl-0">
+                <input type="text" class="file-path validate" placeholder="Upload your proposal">
+              </div>
+              <div [hidden]="!invalid">
+                <small class="form-text text-danger" [hidden]="!invalid">
+                    Must upload file or fill message.
+                </small>
+              </div>
+            </div>
+            <label for="Form-pass1" class="active">Your proposal</label>
+            
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="md-form">
+            <textarea type="text" class="md-textarea form-control" placeholder="500 characters max" rows="3" [(ngModel)]="comment"></textarea>
+            <label for="Form-pass1" class="active">Message</label>
+            <div [hidden]="!invalid">
+              <small class="form-text text-danger" [hidden]="!invalid">
+                  Must upload file or fill message.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn text-primary mr-20" data-dismiss="modal" (click)="cancel()">CANCEL</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="save()">SAVE</button>
+      <!-- [disabled]="!newChangeRequestBid.proposal || !newChangeRequestBid.comment" -->
+    </div>
+  </div>
+</div>

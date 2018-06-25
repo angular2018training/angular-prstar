@@ -1,0 +1,9 @@
+{
+    "prostarsWebApp": {
+        "DecisionStatus" : {
+            "null": "",
+            "SAVED": "SAVED",
+            "PASSED": "PASSED"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "prostarsWebApp": {
+        "vetChangeLog": {
+            "home": {
+                "title": "Vet Change Logs",
+                "createLabel": "Create a new Vet Change Log",
+                "createOrEditLabel": "Create or edit a Vet Change Log"
+            },
+            "created": "A new Vet Change Log is created with identifier {{ param }}",
+            "updated": "A Vet Change Log is updated with identifier {{ param }}",
+            "deleted": "A Vet Change Log is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vet Change Log {{ id }}?"
+            },
+            "detail": {
+                "title": "Vet Change Log"
+            },
+            "createdDate": "Created Date",
+            "decision": "Decision",
+            "vetterComment": "Vetter Comment",
+            "applicant": "Applicant",
+            "veter": "Veter",
+            "tip": "Upon clicking this button, ProStars will automatically send an 'accepted' or 'rejected' communication to any Pro Applicant with a Status of 'Ready to Inform Applicant'."
+        },
+        "vetting": {
+            "title": "Pro Applicants Report",
+            "appID": "App ID",
+            "dateTime": "Date Time",
+            "name": "Name",
+            "email":"Email",
+            "role": "Role",
+            "decisionTitle": "Decision",
+            "decisionOption": {
+                "yes": "Yes",
+                "awaiting": "Awaiting",
+                "no": "No"
+            },
+            "comment": "Comment",
+            "statusTitle": "status",
+            "statusOption": {
+                "all": "All Status",
+                "awaiting": "Awaiting Decision",
+                "ready": "Ready to inform applicant"
+            },
+            "decisionMarker": "Decision Marker",
+            "inform": "Inform Applicant of Decision",
+            "applicantDetail": {
+                "title":"Summary Profile",
+                "email":"Email",
+                "summaryBio":"Summary Bio",
+                "backBtn":"BACK TO PRO APPLICATION REPORT",
+                "approveBtn":"APPROVE",
+                "rejectBtn":"REJECT"
+            }
+        }
+    }
+}

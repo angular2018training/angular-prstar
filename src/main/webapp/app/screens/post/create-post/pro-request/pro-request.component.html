@@ -1,0 +1,587 @@
+<form name="postForm" role="form" (ngSubmit)="onNext(postForm)" #postForm="ngForm">
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">
+                    <span jhiTranslate="prostarsWebApp.post.proRequest">Pro Request</span> ({{numberStep}}/2)
+                </div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- The first form of Pro Request [start] -->
+            <form class="form-profile" [hidden]="numberStep != 1">
+
+                <!-- Define list Roles on post (checkbox) [start] -->
+                <div class="form-inline form-position" *ngIf="post.numberOfPros > 1">
+                    <div class="form-check" *ngFor="let item of post.proRequests; index as i" (click)="selectProRequest(item)">
+                        <input type="checkbox" class="form-check-input primary-color" id="{{i}}" [checked]="item?.isDone" disabled/>
+                        <label for="{{i}}" [ngClass]="{'alert-info':item === currentProRequest, 'alert-success':item === item.isDone }">#{{i+1}} {{item?.role?.name}}
+                        </label>
+                    </div>
+                </div>
+                <!-- Define list Roles on post (checkbox) [end] -->
+
+                <!-- Role name [start] -->
+                <div class="md-form-customize skill-custom">
+                    <label class="active asterisk" for="role" jhiTranslate="prostarsWebApp.post.roleName">Role Name</label>
+                    <angular2-multiselect name="role" id="role" [data]="dropdownRoleList" [(ngModel)]="selectedRoles" [settings]="dropdownSettings"
+                        (onSelect)="onRoleSelect($event)" (onDeSelect)="onRoleDeSelect($event)">
+                    </angular2-multiselect>
+                    <!-- validation -->
+                    <div *ngIf="(postForm.touched && !currentProRequest.role)">
+                        <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                            Project name is required.
+                        </small>
+                    </div>
+                </div>
+                <!-- Role name [end] -->
+
+                <div class="row">
+                    <!-- Skill [start] -->
+                    <div class="col-12 col-lg-7">
+                        <!--<jhi-skill-common [skills]="currentProRequest.skills" [addMoreRowsFlag]=true (lstSkills)="getListSkill($event)"></jhi-skill-common>-->
+                        <!--<jhi-skill-common [(skills)]="currentProRequest.skills" [addMoreRowsFlag]=true></jhi-skill-common>-->
+                        <h5 class="asterisk section-name mt-24" jhiTranslate="prostarsWebApp.post.skill.title">Skills
+                        </h5>
+                        <div class="md-form">
+                            <div class="row" *ngIf="showSkillTitle">
+                                <div class="col-6 col-md-4">
+                                    <h6>
+                                        <small class="grey-text" jhiTranslate="prostarsWebApp.post.skill.skill">Skill</small>
+                                    </h6>
+                                </div>
+                                <div class="col-6 col-md-8">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <h6>
+                                                <small class="grey-text" jhiTranslate="prostarsWebApp.post.skill.strength">Skill Strength (out of 5)</small>
+                                            </h6>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-none d-md-block">
+                                            <h6>
+                                                <small class="grey-text" jhiTranslate="prostarsWebApp.post.skill.year">Years of Experience</small>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="currentProRequest.skills">
+                                <div class="row" *ngFor="let proSkill of currentProRequest.skills; index as i">
+                                    <div class="col-6 col-md-4">
+                                        <div class="md-form">
+                                            <div class="chip none-margin-all mt-3px">
+                                                {{proSkill.skill.itemName}}
+                                                <i class="mdi mdi-close-circle" (click)="deleteProSkill(i)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-8">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="md-form">
+                                                    <div class="range-field pt-3px">
+                                                        <input name="proSkill_{{i}}" id="proSkill_{{i}}" type="range" min="1" max="5" [(ngModel)]="proSkill.strength" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="md-form">
+                                                    <input name="proSkillYear_{{i}}" id="proSkillYear_{{i}}" type="number" min="1" max="99" class="form-control none-mb" [(ngModel)]="proSkill.yearsOfExperience">
+                                                    <label class="d-md-none">Years</label>
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="proSkill.yearsOfExperience < 0">
+                                                    <small class="text-danger">Years must be a whole positive number.</small>
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="proSkill.yearsOfExperience > 99">
+                                                    <small class="text-danger">Years must be smaller than 100.</small>
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="!proSkill.yearsOfExperience">
+                                                    <small class="text-danger">This field is required.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="showSkillAddMoreControl">
+                                <div class="col-6 col-md-4 skill-custom">
+                                    <div class="md-form-customize">
+                                        <angular2-multiselect [data]="dropdownSkillListData" name="skills" id="skills" [(ngModel)]="selectedSkills" [settings]="dropdownSettings"
+                                            [ngModelOptions]="{standalone: true}" (onSelect)="onSkillSelect($event)">
+                                        </angular2-multiselect>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-8">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="md-form">
+                                                <div class="range-field pt-3px">
+                                                    <input type="range" min="1" max="5" [(ngModel)]="selectedSkillStrength" id="selectedSkillStrength" name="selectedSkillStrength"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="md-form">
+                                                <input type="number" min="1" max="99" id="form1" class="form-control none-mb" [(ngModel)]="selectedSkillYears" name="selectedSkillYears"
+                                                />
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="selectedSkillYears < 0">
+                                                <small class="text-danger">Years must be a whole positive number.</small>
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="selectedSkillYears > 99">
+                                                <small class="text-danger">Years must be smaller than 100.</small>
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="!selectedSkillYears">
+                                                <small class="text-danger">This field is required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skillBtn-custom">
+                            <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="addSkill()" jhiTranslate="prostarsWebApp.post.skill.addMore">
+                                Add More Skills</button>
+                        </div>
+                    </div>
+                    <!-- Skill [end] -->
+
+                    <!-- Industry [start] -->
+                    <div class="col-12 col-lg-5">
+                        <h5 class="asterisk section-name mt-4" jhiTranslate="prostarsWebApp.post.industry.title">Industries
+                        </h5>
+                        <div class="md-form">
+                            <div class="row" *ngIf="showIndustryTitle">
+                                <div class="col-6 col-md-6">
+                                    <h6>
+                                        <small class="grey-text" jhiTranslate="prostarsWebApp.post.industry.industry">Industry</small>
+                                    </h6>
+                                </div>
+                                <div class="col-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <h6>
+                                                <small class="grey-text" jhiTranslate="prostarsWebApp.post.industry.year">Years of Experience</small>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Display industry which is added [start] -->
+                            <div *ngIf="currentProRequest.industries">
+                                <div class="row" *ngFor="let proIndustry of currentProRequest.industries; index as i">
+                                    <div class="col-6 col-md-6">
+                                        <div class="md-form">
+                                            <div class="chip none-margin-all mt-3px">
+                                                {{proIndustry.industry.name}}
+                                                <i class="mdi mdi-close-circle" (click)="deleteProIndustry(i)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="md-form">
+                                                    <input type="number" min="1" max="99" name="industries_{{i}}" id="industries_{{i}}" class="form-control none-mb" [(ngModel)]="proIndustry.yearsOfExperience">
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="proIndustry.yearsOfExperience < 0">
+                                                    <small class="text-danger">Years must be a whole positive number.</small>
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="proIndustry.yearsOfExperience > 99">
+                                                    <small class="text-danger">Years must be smaller than 100.</small>
+                                                </div>
+                                                <div id="yearError" class="row" *ngIf="!proIndustry.yearsOfExperience">
+                                                    <small class="text-danger">This field is required.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Display industry which is added [end] -->
+                            <div class="row" *ngIf="showIndustryAddMoreControl">
+                                <div class="col-6 col-md-6 skill-custom">
+                                    <div class="md-form-customize">
+                                        <angular2-multiselect [data]="dropdownIndustryListData" name="industries" id="industries" [(ngModel)]="selectedIndustries"
+                                            [settings]="dropdownSettings" [ngModelOptions]="{standalone: true}" (onSelect)="onIndustrySelect($event)">
+                                        </angular2-multiselect>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <div class="md-form">
+                                                <input type="number" min="1" max="99" id="industry" class="form-control none-mb" [(ngModel)]="selectedIndustryYears" name="selectedIndustryYears"
+                                                />
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="selectedIndustryYears < 0">
+                                                <small class="text-danger">Years must be a whole positive number.</small>
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="selectedIndustryYears > 99">
+                                                <small class="text-danger">Years must be smaller than 100.</small>
+                                            </div>
+                                            <div id="yearError" class="row" *ngIf="!selectedIndustryYears">
+                                                <small class="text-danger">This field is required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skillBtn-custom">
+                            <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="addIndustry()" jhiTranslate="prostarsWebApp.post.industry.addMore">
+                                Add More Industry</button>
+                        </div>
+                    </div>
+                    <!-- Industry [end] -->
+                </div>
+            </form>
+            <!-- The first form of Pro Request [end] -->
+
+            <!-- The second form of Pro Request [start] -->
+            <form class="form-profile" [hidden]="numberStep != 2">
+                <!-- Role name [start] -->
+                <div class="md-form">
+                    <div class="form-control input-data">{{currentProRequest?.role?.name}}</div>
+                    <label class="active asterisk" jhiTranslate="prostarsWebApp.post.roleName">Role Name</label>
+                </div>
+                <!-- Role name [end] -->
+
+                <!-- Pro Request dates [start] -->
+                <div class="row">
+                    <!-- Start -->
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <input id="startDate" type="text" class="form-control datepicker" name="startDate" [(ngModel)]="currentProRequest.startDate"
+                                [min]="post?.project?.startDate" [max]="post?.project?.endDate" required/>
+                            <label class="active asterisk" jhiTranslate="prostarsWebApp.post.startDate" for="startDate">Start Date</label>
+                        </div>
+                        <!-- Validation -->
+                        <div [hidden]="!(postForm.controls.startDate?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.startDate?.errors?.min" jhiTranslate="entity.validation.min"
+                                translateValues="{min: 'today'}">
+                                Number of Pros is required to be at least 5.
+                            </small>
+                        </div>
+                    </div>
+                    <!-- End -->
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <input id="endDate" type="text" class="form-control datepicker" name="endDate" [(ngModel)]="currentProRequest.endDate" [min]="currentProRequest?.startDate"
+                                [max]="post?.project?.endDate" required/>
+                            <label class="active asterisk" jhiTranslate="prostarsWebApp.post.endDate" for="endDate">Start Date</label>
+                        </div>
+                        <!-- Validation -->
+                        <div [hidden]="!(postForm.controls.endDate?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.date" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                                This field should be a date and time.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.min" jhiTranslate="entity.validation.min"
+                                translateValues="{min: 'start date'}">
+                                Number of Pros is required to be at least 5.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.max" jhiTranslate="entity.validation.min"
+                                translateValues="{min: 'end date of project'}">
+                                Number of Pros is required to be at least 5.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Bid Deadline -->
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <input id="bidDeadline" type="text" class="form-control datepicker" name="bidDeadline" [(ngModel)]="currentProRequest.bidDeadline"
+                                [max]="currentProRequest?.decisionDate" required/>
+                            <label class="active asterisk" jhiTranslate="prostarsWebApp.post.bidDeadline" for="bidDeadline">Bid Deadline</label>
+                        </div>
+                        <!-- Validation -->
+                        <div [hidden]="!(postForm.controls.bidDeadline?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.bidDeadline?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.bidDeadline?.errors?.min" jhiTranslate="entity.validation.min"
+                                translateValues="{min: 'today'}">
+                                Number of Pros is required to be at least 5.
+                            </small>
+                        </div>
+                    </div>
+                    <!-- Decision Date -->
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <input id="decisionDate" type="text" class="form-control datepicker" name="decisionDate" [(ngModel)]="currentProRequest.decisionDate"
+                                [min]="currentProRequest?.bidDeadline" [max]="currentProRequest?.endDate" required/>
+                            <label class="active asterisk" jhiTranslate="prostarsWebApp.post.decisionDate" for="decisionDate">Decision Date</label>
+                        </div>
+                        <!-- Validation -->
+                        <div [hidden]="!(postForm.controls.decisionDate?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.decisionDate?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!postForm.controls.decisionDate?.errors?.min" jhiTranslate="entity.validation.min"
+                                translateValues="{min: 'today'}">
+                                Number of Pros is required to be at least 5.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project date [end] -->
+
+                <div class="row">
+
+                    <!-- Project type [start] -->
+                    <div class="col">
+                        <div class="md-form">
+                            <span jhiTranslate="prostarsWebApp.post.projectType" class="asterisk col-12 col-sm-2">Project Type</span>
+                            <div class="col-12 col-sm-10">
+                                <angular2-multiselect [data]="dropdownProjectTypeList" name="projectType" [(ngModel)]="selectedProjectType" [settings]="dropdownSettings"
+                                    (onSelect)="onProjectTypeSelect($event)" (onDeSelect)="onProjectTypeDeSelect($event)" [ngModelOptions]="{standalone: true}">
+                                </angular2-multiselect>
+                                <div *ngIf="(postForm.touched && !currentProRequest.projectType)">
+                                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                                        Project name is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project type [end] -->
+
+                    <!-- Payment Term [start] -->
+                    <div class="col">
+                        <div class="md-form">
+                            <span jhiTranslate="prostarsWebApp.post.paymentTerms" class="asterisk col-12 col-sm-2">Payment Terms:</span>
+                            <div class="col-12 col-sm-4 md-form">
+                                <angular2-multiselect id="paymentTerm" name="paymentTerm" [data]="dropdownPaymentList" [(ngModel)]="selectedPaymentTerm"
+                                    [settings]="dropdownSettings" (onSelect)="onPaymentTermSelect($event)" (onDeSelect)="onPaymentTermDeSelect($event)"
+                                    [ngModelOptions]="{standalone: true}">
+                                </angular2-multiselect>
+
+                                <div *ngIf="(postForm.touched && !currentProRequest.paymentTerm)">
+                                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                                        Project name is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment Term [end] -->
+
+                </div>
+                <div class="row">
+
+                    <!-- Invoice Term [start] -->
+                    <div class="col col-sm-6">
+                        <div class="md-form">
+                            <span class="asterisk col-12 col-sm-2" jhiTranslate="prostarsWebApp.post.invoiceTerms">Invoice terms: </span>
+                            <div class="col-12 col-sm-4">
+                                <angular2-multiselect [data]="dropdownInvoiceList" [(ngModel)]="selectedInvoiceTerm" id="invoiceTerm" name="invoiceTerm"
+                                    #invoiceTerm="ngModel" (onSelect)="onInvoiceTermSelect($event)" (onDeSelect)="onInvoiceTermDeSelect($event)"
+                                    [settings]="dropdownSettings" [ngModelOptions]="{standalone: true}">
+                                </angular2-multiselect>
+                                <div *ngIf="(postForm.touched && !currentProRequest.invoiceTerm)">
+                                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                                        Project name is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Invoice Term [start] -->
+                </div>
+                <!-- Target Rate [start] -->
+                <div *ngIf="!post.isCreatePost">
+                    <h5 class="section-name mt-24 mb-0" jhiTranslate="prostarsWebApp.post.targetRate.title">Target Rate</h5>
+                    <div class="block-target-rate mb-80">
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-lg-2 offset-md-3 offset-lg-4">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="number" name="lowTarget" (input)="recalculateTarget(currentProRequest)" [(ngModel)]="currentProRequest.lowTargetRate"
+                                        class="form-control" min="0">
+                                    <label class="active asterisk" jhiTranslate="prostarsWebApp.post.targetRate.low">Low</label>
+                                    <div *ngIf="(postForm.touched && !currentProRequest.lowTargetRate)">
+                                        <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                    <div *ngIf="(postForm.touched && currentProRequest.lowTargetRate <= 0)">
+                                        <small class="form-text text-danger">
+                                            Low target must > 0
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2 col-prefix-to">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="number" name="highTarget" (input)="recalculateTarget(currentProRequest)" class="form-control" min="currentProRequest.lowTargetRate"
+                                        [(ngModel)]="currentProRequest.highTargetRate">
+                                    <label class="active asterisk" jhiTranslate="prostarsWebApp.post.targetRate.high">High</label>
+                                    <div *ngIf="(postForm.touched && !currentProRequest.highTargetRate)">
+                                        <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div *ngIf="currentProRequest.highTargetRate < currentProRequest.lowTargetRate">
+                                    <small class="form-text text-danger" jhiTranslate="prostarsWebApp.post.targetRate.validateHighInput">
+                                        High target must > low target
+                                    </small>
+                                </div>
+                                <div *ngIf="(postForm.touched && currentProRequest.highTargetRate <= 0)">
+                                    <small class="form-text text-danger">
+                                        High target must > 0
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2 col-prefix-plus">
+                                <div class="md-form">
+                                    <i class="mdi mdi-percent suffix-unit"></i>
+                                    <input type="number" name="espenseTarget" (input)="recalculateTarget(currentProRequest)" value="1" class="form-control" min="0"
+                                        [(ngModel)]="currentProRequest.expenseRate">
+                                    <label class="active asterisk" jhiTranslate="prostarsWebApp.post.targetRate.expenseRate">Expense Rate</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-lg-3 offset-lg-1">
+                                <div class="md-form">
+                                    <div>+ </div>
+                                    <div class="asterisk control-label expense" jhiTranslate="prostarsWebApp.post.targetRate.estimatedExpense"> Estimated Expense</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="text" name="lowEstimatedTarget" class="form-control form-control-expense" [(ngModel)]="target.estimatedLow"
+                                        readonly>
+                                    <label class="d-md-none asterisk">Low</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="text" name="highEstimatedTarget" class="form-control form-control-expense" [(ngModel)]="target.estimatedHigh"
+                                        readonly>
+                                    <label class="d-md-none">High</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-lg-3 offset-lg-1">
+                                <div class="md-form">
+                                    <div class="control-label budget" jhiTranslate="prostarsWebApp.post.targetRate.proBudget">Pro Budget</div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="text" name="lowProTarget" class="form-control form-control-budget" [(ngModel)]="target.proBudgetLow" readonly>
+                                    <label class="d-md-none">Low</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2">
+                                <div class="md-form">
+                                    <i class="mdi mdi-currency-usd prefix-unit"></i>
+                                    <input type="text" name="highProTarget" class="form-control form-control-budget" [(ngModel)]="target.proBudgetHigh" readonly>
+                                    <label class="d-md-none">High</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Target Rate [end] -->
+
+                <!-- Local/Remote [start] -->
+                <div class="md-form">
+                    <div class="col-12 col-sm-4">
+                        <span jhiTranslate="prostarsWebApp.post.localRemote" class="asterisk">Local/Remote</span>
+                        <angular2-multiselect [data]="dropdownPlaceList" [(ngModel)]="currentProRequest.selectedPlace" [settings]="dropdownSettings" [ngModelOptions]="{standalone: true}"
+                            (onSelect)="onPlaceSelect($event)">
+                        </angular2-multiselect>
+                    </div>
+                </div>
+                <div *ngIf="(postForm.touched && (currentProRequest.requireLocal === null || currentProRequest.requireLocal === undefined))">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <!-- Local/Remote [end] -->
+
+                <!-- Work Location [start] -->
+                <div class="md-form" *ngIf="this.currentProRequest.requireLocal === null || this.currentProRequest.requireLocal === undefine || this.currentProRequest.requireLocal === true">
+                    <jhi-address [(address)]="currentProRequest.workLocation" [controlType]="'(cities)'" [placeHolder]="'Work Location'"></jhi-address>
+                </div>
+                <!-- Work Location [end] -->
+                <!-- Additional Commentary [start] -->
+                <div class="md-form">
+                    <textarea type="text" class="md-textarea form-control" name="additionalCommentary" id="additionalCommentary" rows="3" [(ngModel)]="currentProRequest.additionalCommmentary"
+                        required></textarea>
+                    <label jhiTranslate="prostarsWebApp.post.additionalCommentary" class="active asterisk">Additional Commentary</label>
+                </div>
+
+                <div *ngIf="currentProRequest.additionalCommmentary == null">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">
+                        Additional Commentary is required.
+                    </small>
+                </div>
+                <!-- Additional Commentary [end] -->
+
+                <!--Proposal Template-->
+                <div class="md-form">
+                    <div class="file-field medium">
+                        <div class="btn btn-primary float-right">
+                            <span jhiTranslate="prostarsWebApp.post.proposalTemplate">Choose file
+                                <i class="fa fa-cloud-upload ml-3" aria-hidden="true"></i>
+                            </span>
+                            <input type="file" id="file_proposalTemplate" (change)="setFileData($event)" jhiTranslate="entity.action.addblob" />
+                            <div>
+                                <input type="hidden" class="form-control" name="proposalTemplate" id="field_image1" [(ngModel)]="currentProRequest.proposalTemplate"
+                                />
+                                <input type="hidden" class="form-control" name="image1ContentType" id="field_image1ContentType" [(ngModel)]="currentProRequest.proposalTemplateContentType"
+                                />
+                            </div>
+                        </div>
+                        <div class="file-path-wrapper pl-0">
+                            <input type="text" class="file-path validate" placeholder="Upload proposal template">
+                        </div>
+                    </div>
+                    <label for="Form-pass1" class="active">Proposal Template</label>
+                </div>
+                <!--/Proposal Template-->
+            </form>
+            <!-- The second form of Pro Request [end] -->
+            <div class="md-form">
+                <hr/>
+            </div>
+
+            <!-- Button Back/Next [start] -->
+            <div>
+                <small class="text-danger">*: This field is required</small>
+                <div class="md-form text-right">
+                    <button class="btn mr-16 none-margin-all text-primary" type="button" (click)="onBack()">BACK</button>
+                    <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit">NEXT</button>
+                </div>
+            </div>
+
+            <!-- Button Back/Next [end] -->
+        </div>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+{
+  "prostarsWebApp": {
+    "interview": {
+      "home": {
+        "title": "Interviews",
+        "createLabel": "Crear nuevo Interview",
+        "createOrEditLabel": "Crear o editar Interview"
+      },
+      "created":
+        "Un nuevo Interview ha sido creado con el identificador {{ param }}",
+      "updated":
+        "Un Interview ha sido actualizado con el identificador {{ param }}",
+      "deleted":
+        "Un Interview ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Interview {{ id }}?"
+      },
+      "detail": {
+        "title": "Interview"
+      },
+      "status": "Status",
+      "note": "Note",
+      "rolesOfProjectPage": {
+        "roleName": "Role Name: ",
+        "numberOfInterviews": "Number of interviews: "
+      },
+      "interviewListPerRole": {
+        "projectTab": {
+          "tabTitle": "Project",
+          "lblProjectName": "Project name: ",
+          "lblProjectDesc": "Project description: ",
+          "lblRoleName": "Role name: ",
+          "lblInterviewStatus": "Interview status: ",
+          "lblInterviewScore": "Interview score",
+          "lblCriteria": "Criteria",
+          "lblScore": "Score",
+          "lblResult": "Result",
+          "lblSkill": "Skill: ",
+          "lblFit": "Fit: ",
+          "lblGetsIt": "Gets It: ",
+          "lblAddSkill": "Add skill: ",
+          "lblTotalScore": "Total score: ",
+          "lblInterviewNotes": "Interview notes: ",
+          "lblInterviewDecision": "Interview decision: ",
+          "lblGo": "Go",
+          "lblNoGo": "No Go",
+          "lblButtonSave": "Save",
+          "lblButtonNext": "Next",
+          "lblProjectStartDay": "Project Start Date",
+          "lblProjectEndDay": "Project End Date"
+        },
+        "scheduleTab": {
+          "tabTitle": "Schedule"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+
+<div *ngIf="contract">
+    <h2><span jhiTranslate="prostarsWebApp.contract.detail.title">Contract</span> {{contract.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="prostarsWebApp.contract.name">Name</span></dt>
+        <dd>
+            <span>{{contract.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.contract.note">Note</span></dt>
+        <dd>
+            <span>{{contract.note}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.contract.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{contract.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.contract.bizStatus">Biz Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'prostarsWebApp.ContractStatus.' + contract.bizStatus}}">{{contract.bizStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.contract.proStatus">Pro Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'prostarsWebApp.ContractStatus.' + contract.proStatus}}">{{contract.proStatus}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contract/'+ contract.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,89 @@
+{
+    "prostarsWebApp": {
+        "post": {
+            "home": {
+                "title": "Posts",
+                "createLabel": "Create a new Post",
+                "createFindProLabel":"Find Pros",
+                "createOrEditLabel": "Create or edit a Post",
+                "projectInfo": "Project Information",
+                "resourceRequest": "Resource Request"
+            },
+            "created": "A new Post is created with identifier {{ param }}",
+            "updated": "A Post is updated with identifier {{ param }}",
+            "deleted": "A Post is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Post {{ id }}?"
+            },
+            "detailProgress": {
+                "post": "Post",
+                "project": "Project",
+                "proRequest": "Pro Request"
+            },
+            "onePro": "One",
+            "manyPros": "Many",
+            "prosNeeded": "Pros Needed",
+            "date": "Project Dates",
+            "proDate": "Pro Dates",
+            "projectType": "Project Type",
+            "paymentTerms": "Payment Terms",
+            "invoiceTerms": "Invoice Terms",
+            "localRemote": "Local/Remote",
+            "city": "City",
+            "state": "State",
+            "additionalCommentary": "Additional Commentary",
+            "proposalTemplate": "Proposal Template",
+            "justLocal": "Just Local",
+            "remote": "Remote/Travel OK",
+            "workingLocation": "Location",
+            "endDate": "End: ",
+            "startDate": "Start: ",
+            "projectStartDate":"Project start date",
+            "projectEndDate":"Project end date",
+            "roleStartDate": "Role start date",
+            "roleEndDate": "Role end date",
+            "createdDate": "Created Date",
+            "bidDeadline": "Bid Deadline:",
+            "decisionDate": "Decision Date:",
+            "project": "Project Name",
+            "projectPlaceHolder": "Project Name",
+            "description": "Description",
+            "role": "Role",
+            "descriptionPlaceHolder": "Description",
+            "pibNumber": "Number of pid",
+            "bids": "Bids",
+            "owner": "Owner",
+            "proRequest": "Pro Request",
+            "roleName": "Role Name",
+            "skill": {
+                "skill": "Skill",
+                "title": "Key Skills",
+                "strength": "Skill Strength (out of 5)",
+                "year": "Years of Experience",
+                "addMore": "ADD MORE SKILLS"
+            },
+            "industry": {
+                "title": "Key Industries",
+                "industry": "Industry",
+                "year": "Years of Experience",
+                "addMore": "Add More Industry"
+            },
+            "resultPopup": {
+                "error":"Error",
+                "success":"Success",
+                "createNew":"Create New Pro Request",
+                "matchReport":"See Match Report",
+                "returnDashboard":"Return to Dashboard"
+            },
+            "targetRate": {
+                "title":"Target Rate",
+                "low": "Low",
+                "high": "High",
+                "expenseRate": "Expense Rate",
+                "estimatedExpense": "Estimated Expense",
+                "proBudget":"Pro Budget",
+                "validateHighInput":"High target must > low target"
+            }
+        }
+    }
+}

@@ -1,0 +1,74 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+.stepper {
+    padding: 0 0;
+    @media (min-width: 768px) {
+        padding: 0 48px;
+    }
+    .label {
+        @media (max-width: 1199px) {
+            display: none !important;
+        }
+    }
+
+    li {
+        a {
+            padding: 8px;
+            .circle {
+                @media (max-width: 1199px) {
+                    margin-right: 0;
+                }
+                &.number {
+                    display: inline-block;
+                }
+                &.check {
+                    display: none;
+                }
+            }
+        }
+        &:hover {
+            background: none;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:first-child {
+            a {
+                padding-left: 0;
+            }
+        }
+        &:last-child {
+            a {
+                padding-right: 0;
+            }
+        }
+
+        &:first-child:before, &:last-child:after {
+            content: "";
+            position: relative;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            margin: 8px 0 0;
+            height: 1px;
+            background-color: transparent;
+        
+        }
+    }
+    li.completed {
+        > a {
+            .circle {
+                &.number {
+                    display: none;
+                }
+                &.check {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

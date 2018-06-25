@@ -1,0 +1,11 @@
+{
+    "prostarsWebApp": {
+        "ContractStatus" : {
+            "null": "",
+            "PENDING_APPROVAL": "PENDING_APPROVAL",
+            "CHANGE_REQUESTED": "CHANGE_REQUESTED",
+            "DECLINED": "DECLINED",
+            "ACCEPTED": "ACCEPTED"
+        }
+    }
+}

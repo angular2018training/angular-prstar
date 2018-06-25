@@ -1,0 +1,88 @@
+<div class=" content-contract" id="main-content">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard" jhiTranslate="global.menu.dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/biz-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.contract.detail.title">
+            CONTRACT
+        </li>
+    </ol>
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">CONTRACT</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered table-role-status">
+            <tbody>
+                <tr>
+                    <td class="active">
+                        <a (click)="navigate('contract-template')">
+                            <div class="number">{{countTemplate}}</div>
+                            <div class="unit">
+                                TEMPLATES
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a (click)="navigate('contract-pending')">
+                            <div class="number">{{countInprocess}}</div>
+                            <div class="unit">
+                                PENDING CONTRACTS
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a (click)="navigate('contract-completed')">
+                            <div class="number">{{countCompleted}}</div>
+                            <div class="unit">
+                                COMPLETED CONTRACTS
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- <div class="card-body"> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="">CONTRACT TEMPLATE NAME</th>
+                    <th style="">FILE NAME</th>
+                    <th style="width: 200px;">DATE CREATED</th>
+                    <th class="text-right th-actions" style="width: 300px;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" (click)="onClickCreateContracTemplate()" data-target="#modal-create-template">CREATE NEW TEMPLATE</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of contractTemplates">
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <a class="mdi mdi-file-word fa-lg color-blue" (click)="onClickDownloadContractTemplate(item.file.path, item.file.name, item.file.contentType)">{{item.file.name}}</a>
+                    </td>
+                    <td>{{item.createdDate | date:'MM/dd/yyyy hh:mm:ss'}}</td>
+                    <td class="text-right">
+                        <button class="btn text-black btn-table-action waves-effect waves-light" (click)="onClickDownloadContractTemplate(item.file.path, item.file.name, item.file.contentType)">
+                            <i class="mdi mdi-24px mdi-download"></i>
+                        </button>
+                        <button class="btn text-black btn-table-action waves-effect waves-light" (click)="onEditContractTemplate(item.id,item.name,item.file.id)">
+                            <i class="mdi mdi-24px mdi-pencil"></i>
+                        </button>
+                        <button class="btn text-black btn-table-action waves-effect waves-light" (click)="onDeleteContractTemplate(item.id)">
+                            <i class="mdi mdi-24px mdi-delete"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

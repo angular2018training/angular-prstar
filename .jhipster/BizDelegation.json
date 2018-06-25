@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "type",
+            "otherEntityName": "delegationType",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "DONE,DELEGATED"
+        }
+    ],
+    "changelogDate": "20180419075322",
+    "entityTableName": "biz_delegation",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,121 @@
+<div class="wrapper-dashboard page-dashboard">
+    <!-- Modal sponsor -->
+    <div class="modal-sponsor" id="modal-sponsor">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div #success class="alert alert-success" *ngIf="success === 'OK'">
+                    <p>The sponsorship was successfully submitted, you can submit another Recruit on this screen</p>
+                </div>
+                <div #notAgree class="alert alert-danger" *ngIf="doNotAgree">
+                    You need to agree to the statement below, in order to submit the recruit for consideration
+                </div>
+                <div #applied class="alert alert-danger" *ngIf="decision === 'IN_REVIEW' || decision === 'REJECTED'">
+                    This person has already applied to be a Pro
+                </div>
+                <div #already class="alert alert-danger" *ngIf="decision === 'ACCEPTED' || decision === 'PROFILE_SETUP'">
+                    This person is already a Pro!
+                </div>
+                <div #invited class="alert alert-danger" *ngIf="decision === 'REFERRAL_SENT'">
+                    This person is already invited!
+                </div>
+                <div class="modal-header" style="height:90px; justify-content: left;">
+                    <div class="title-popup">
+                        
+                        <h1  align="left" class="modal-title">Pro Sponsorship!</h1>
+                    </div>
+                    <a href="#/pro-network" type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                <div class="modal-body">
+                    
+                        <form id="sponsorForm" name="sponsorForm" (ngSubmit)="save()" #sponsorForm="ngForm">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="md-form">
+                                        <input type="text" class="form-control" name="firstname" id="field_firstname" [(ngModel)]="invitee.firstName" placeholder="First Name"
+                                            #firstName="ngModel" required maxlength="255" >
+                                        <label for="field_name" class="active">Recruit's name</label>
+                                        <div *ngIf="firstName.dirty">
+                                            <small class="form-text text-danger" *ngIf="firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                                                Your firstName is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form">
+                                        <input type="text" class="form-control" name="leatname" id="field_lastname" [(ngModel)]="invitee.lastName" placeholder="Last Name"
+                                            #lastName="ngModel" required maxlength="255">
+                                        <label for="field_name" class="active">&nbsp;</label>
+                                        <div *ngIf="lastName.dirty">
+                                            <small class="form-text text-danger" *ngIf="lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                                                Your lastName is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md-form">
+                                <input type="email" class="form-control" name="email" id="field_email" #email="ngModel" [(ngModel)]="invitee.email" placeholder="jane-doe@email.com"
+                                    required minlength="5" maxlength="100" email (focusout)="checkEmailStatus()">
+                                <label for="field_email" class="active">Email Address</label>
+                                <div *ngIf="email.dirty && email.invalid">
+                                    <small class="form-text text-danger" *ngIf="email.errors.required"
+                                           jhiTranslate="global.messages.validate.email.required">
+                                        Your email is required.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="email.errors.email"
+                                            jhiTranslate="global.messages.validate.email.invalid">
+                                        Your email is invalid.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="email.errors.minlength"
+                                        jhiTranslate="global.messages.validate.email.minlength">
+                                        Your email is required to be at least 5 characters.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="email.errors.maxlength"
+                                        jhiTranslate="global.messages.validate.email.maxlength">
+                                        Your email cannot be longer than 100 characters.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="md-form">
+                                <input type="text" class="form-control" placeholder="XXX-XXX-XXX" name="cell" id="field_cell" [(ngModel)]="invitee.phone"
+                                    minlength="1" maxlength="255">
+                                <label for="field_cell" class="active">Recruit's Cell</label>
+                            </div>
+
+                            <div class="md-form">
+                                <p>Do you believe this recruit has the skills, experience and professionalism - and would make
+                                    a positive contribution to ProStars?</p>
+                            </div>
+
+                            <div class="form-inline">
+                                <div class="form-check">
+                                    <input name="question" type="radio" [value]="true" class="form-check-input with-gap" id="question-1" [(ngModel)]="agree">
+                                    <label for="question-1">I Agree</label>
+                                </div>
+                            </div>
+
+                            <div class="md-form">
+                                <textarea class="form-control md-textarea" rows="4" placeholder="Type a brief summary why you feel this recruit should be approved for ProStars membership"
+                                    #briefSummary="ngModel" [(ngModel)]="invitee.briefSummary" name="briefSummary" id="field_briefSummary" required></textarea>
+                                <label for="defaultForm-email" class="active">Summary</label>
+                                <div *ngIf="briefSummary.dirty">
+                                    <small class="form-text text-danger" *ngIf="briefSummary?.errors?.required" jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                    [disabled]="editForm.form.invalid || decision">SUBMIT</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

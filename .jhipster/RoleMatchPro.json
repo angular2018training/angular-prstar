@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "DecisionStatus",
+            "fieldValues": "SAVED,PASSED"
+        }
+    ],
+    "changelogDate": "20180607142810",
+    "entityTableName": "role_match_pro",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

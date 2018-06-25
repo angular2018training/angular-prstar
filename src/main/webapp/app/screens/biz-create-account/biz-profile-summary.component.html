@@ -1,0 +1,127 @@
+<div class="card border-light mb-3">
+  <div class="card-header">DETAILED BIZ PROFILE</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-sm-auto">
+        <div class="card card-avatar-display">
+         
+          <img src="../../../content/img/svg/icon-company-avatar.svg" class="card-img-top" *ngIf="!bizService.biz.companyLogo">
+          <img [src]="'data:' + bizService.biz.companyLogoContentType + ';base64,' + bizService.biz.companyLogo" class="card-img-top"
+          *ngIf="bizService.biz.companyLogo">
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="md-form form-group">
+          <div class="form-control input-data" >{{bizService.biz.companyName}}</div>
+          <label class="active">Company Name</label>
+        </div>
+        <div class="md-form form-group">
+          <div class="form-control input-data">{{bizService.biz.website}}</div>
+          <label class="active">Web Site</label>
+        </div>
+        <div class="md-form form-group">
+          <div class="form-control input-data" *ngIf="bizService.biz.hqAddress">
+           {{bizService.biz.hqAddress.displayText}}
+          </div>
+          <label class="active">HQ Address</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="md-form form-group">
+          <div class="form-control input-data">{{bizService.biz.user.firstName + bizService.biz.user.lastName}}</div>
+          <label class="active">Name</label>
+        </div>
+        <div class="md-form form-group">
+          <div class="form-control input-data">{{bizService.biz.user.login}}</div>
+          <label class="active">Email Address</label>
+        </div>
+        <!--<div class="md-form form-group">
+          <div class="form-control input-data">(212) 555 - 1212</div>
+          <label class="active">Contact Address</label>
+        </div>-->
+      </div>
+
+    </div>
+
+    <div class="md-form form-group">
+      <div class="form-control input-data">
+      {{bizService.biz.companyBio}}
+      </div>
+      <label class="active">Company Bio</label>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="md-form form-group">
+          <div *ngFor="let industry of bizService.biz.industries">
+            <div class="form-control input-data">{{industry.name}}</div>
+          </div>
+          <label class="active">Industry(ies)</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="md-form form-group">
+          <div class="form-control input-data" *ngIf="bizService.biz.companySize !== null">{{bizService.biz.companySizeString}}</div>
+          <label class="active">Company Size</label>
+        </div>
+      </div>
+    </div>
+
+
+
+    <h4 class="form-section mt-32 mb-24">Biz Users</h4>
+    
+    <div *ngFor="let bizUser of bizUsers; index as i; even as isEven">
+        <div class="row" *ngIf="isEven">
+              <div class="col">
+                <p>{{bizUser.user.authoritiesString}}
+                  <br/>
+                  <a href="#">{{bizUser.user.login}}</a>
+                </p>
+              </div>
+              <div class="col" *ngIf="bizUsers[i+1]">
+                <p>{{bizUsers[i+1].user.authoritiesString}}
+                  <br/>
+                  <a href="#">{{bizUsers[i+1].user.login}}</a>
+                </p>
+              </div>
+        </div>
+    </div>
+
+    <h4 class="form-section mt-32 mb-24">Typical Resource Needs</h4>
+
+    <div *ngFor="let resourceNeed of bizService.biz.resourceNeeds; index as i; even as isEven">
+        <div class="row" *ngIf="isEven">
+          <div class="col">
+            <p>
+              <strong class="text-medium">{{resourceNeed.role.name}}</strong>
+              <br/>{{resourceNeed.address}}
+            </p>
+          </div>
+          <div class="col" *ngIf="bizService.biz.resourceNeeds[i+1]">
+            <p>
+              <strong class="text-medium">{{bizService.biz.resourceNeeds[i+1].role.name}}</strong>
+              <br/>{{bizService.biz.resourceNeeds[i+1].address}}
+            </p>
+          </div>
+        </div>
+    </div>
+    
+
+
+    <div class="md-form">
+      <hr/>
+    </div>
+
+    <div class="mt-24 text-right">
+      <button class="btn btn-light mr-16 m-0" type="button" (click)="onBack()">REVISE</button>
+      <!-- <button class="btn btn-primary m-0" type="button">CONFIRM</button> -->
+      <button class="btn btn-primary btn-primary-profile none-margin-all" type="button" (click)="confirm()"
+              data-toggle="modal" data-target="#modal-success">
+          CONFIRM
+      </button>
+    </div>
+
+  </div>
+</div>

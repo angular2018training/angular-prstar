@@ -1,0 +1,187 @@
+<div class="content-match">
+<ol class="breadcrumb mb-16">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/matching-landing']">Match</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/postWall']">Post Wall</a></li>
+    <li class="breadcrumb-item"><a *ngIf="proRequirementRes" [routerLink]="['../post-detail/', proRequirementRes.project.postId]">Post Detail</a></li>
+    <li class="breadcrumb-item active">Bid</li>
+</ol>
+
+<div class="card card-post-wall">
+                        
+    <div class="card-body pt-20 pb-20">
+        <div class="row">
+            <div class="col-12 col-sm-8 col-lg-9">
+                <h4 *ngIf="proRequirementRes" class="project-title blue-text">Ongoing project - {{proRequirementRes.project.projectName}}</h4>
+                <div *ngIf="proRequirementRes" class="row">
+                    <div class="col-md-8 col-lg-9">
+                        <strong class="mr-8 text-secondary">{{proRequirementRes.role.name}}</strong>
+                        <span class="mr-8 grey-text" *ngIf="proRequirementRes.numberOfBids">{{proRequirementRes.numberOfBids}} Bids</span>
+                        <span>Bid Deadline: <strong>{{proRequirementRes.bidDeadline}}</strong></span>
+                    </div>
+                    <div class="col-md-4 col-lg-3 text-right">
+                        <button class="btn btn-link btn-project-detail text-capitalize collapsed" type="button" data-toggle="collapse" data-target="#collapse-1">Project Details 
+                            <span class="mdi mdi-chevron-down indicator"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div *ngIf="proRequirementRes" class="collapse" id="collapse-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="md-form">
+                                <div class="form-control input-data">{{proRequirementRes.project.description}}</div>
+                                <label class="active">Description</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col col-xl-6">
+                                    <div class="md-form">
+                                        <div class="form-control input-data">{{startDate}}</div>
+                                        <label class="active">Project Start Date</label>
+                                    </div>
+                                </div>
+                                <div class="col col-xl-6">
+                                    <div class="md-form">
+                                        <div class="form-control input-data">{{endDate}}</div>
+                                        <label class="active">Project End Date</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form action="" name="bidForm" role="form" #bidForm="ngForm" (ngSubmit)="save();">
+                    <div class="md-form">
+                        <textarea minlength=5 maxlength=100 required name="proposalText" [(ngModel)]="bid.proposalText" type="text" class="md-textarea form-control" placeholder="Provide a brief summary of your proposal. 500 characters max." rows="3"></textarea>
+                        <label for="Form-pass1" class="active">Proposal</label>
+
+                        <div [hidden]="!(bidForm.controls.proposalText?.dirty && bidForm.controls.proposalText?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.required" jhiTranslate="entity.validation.required">
+                                Proposal is required.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                                translateValues="{min: '5'}">
+                                Proposal is required to be at least 5 characters.
+                            </small>
+                            <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                                translateValues="{max: '500'}">
+                                Proposal cannot be longer than 500 characters.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="md-form">
+                                <input placeholder="$ Proposal Price" min="10.00" max="1000.00" type="text" name="proposedPrice" currencyMask [options]="{ align: 'left'}" [(ngModel)]="bid.proposedPrice" class="form-control">
+                                <label jhiTranslate="prostarsWebApp.bid.create.proposalPrice" class="active">Proposal Price</label>
+                                
+                                <div [hidden]="!(bidForm.controls.proposedPrice?.dirty && bidForm.controls.proposedPrice?.invalid)">
+                                    <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.required" jhiTranslate="entity.validation.required">
+                                        Proposal Price is required.
+                                    </small>
+                                    <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.min">
+                                        Proposal Price cannot lower than $10.
+                                    </small>
+                                    <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.max">
+                                        Proposal Price cannot bigger than $1000.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="md-form md-datepicker">
+                                <input [(ngModel)]="pickStartDate" [min]="currentDate" name="startDate" type="text" id="startDate" class="form-control datepicker"/>
+                                <label>Start Date</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="md-form md-datepicker">
+                                <input [(ngModel)]="pickEndDate" [min]="pickStartDate" name="endDate" type="text" id="endDate" class="form-control datepicker"/>
+                                <label>End Date</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md-form">
+                        <div class="file-field">
+                            <div class="btn btn-primary float-right">
+                                <span>Choose file</span>
+                                <input (change)="setFileData($event)" type="file"/>
+                            </div>
+                            <div class="file-path-wrapper pl-0">
+                                <input type="text" class="file-path validate" placeholder="Upload your proposal">
+                            </div>
+                            <div [hidden]="!proposalIsOverSize">
+                                <small class="form-text text-danger" [hidden]="!proposalIsOverSize">
+                                    Cannot upload Proposal file over 3Mb.
+                                </small>
+                            </div>
+                        </div>
+                        <label for="Form-pass1" class="active">Your proposal</label>
+                    </div>
+
+                    <div class="md-form">
+                        <div class="file-field">
+                            <div class="btn btn-primary float-right">
+                                <span>Choose files</span>
+                                <input multiple (change)="setMultipleFileData($event)" type="file"/>
+                            </div>
+                            <div class="file-path-wrapper pl-0">
+                                <input type="text" class="file-path validate errors" placeholder="Upload your portfolio">
+                            </div>
+                        </div>
+                        <label for="Form-pass1" class="active">Portfolio Files</label>
+                    </div>
+
+                    <div class="md-form">
+                        <textarea name="note" [(ngModel)]="bid.note" type="text" class="md-textarea form-control" placeholder="Address any additional bid requirements not covered above. 500 characters max." rows="3"></textarea>
+                        <label for="Form-pass1" class="active">Additional Comments</label>
+                    </div>                                  
+
+                    <!-- <div class="md-form"><hr/></div> -->
+                    <div class="md-form text-right">
+                        <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit"
+                        [disabled]="bidForm.form.invalid || !bid.proposedPrice || !bid.proposalText" >BID</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 col-sm-4 col-lg-3" *ngIf="proRes">
+                <div class="content-wrap">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <img src="../../../content/img/avatar-placeholder.jpg" class="card-img-top" *ngIf="!proRes.pictureFile || !proRes.pictureFile.content">
+                            <img [src]="'data:' + proRes.pictureFile.contentType + ';base64,' + proRes.pictureFile.content" class="card-img-top" *ngIf="proRes.pictureFile && proRes.pictureFile.content">
+                        </div>
+                    </div>
+                    <p class="mt-16">
+                        <strong class="blue-text">{{proRes.account.firstName}} {{proRes.account.lastName}}</strong>
+                        <ul class="rating" *ngIf="proRes.rating">
+                            <rating *ngIf="proRes.rating" [(ngModel)]="proRes.rating" [max]="5" [readonly]="true"></rating> 
+                        </ul>
+                    </p>
+                    
+                    <div *ngIf="proRes.account.city && proRes.account.city.state " class="md-form">
+                        <div class="form-control input-data">{{proRes.account.city.name}}, {{proRes.account.city.state.name}}</div>
+                        <label class="active">Location</label>
+                    </div>
+                    <div class="md-form">
+                        <div class="form-control input-data">{{proRes.summaryBio}}</div>
+                        <label class="active">Summary Bio</label>
+                    </div>
+                    <div class="md-form">
+                        <div class="form-control input-data">
+                            <div *ngFor="let skill of proRes.skills" class="chip none-margin-all mt-3px pr-12 text-center">{{skill.skill.name}}</div>
+                        </div>
+                        <label class="active">Skill</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

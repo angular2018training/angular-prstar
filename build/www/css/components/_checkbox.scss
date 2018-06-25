@@ -1,0 +1,83 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+.form-check {
+	padding-left: 0;
+    margin-right: 32px;
+	input {
+		display: none;
+	}
+	label {
+		margin-bottom: 20px;
+	}
+}
+
+[type=checkbox][class*=filled-in]:checked+label:after {
+    top: 0;
+    border-color: #000;
+    background-color: #000;
+    z-index: 0;
+}
+
+
+
+
+// .form-inline {
+//     .form-check {
+        // padding-left: 0;
+        // margin-right: 32px;
+//         &:first-child {
+//             input {
+//                 display: none;
+//             }
+//         }
+//     }
+    
+// }
+
+[type=radio].with-gap + label:before,
+[type=radio].with-gap + label:after {
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+}
+
+[type=radio].with-gap + label:after {
+	transform: rotateZ(0deg) scale(0.1);
+    background-color: transparent;
+    content: "";
+    left: 0;
+    position: absolute;
+    transition: border .25s,
+    			background-color .25s,
+    			width .2s .1s,
+    			height .2s .1s,
+    			top .2s .1s,
+    			left .2s .1s,
+    			transform .25s;
+    z-index: 1;
+    border-style: solid;
+    border-width: 2px;
+    top: 2px;
+    left: 1px;
+    width: 8px;
+    height: 13px;
+    border-color: transparent #fff #fff transparent;
+    transform-origin: 100% 100%;
+    border-radius: 0;
+}
+
+[type=radio].with-gap:checked + label {
+	position: relative;
+}
+
+[type=radio].with-gap:checked + label:before {
+    border-color: #000;
+    background-color: #000;
+}
+
+[type=radio].with-gap:checked + label:after {
+    transform: rotateZ(37deg) scale(1);
+}

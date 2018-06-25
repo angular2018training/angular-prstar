@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "sponsor",
+            "otherEntityName": "pro",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "proCommission"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "level",
+            "otherEntityName": "commissionLevel",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "pro",
+            "otherEntityName": "pro",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "mtdAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "qtdAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ytdAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ytdContractNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "mtdContractNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "qtdContractNumber",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180403030609",
+    "entityTableName": "pro_commission",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

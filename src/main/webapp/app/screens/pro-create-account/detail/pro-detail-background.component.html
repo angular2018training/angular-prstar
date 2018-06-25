@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-sm-12">
+      <!--Panel-->
+      <div class="card border-light mb-3">
+          <div class="card-header">BIO/ SKILLS</div>
+          <div class="card-body">
+                <!-- ERROR MESSAGE -->
+              <div class="alert alert-danger" *ngFor="let error of errorList">
+                  {{error}}
+              </div>
+              <form class="form-profile">
+                  <p>Background</p>
+                  <div class="md-form" *ngFor="let question of backgroundData.freeAnswerQuestionList">
+                      <input type="text" [(ngModel)]="question.proAnswer" class="form-control" 
+                        [ngModelOptions]="{standalone: true}" placeholder="{{question.question}}">
+                  </div>
+                  <angular2-multiselect class="form-control"
+                        [(ngModel)]="backgroundData.proIndustries"
+                        [data]="dropdownIndustryList"
+                        [settings]="dropdownIndustrySettings"
+                        [ngModelOptions]="{standalone: true}">
+                  </angular2-multiselect>
+                  <div class="row mt-4">
+                      <div class="col-12 col-sm-auto">
+                          <div class="card card-avatar-upload">
+                              <img src="../../../../content/img/avatar-placeholder.jpg" class="card-img-top" *ngIf="!backgroundData.avatarPhoto">
+                              <img [src]="'data:' + backgroundData.avatarPhotoContentType + ';base64,' + backgroundData.avatarPhoto" class="card-img-top" *ngIf="backgroundData.avatarPhoto">
+                              <div class="file-field">
+                                <div class="btn btn-primary">
+                                    <span>UPLOAD PHOTO</span>
+                                    <input type="file" id="file_logo" (change)="setLogoData($event)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                                </div>
+                                <small *ngIf="validateAvatarFile.isNotImage" class="form-text text-danger">
+                                    Uploaded file is not image file type.
+                                </small>
+                                <small *ngIf="validateAvatarFile.isOverSize" class="form-text text-danger">
+                                    Cannot upload Avatar file over 1Mb.
+                                </small>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="form-check" *ngFor="let question of backgroundData.checkboxAnswerQuestionList; let i = index">
+                              <input type="checkbox" [(ngModel)]="question.proAnswer" class="form-check-input filled-in" 
+                                [ngModelOptions]="{standalone: true}" id="checkbox{{i}}"/>
+                              <label for="checkbox{{i}}">{{question.question}}</label>
+                          </div>
+
+                          <div class="md-form">
+                              <div class="file-field">
+                                  <div class="btn btn-primary float-right">
+                                      <span>Choose file</span>
+                                      <input type="file" id="file_resume" (change)="setFileData($event)">
+                                  </div>
+                                  <div class="file-path-wrapper">
+                                      <input type="text" class="file-path validate" placeholder="Upload resume" 
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="backgroundData.resumeFileName">
+                                  </div>
+                                  <small *ngIf="validateResumeFile.isOverSize" class="form-text text-danger">
+                                    Cannot upload Resume file over 3Mb.
+                                  </small>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" [(ngModel)]="backgroundData.acceptTerms" class="form-check-input filled-in" 
+                      [ngModelOptions]="{standalone: true}" id="terms"/>
+                    <label for="terms">Term &amp; Conditions: Read and accept our standard Terms &amp; Conditions</label>
+                  </div>
+              </form>
+              <div class="md-form"><hr/></div>
+              <div class="mt-24 text-right">
+                  <button (click)="onBack()" class="btn btn-light mr-16 m-0" type="button">BACK</button>
+                  <button (click)="onNext()" [disabled]="!backgroundData.acceptTerms" class="btn btn-primary m-0" type="button">NEXT</button>
+              </div>
+          </div>
+      </div>
+      <!--/.Panel-->
+  </div>
+</div>

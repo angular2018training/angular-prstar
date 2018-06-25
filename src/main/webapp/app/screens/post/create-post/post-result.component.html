@@ -1,0 +1,64 @@
+<!-- Modal sponsor -->
+<div class="modal-profile" id="modal-success">
+  <!-- Incase save error [start] -->
+  <div *ngIf="createPostService.error;else success" class="modal-content">
+    <div class="modal-header">
+      <div>
+        <img src="../../../../content/img/icon-modal-check.svg" />
+        <h4 class="modal-title" jhiTranslate="prostarsWebApp.post.resultPopup.error">Error</h4>
+      </div>
+      <button type="button" (click)="close()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <p *ngIf="isCreatePost;else createProRequest">Create post error!!!</p>
+          <ng-template #createProRequest>
+            <p>Create pro request error!!!</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Incase save error [end] -->
+  <!-- Incase Save success [start] -->
+  <ng-template #success>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <img src="../../../../content/img/icon-modal-check.svg" />
+          <h4 class="modal-title" jhiTranslate="prostarsWebApp.post.resultPopup.success">Success</h4>
+        </div>
+        <button type="button" (click)="goToDashboard()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center" *ngIf="isCreatePost;else createProRequest">
+          <div class="col-md-10">
+            <p>Create post success</p>
+          </div>
+        </div>
+        <ng-template #createProRequest>
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+
+              <!-- Default button -->
+              <button type="button" class="btn btn-default" (click)="goToCreateNew()"
+              jhiTranslate="prostarsWebApp.post.resultPopup.createNew">Default</button>
+
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <button type="button" class="btn btn-primary" (click)="goToMatchReport()" 
+              jhiTranslate="prostarsWebApp.post.resultPopup.matchReport">Primary</button>
+
+              <!-- Indicates a successful or positive action -->
+              <button type="button" class="btn btn-success" (click)="goToDashboard()"
+              jhiTranslate="prostarsWebApp.post.resultPopup.returnDashboard">Success</button>
+
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+  <!-- Incase Save success [end] -->
+
+</div>

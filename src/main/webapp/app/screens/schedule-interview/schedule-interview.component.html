@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-12 col-md-8">
+        <div class="md-form mt-0">
+            <label class="active">Interview Template</label>
+            <angular2-multiselect [data]="interviewTemplateList" [(ngModel)]="selectedInterviewTemplate" [settings]="interviewTemplateListSetting" [ngModelOptions]="{standalone: true}">
+            </angular2-multiselect>
+        </div>
+    </div>
+</div>
+<div *ngFor="let interviewSession of scheduleInterview.interviewSessions; index as interviewerIndex" class="wrap-box-interview">
+    <div class="box-interview">
+        <button (click)="removeInterviewer(interviewerIndex)" *ngIf="scheduleInterview.interviewSessions.length > 1" type="button" class="btn btn-danger btn-circle-small btn-remove-interview">
+            <i class="fa fa-remove"></i>
+        </button>
+        
+        <div class="row">
+            <div class="col-4">
+                <div class="md-form mt-1rem">
+                    <label class="active">Interviewer</label>
+                    <angular2-multiselect [data]="interviewerList" [(ngModel)]="interviewSession.selectedInterviewer" [settings]="interviewerListSetting" [ngModelOptions]="{standalone: true}">
+                    </angular2-multiselect>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="md-form mt-1rem">
+                    <label class="active">Interview Type</label>
+                    <input type="text" [(ngModel)]="interviewSession.interviewType" name="interviewType+interviewerIndex" type="text" id="interviewType+interviewerIndex" class="form-control"/>
+                    
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="md-form mt-1rem">
+                            <label class="active">Interview Duration</label>
+                            <input type="number" [(ngModel)]="interviewSession.duration" name="duration+interviewerIndex" id="duration+interviewerIndex" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-5 align-self-center">
+                        minutes
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-16">
+                Availability
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2-4">
+                <span class="small fake-label">Date</span>
+            </div>
+            <div class="col-2-4">
+                <span class="small fake-label">Open From</span>
+            </div>
+
+        </div>
+
+        <div *ngFor="let suggestInterviewSchedule of interviewSession.suggestedInterviewSchedules; index as i" class="row list-availability">
+            <div class="col-2-4">
+                <div class="md-form mt-0">
+                    <schedule-datepicker [initDate]="suggestInterviewSchedule.interviewDate" [id]="'date'+i+interviewerIndex" [name]="'date'+i+interviewerIndex" (value)="recievedDate($event, interviewerIndex, i)">
+                    </schedule-datepicker>
+                </div>
+            </div>
+            <div class="col-2-4">
+                <div class="md-form mt-0">
+                    <schedule-timepicker [initTime]="suggestInterviewSchedule.fromTime" [id]="'timeFrom'+i+interviewerIndex" [name]="'timeFrom'+i+interviewerIndex" [placeholder]="'Open from'" (value)="recievedTime($event, interviewerIndex, i)" [field]="'fromTime'">
+                    </schedule-timepicker>
+                </div>
+            </div>
+
+            <div class="col-2-4">
+                <div class="md-form mt-0">
+                    <ng2-timezone-picker showOffset="true" guess="true" (change)="changeTimezone($event, i, interviewerIndex)"></ng2-timezone-picker>
+                </div>
+            </div>
+            
+            <div class="col-2-4 align-self-end box-action">
+                <button (click)="removeSuggestedSchedule(interviewerIndex, i)" *ngIf="interviewSession.suggestedInterviewSchedules.length > 1" type="button" class="btn btn-danger btn-circle-small btn-minus">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button (click)="addSuggestedSchedule(interviewerIndex);" *ngIf="i == interviewSession.suggestedInterviewSchedules.length-1" type="button" class="btn btn-blue btn-circle-small btn-plus">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        
+    </div>
+
+    
+</div>
+<div class="row">
+    <div class="col-12">
+        <div (click)="addInterviewer();" class="chip text-secondary mt-32 mb-0 btn-add-interview">Add Another Interview</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="md-form">
+            <textarea [(ngModel)]="scheduleInterview.bizNote" type="text" class="md-textarea form-control" placeholder="500 characters max" rows="3"></textarea>
+            <label for="Form-pass1" class="active">Message</label>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="text-right">
+    <button class="btn mr-16 none-margin-all text-primary" type="button">CANCEL</button>
+    <button class="btn mr-16 btn-primary btn-primary-profile none-margin-all" type="button">SAVE TEMPLATE</button>
+    <button [disabled]="isCreated" (click)="sendInvitation();" class="btn btn-primary btn-primary-profile none-margin-all" type="button">SEND INVITATION</button>
+</div>

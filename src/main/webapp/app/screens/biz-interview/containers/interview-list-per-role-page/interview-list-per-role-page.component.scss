@@ -1,0 +1,21 @@
+.content-match {
+  .stepper {
+    li {
+      a {
+        .circle {
+          width: 24px;
+          height: 24px;
+          background: rgba(0, 0, 0, 0.38) !important;
+        }
+      }
+    }
+    .active {
+      a {
+        .circle {
+          background-color: #4285f4 !important;
+          border-color: #4285f4 !important;
+        }
+      }
+    }
+  }
+}

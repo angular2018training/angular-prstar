@@ -1,0 +1,33 @@
+<!--HEADER OF INVITEE-->
+<h1 class="title" *ngIf="invitee?.inviter != null">
+    <span class="text-primary"><strong>{{invitee.firstName}}</strong></span>
+    <span jhiTranslate="prostarsWebApp.introduction.learnMore.welcomeInvitee">, Welcome to ProStars!</span>
+    <h2 class="sub-title">
+        <span class="text-primary">
+            <strong>{{invitee.inviter.account.firstName}} {{invitee.inviter.account.lastName}}
+            </strong>
+        </span>
+        <span jhiTranslate="prostarsWebApp.introduction.learnMore.welcomeInviteeSub">
+        thought you would be interested in becoming a member of the fastest growing network of highly qualified professionals.
+        </span>
+    </h2>
+</h1>
+
+<!--HEADER OF NON-REFERERALS -->
+<h1 class="title" *ngIf="invitee?.inviter == null">
+        <span jhiTranslate="prostarsWebApp.introduction.learnMore.welcomeAnonymous">
+            Everything you need as a Pro for zip-zilch-zero-nada!
+        </span>
+</h1>
+
+<!--INTRODUCTION-->
+<h2 class="sub-title" jhiTranslate="prostarsWebApp.introduction.learnMore.description.line1">As an independent contractor, a.k.a. Pro, ProStars provides you with<br/>everything you need for
+    free.</h2>
+<ul class="feature">
+    <li jhiTranslate="prostarsWebApp.introduction.learnMore.benefits.line1">Matches your capabilities with businesses’ needs</li>
+    <li jhiTranslate="prostarsWebApp.introduction.learnMore.benefits.line2">Provides end-to-end collaboration and admin tools for professional services projects</li>
+    <li jhiTranslate="prostarsWebApp.introduction.learnMore.benefits.line3">Pays you <strong>3%</strong> of the revenue earned from your network<br/>(this could double your income with
+        little effort)
+    </li>
+</ul>
+

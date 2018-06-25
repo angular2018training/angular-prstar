@@ -1,0 +1,304 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+.page-dashboard {
+    .bg-blue {
+        color: #fff;
+        background: #2976d3;
+        .card-header {
+            background: #2976d3;
+        }
+    }
+    .bg-green {
+        color: #fff;
+        background: #13cba7;
+        .card-header {
+            background: #13cba7;
+        }
+    }
+    .border-blue {
+        border-color: #2976d3!important;
+    }
+    .border-green {
+        border-color: #13cba7!important;
+    }
+    .border-yellow {
+        border-color: #f9bc3d!important;
+    }
+    .border-white {
+        border-color: #ffffff!important;
+    }
+    .color-blue {
+        color: #2976d3!important;
+    }
+    .color-green {
+        color: #13cba7!important;
+    }
+    .color-yellow {
+        color: #f9bc3d!important;
+    }
+    .color-white {
+        color: #ffffff!important;
+    }
+    .item-dashboard-new {
+        border-radius: 0;
+        .media {
+            min-height: 80px;
+        }
+        .item-star {
+            padding: .75rem 0;
+        }
+        .text-large{
+            line-height: 2rem;
+            font-size: 2rem;
+            font-weight: normal;
+        }
+        .item-large {
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+            font-weight: normal;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #fff;
+            border-radius: 50%;
+        }
+        .item-border-right {
+            border-right: 1px solid #fff;
+        }                
+    }
+    // &.bg-yellow {
+    //     color: #fff;
+    //     background: #f9bc3d;
+    //     .card-header {
+    //         background: #f9bc3d;
+    //     }
+    // }
+    // &.bg-black {
+    //     color: #fff;
+    //     background: #333333;
+    //     .card-header {
+    //         background: #333333;
+    //     }
+    // }
+    // &.bg-grey {
+    //     color: #333333;
+    //     background: #d3d3d3;
+    //     .card-header {
+    //         background: #d3d3d3;
+    //     }
+    // }
+    // &.bg-light-green {
+    //     color: #333333;
+    //     background: #d2eafd;
+    //     .card-header {
+    //         background: #d2eafd;
+    //     }
+    // }
+    section {
+        margin-bottom: 24px;
+    }
+    .card-network {
+        box-shadow: none;
+        border-radius: 0;
+        .card-header {
+            position: relative;
+            background-color: #fff;
+            border: solid 1px #e0e0e0;
+            // border-bottom: none;
+            border-radius: 0;
+            padding-left: 24px;
+            padding-right: 48px;
+            .col-total {
+                text-align: right;
+            }
+            .indicator {
+                position: absolute;
+                top: 12px;
+                right: 20px;
+                transition: transform 0.2s;
+            }
+            &.collapsed {
+                .indicator {
+                    transform: rotate(180deg);
+                } 
+            }
+            .badge-total {
+                background-color: transparent;
+                box-shadow: none;
+                font-size: 16px;
+                font-weight: 300;
+                color: #333 !important;
+                margin-right: 40px;
+                padding-left: 0;
+                padding-right: 0;
+
+                > i {
+                    color: #1976d3;
+                    font-weight: 300;
+                    font-style: normal;
+                }
+            }
+        }
+        .collapse-body {
+            .item {
+                padding-left: 24px;
+                padding-right: 48px;
+                border: solid 1px #e0e0e0;
+                border-top: 0;
+            }
+            .media-user {
+                padding: 14px 24px 14px 0;
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+                .media-body {
+                    padding-left: 10px;
+                    h5 {
+                        font-size: 16px;
+                        color: #2196f3;
+                        line-height: 16px;
+                        margin-top: 5px;
+                        margin-bottom: 0px;
+                    }
+                    p {
+                        color: #333333;
+                        font-size: 12px;
+                        margin: 0;
+                        margin-top: 3px;
+                    }
+                }
+            }
+            .badge-role {
+                background-color: #13caa8;
+                box-shadow: none;
+                font-size: 12px;
+                font-weight: 300;
+            }
+        }
+        .table {
+            margin: 0;
+            > tbody {
+                > tr {
+                    > td {
+                        padding: 14px 24px;
+                        vertical-align: middle;
+                        border: solid 1px #e0e0e0;
+                        &:first-child {
+                            @media (min-width: 576px) {
+                                border-right: none;
+                            }
+                        }
+                        &:last-child {
+                            border-left: none;
+                        }
+                        .media-user {
+                            img {
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                            }
+                            .media-body {
+                                padding-left: 10px;
+                                h5 {
+                                    font-size: 16px;
+                                    color: #2196f3;
+                                    line-height: 16px;
+                                    margin-top: 5px;
+                                    margin-bottom: 0px;
+                                }
+                                p {
+                                    color: #333333;
+                                    font-size: 12px;
+                                    margin: 0;
+                                    margin-top: 3px;
+                                }
+                            }
+                        }
+                        .badge-role {
+                            background-color: #13caa8;
+                            box-shadow: none;
+                            font-size: 12px;
+                            font-weight: 300;
+                        }
+                    }
+                    &:first-child {
+                        > td {
+                            border-top: none;
+                        }
+                    }
+                }
+                
+            }
+        }
+        .card-footer {
+            background-color: #fff;
+            text-align: center;
+            border: solid 1px #e0e0e0;
+            border-top: none;
+            border-radius: 0;
+            a {
+                color: #333;
+            }
+        }
+    }
+
+    .filter-item {
+        .select-wrapper {
+            display: inline-flex;
+            vertical-align: -webkit-baseline-middle;
+            margin-left: 15px;
+            width: 220px;
+        }
+    }
+}
+
+.modal-sponsor {
+    .modal-header {
+        background-color: #2095f4;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        height: 190px;
+
+        > div {
+            text-align: center;
+            .modal-title {
+                color: #fff;
+                font-family: 'Roboto Condensed';
+                font-weight: 300;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            opacity: 1;
+        }
+    }
+    .modal-body {
+        .form-inline {
+            .form-check {
+                padding-left: 0;
+                margin-right: 32px;
+                &:first-child {
+                    input {
+                        display: none;
+                    }
+                }
+            }
+            
+        }
+    }
+    .modal-footer {
+        border-top: none;
+    }
+}
+
+

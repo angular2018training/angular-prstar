@@ -1,0 +1,155 @@
+<div class="content-vet">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a href="/#/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.vetting.title">Pro Applicants Report</li>
+    </ol>
+    <div class="card card-create">
+        <form name="reportForm" role="form" novalidate #reportForm="ngForm" (ngSubmit)="submitDecision()">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-lg-3 col-xl-4" jhiTranslate="prostarsWebApp.vetting.title">Pro Applicants Report</div>
+                    <div class="col-lg-9 col-xl-8 col-total"></div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 75px;" jhiTranslate="prostarsWebApp.vetting.appID">APP ID</th>
+                        <th style="width: 150px;" jhiTranslate="prostarsWebApp.vetting.dateTime">DATE + TIME</th>
+                        <th style="width: 150px;" jhiTranslate="prostarsWebApp.vetting.email">NAME</th>
+                        <th style="width: 100px;" jhiTranslate="prostarsWebApp.vetting.role">ROLE</th>
+                        <th style="width: 100px;" jhiTranslate="prostarsWebApp.vetting.decisionTitle">DECISION</th>
+                        <th jhiTranslate="prostarsWebApp.vetting.comment">COMMENTS</th>
+                        <!-- Status filter [start] -->
+                        <th style="width: 150px;">
+                            <select class="browser-default" #selectedFilter (change)="filterPro(selectedFilter.value)">
+                                <option value="0" selected jhiTranslate="prostarsWebApp.vetting.statusOption.all">All status</option>
+                                <option value="1" jhiTranslate="prostarsWebApp.vetting.statusOption.awaiting">Awaiting Decision</option>
+                                <option value="2" jhiTranslate="prostarsWebApp.vetting.statusOption.ready">Ready to inform applicant</option>
+                            </select>
+                        </th>
+                        <!-- Status filter [end] -->
+                        <th style="width: 150px;" jhiTranslate="prostarsWebApp.vetting.decisionMarker">DECISION MAKER</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="lstVettings.length !=0;else noItem">
+                    <tr *ngFor="let vetting of lstVettings; index as i">
+                        <!-- Applicant ID [start] -->
+                        <td>{{vetting.applicant.id}}</td>
+                        <!-- Applicant ID [end] -->
+
+                        <!-- Date time [start] -->
+                        <td>{{vetting.applicant.account.createdDate | date: 'MM.dd.yyyy'}}</td>
+                        <!-- Date time [end] -->
+
+                        <!-- Applicant Name = First name + Last name [start] -->
+                        <td>
+                            <a (click)="openDialog(i)">
+                                <!-- {{vetting.applicant.account.firstName}} {{vetting.applicant.account.lastName}} -->
+                                {{vetting.applicant.account.email}}
+                            </a>
+                        </td>
+                        <!-- Applicant Name = First name + Last name [end] -->
+                        <!-- Role [start] -->
+                        <td>
+                            <div *ngFor="let role of vetting.applicant.roles">
+                                <span class="badge badge-role">{{role.role.name}}</span>
+                            </div>
+                        </td>
+                        <!-- Role [end] -->
+
+                        <!-- Decision (No/Awaiting/Yes) [start] -->
+                        <td class="text-nowrap align-bottom" *ngIf="vetting.applicant.decision == 'AWAITING';else approved">
+                            <!-- <select class="browser-default" #selectedDecision (change)="makeDecision(i,selectedDecision.value)" ng-model="vetting.decision">
+                                    <option value="0" jhiTranslate="prostarsWebApp.vetting.decisionOption.yes">Yes</option>
+                                    <option value="1" selected jhiTranslate="prostarsWebApp.vetting.decisionOption.awaiting">Awaiting</option>
+                                    <option value="2" jhiTranslate="prostarsWebApp.vetting.decisionOption.no">No</option>
+                                </select> -->
+
+                            <div class="md-form slider-switch">
+                                <span jhiTranslate="prostarsWebApp.vetting.decisionOption.no">No</span>
+                                <div class="range-field">
+                                    <input type="range" min="0" max="2" name="decision_{{i}}" id="decision_{{i}}" [(ngModel)]="vetting.decisionOption" (change)="makeDecision(i,vetting.decisionOption)"
+                                    />
+                                </div>
+                                <span jhiTranslate="prostarsWebApp.vetting.decisionOption.yes">Yes</span>
+                            </div>
+                        </td>
+                        <ng-template #approved>
+                            <td>
+                                <span class="badge badge-role" *ngIf="vetting.applicant.decision == 'NO'">Rejected</span>
+                                <span class="badge badge-role" *ngIf="vetting.applicant.decision == 'YES'">Approved</span>
+                            </td>
+                        </ng-template>
+                        <!-- Deciion (No/Awaiting/Yes) [end] -->
+                        <!-- Comment [start] -->
+                        <td>
+                            <div class="md-form" *ngIf="vetting.applicant.decision == 'AWAITING'">
+                                <input class="form-control" type="text" placeholder="Add a comment..." name="comment" [(ngModel)]="vetting.vetterComment">
+                            </div>
+                        </td>
+                        <!-- Comment [end] -->
+
+                        <!-- Status [start] -->
+                        <td>
+                            <!-- {{ makeDecision }} -->
+                            <div *ngIf="vetting.applicant.decision == 'AWAITING'">
+                                <span *ngIf="vetting.isReady;else nonReady" class="badge badge-status-ready" jhiTranslate="prostarsWebApp.vetting.statusOption.ready">
+                                    Ready to inform applicant
+                                </span>
+                                <ng-template #nonReady>
+                                    <span class="badge badge-status-await" jhiTranslate="prostarsWebApp.vetting.statusOption.awaiting">Awaiting decision</span>
+                                </ng-template>
+                            </div>
+                        </td>
+                        <!-- Status [end] -->
+                        <!-- Decision Marker [start] -->
+                        <td>
+                            <div *ngIf="vetting.decision != 'AWAITING' && vetting.isReady;else nonApprove">
+                                <span>{{loginAccount.firstName}}</span>
+                            </div>
+                            <ng-template #nonApprove>
+                                -
+                            </ng-template>
+                        </td>
+                        <!-- Decision Marker [end] -->
+
+                    </tr>
+                </tbody>
+
+                <ng-template #noItem>
+                    <tbody>
+                        <tr>
+                            <td colspan="8">
+                                <h4>There is no application</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+            <div class="card-footer">
+                <div class="form-inline justify-content-end">
+                    <!-- <label class="paging-size mr-16">Rows per page:</label>
+                <select class="mdb-select paging-size mr-32">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span class="current-page mr-32">1 - 10 of 100</span>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-prev mr-16">
+                    <span class="mdi mdi-24px mdi-chevron-left"></span>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-next mr-16">
+                    <span class="mdi mdi-24px mdi-chevron-right"></span>
+                </button> -->
+                    <span class="mdi mdi-information-outline mdi-24px tooltip-inform mr-16" id="tooltip-inform"  title="{{'prostarsWebApp.pro.vetting.applicationsReport' | translate}}" data-placement="bottom"></span>
+                    <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit" [disabled]="lstReadyCount == 0" jhiTranslate="prostarsWebApp.vetting.inform">
+                        INFORM APPLICANTS OF DECISIONS</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

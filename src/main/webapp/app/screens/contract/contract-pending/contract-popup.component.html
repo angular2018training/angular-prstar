@@ -1,0 +1,112 @@
+<div class="modal-create-contract">
+    <div class="modal-">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-left">
+                    <h5 class="modal-title">Create Contract</h5>
+                </div>
+                <button type="button" (click)="cancel()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <input type="text" id="form1" class="form-control" [(ngModel)]="contractData.name">
+                            <label for="form1" >Contract Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <label>Project Name</label>
+                            <angular2-multiselect [data]="dropdownProjectList" 
+                            [(ngModel)]="selectedProject"
+                            [settings]="dropdownProjectSettings" 
+                            [ngModelOptions]="{standalone: true}"
+                            (onSelect)="onSelectRole($event)"      
+                            >
+                            </angular2-multiselect>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <label>Role</label>
+                            <angular2-multiselect [data]="dropdownRoleList" 
+                            [(ngModel)]="selectedRole"
+                            [settings]="dropdownRoleSettings" 
+                            [ngModelOptions]="{standalone: true} "
+                            (onSelect)="onSelectProName($event)"
+                            >
+                            </angular2-multiselect>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <label>Pro Name</label>
+                            <angular2-multiselect [data]="dropdownProList" 
+                            [(ngModel)]="selectedPro" 
+                            [settings]="dropdownProSettings" 
+                            [ngModelOptions]="{standalone: true}"
+                            >
+                            </angular2-multiselect>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <textarea type="text" id="form7" class="md-textarea form-control" rows="3" [(ngModel)]="contractData.note" placeholder="500 characters max"></textarea>
+                            <label for="form7" class="active">Notes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="form-check">
+                                <input name="question" [value]="1" [(ngModel)]="typeContract" type="radio" class="form-check-input with-gap" id="question-1">
+                                <label for="question-1">Select Contract Template</label>
+                            </div>
+                            <div class="pl-36" id="block-template" *ngIf="typeContract == 1">
+                                <angular2-multiselect [data]="dropdownContractTemplates" 
+                                [(ngModel)]="selectedTemplate" 
+                                [settings]="dropdownContractTemplatesSettings" 
+                                [ngModelOptions]="{standalone: true}"
+                                >
+                                </angular2-multiselect>
+                            </div>
+                            <div class="form-check">
+                                <input [value]="2" [(ngModel)]="typeContract" name="question" type="radio" class="form-check-input with-gap" id="question-2">
+                                <label for="question-2">Upload Contract File</label>
+                            </div>
+                            <div class="pl-36" *ngIf="typeContract == 2">
+                                <div class="file-field">
+                                    <div class="btn btn-primary float-right">
+                                        <span>Choose file</span>
+                                        <input type="file" (change)="setFileDataContract($event)"/>
+                                    </div>
+                                    <div class="file-path-wrapper pl-0">
+                                        <input type="text" class="file-path validate" placeholder="Upload Contract Template" [ngModelOptions]="{standalone: true}" [(ngModel)]="contractData.file.name">
+                                    </div>
+                                    <small *ngIf="validateResumeFile.isOverSize" class="form-text text-danger">
+                                        Cannot upload Resume file over 3Mb.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="cancel()" type="button" class="btn text-primary mr-20" data-dismiss="modal">CANCEL</button>
+                <button (click)="submitAddContract()" type="button" class="btn btn-primary" data-dismiss="modal">SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myInterviewSessionLabel" jhiTranslate="prostarsWebApp.interviewSession.home.createOrEditLabel">Create or edit a Interview Session</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!interviewSession.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="interviewSession.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.interviewType" for="field_interviewType">Interview Type</label>
+            <input type="text" class="form-control" name="interviewType" id="field_interviewType"
+                [(ngModel)]="interviewSession.interviewType" required/>
+            <div [hidden]="!(editForm.controls.interviewType?.dirty && editForm.controls.interviewType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.interviewType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.interviewDate" for="field_interviewDate">Interview Date</label>
+            <div class="d-flex">
+                <input id="field_interviewDate" type="datetime-local" class="form-control" name="interviewDate" [(ngModel)]="interviewSession.interviewDate"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.fromTime" for="field_fromTime">From Time</label>
+            <input type="text" class="form-control" name="fromTime" id="field_fromTime"
+                [(ngModel)]="interviewSession.fromTime" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="duration" id="field_duration"
+                [(ngModel)]="interviewSession.duration" required/>
+            <div [hidden]="!(editForm.controls.duration?.dirty && editForm.controls.duration?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.duration?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.duration?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.timezone" for="field_timezone">Timezone</label>
+            <input type="text" class="form-control" name="timezone" id="field_timezone"
+                [(ngModel)]="interviewSession.timezone" required/>
+            <div [hidden]="!(editForm.controls.timezone?.dirty && editForm.controls.timezone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.timezone?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.decision" for="field_decision">Decision</label>
+            <select class="form-control" name="decision" [(ngModel)]="interviewSession.decision" id="field_decision"  required>
+                <option value="GO">{{'prostarsWebApp.InterviewDecision.GO' | translate}}</option>
+                <option value="NO_GO">{{'prostarsWebApp.InterviewDecision.NO_GO' | translate}}</option>
+                <option value="AWAITING">{{'prostarsWebApp.InterviewDecision.AWAITING' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.decision?.dirty && editForm.controls.decision?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.decision?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.note" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                [(ngModel)]="interviewSession.note" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.interviewSession.interview" for="field_interview">Interview</label>
+            <select class="form-control" id="field_interview" name="interview" [(ngModel)]="interviewSession.interviewId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="interviewOption.id" *ngFor="let interviewOption of interviews; trackBy: trackInterviewById">{{interviewOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

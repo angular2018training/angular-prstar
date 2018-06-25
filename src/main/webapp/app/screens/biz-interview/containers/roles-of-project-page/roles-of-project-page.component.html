@@ -1,0 +1,64 @@
+<div class="content-match" id="main-content">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard" jhiTranslate="global.menu.dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/biz-landing" jhiTranslate="global.entity.action.match">Match</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="global.interview.home.title">
+            Interviews
+        </li>
+    </ol>
+    <ng-container *ngIf="this.rolesOfProject; else elseTemplate">
+        <div class="card card-match-report">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <h5>Interviews</h5>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-9 text-left text-md-right">
+                        <h5 class="text-primary mb-8">{{ this.rolesOfProject.projectName | uppercase }}</h5>
+                        <p>Project ID: {{ this.rolesOfProject.id }}</p>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-12 col-xl-8">
+                        <p>Inside, you'll find a total of 53 potential Pros to consider for your <strong>TECHNOLOGY COMMERCIALIZATION PROJECT</strong>. You'll get a chance to review each Pro, and choose whether you'd like to interview them for the role. Lastly, you'll get the chance to select any interviewers from your Biz, and propose interview times.</p>
+                        <p>Click <button type="button" class="btn btn-primary btn-sm">REVIEW MATCHES</button> to start the process!</p>
+                    </div>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let item of this.rolesOfProject.lstProRequirements" (click)="gotoInterviewListPerRolePage(item.id)">
+                        <div class="card card-match">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-sm-12 col-md-auto">
+                                        <h1 class="number">{{ item.numOfInterview }}</h1>
+                                        <p class="unit">INTERVIEWS</p>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="role text-center text-sm-center text-md-left">
+                                            <strong>{{ item.roleName }}</strong> Role</h6>
+                                        <p class="status text-center text-sm-center text-md-left">Status:
+                                            <span class="badge badge-status-open" *ngIf="!item.isClosed">Open</span>
+                                            <span class="badge badge-status-closed" *ngIf="item.isClosed">Closed</span>
+                                        </p>
+                                        <div (click)="gotoInterviewListPerRolePage(item.id)" class="action text-center text-sm-center text-md-left">
+                                            <button type="button" class="btn btn-primary">REVIEW INTERVIEWS</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        No records found.
+    </ng-template>
+</div>

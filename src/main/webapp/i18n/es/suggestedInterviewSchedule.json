@@ -1,0 +1,29 @@
+
+{
+    "prostarsWebApp": {
+        "suggestedInterviewSchedule" : {
+            "home": {
+                "title": "Suggested Interview Schedules",
+                "createLabel": "Crear nuevo Suggested Interview Schedule",
+                "createOrEditLabel": "Crear o editar Suggested Interview Schedule"
+            },
+            "created": "Un nuevo Suggested Interview Schedule ha sido creado con el identificador {{ param }}",
+            "updated": "Un Suggested Interview Schedule ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Suggested Interview Schedule ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Suggested Interview Schedule {{ id }}?"
+            },
+            "detail": {
+                "title": "Suggested Interview Schedule"
+            },
+            "interviewDate": "Interview Date",
+            "fromTime": "From Time",
+            "duration": "Duration",
+            "timezone": "Timezone",
+            "note": "Note",
+            "proAccepted": "Pro Accepted",
+            "bizAccepted": "Biz Accepted",
+            "interviewSession": "Interview Session"
+        }
+    }
+}

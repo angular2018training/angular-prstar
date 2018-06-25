@@ -1,0 +1,22 @@
+
+{
+    "prostarsWebApp": {
+        "roleMatchPro" : {
+            "home": {
+                "title": "Role Match Pros",
+                "createLabel": "Crear nuevo Role Match Pro",
+                "createOrEditLabel": "Crear o editar Role Match Pro"
+            },
+            "created": "Un nuevo Role Match Pro ha sido creado con el identificador {{ param }}",
+            "updated": "Un Role Match Pro ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Role Match Pro ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Role Match Pro {{ id }}?"
+            },
+            "detail": {
+                "title": "Role Match Pro"
+            },
+            "status": "Status"
+        }
+    }
+}

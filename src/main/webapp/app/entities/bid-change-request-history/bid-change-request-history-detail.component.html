@@ -1,0 +1,30 @@
+
+<div *ngIf="bidChangeRequestHistory">
+    <h2><span jhiTranslate="prostarsWebApp.bidChangeRequestHistory.detail.title">Bid Change Request History</span> {{bidChangeRequestHistory.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="prostarsWebApp.bidChangeRequestHistory.comment">Comment</span></dt>
+        <dd>
+            <span>{{bidChangeRequestHistory.comment}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.bidChangeRequestHistory.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{bidChangeRequestHistory.createdDate | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bid-change-request-history/'+ bidChangeRequestHistory.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

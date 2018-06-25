@@ -1,0 +1,24 @@
+
+{
+    "prostarsWebApp": {
+        "interviewTemplate" : {
+            "home": {
+                "title": "Interview Templates",
+                "createLabel": "Crear nuevo Interview Template",
+                "createOrEditLabel": "Crear o editar Interview Template"
+            },
+            "created": "Un nuevo Interview Template ha sido creado con el identificador {{ param }}",
+            "updated": "Un Interview Template ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Interview Template ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Interview Template {{ id }}?"
+            },
+            "detail": {
+                "title": "Interview Template"
+            },
+            "name": "Name",
+            "interviewType": "Interview Type",
+            "duration": "Duration"
+        }
+    }
+}

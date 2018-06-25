@@ -1,0 +1,85 @@
+<div class="row" *ngIf="currentInterview && currentProject">
+  <div class="col-12 col-sm-8 col-lg-9">
+      <div *ngIf="currentInterview.status === 'PENDING_OFFER'" class="p-8 d-flex bdr-top-left-4 bdr-top-right-4 bdr-bottom-right-4 bdr-bottom-left-4 bg-primary color-white">
+            <div class="align-self-center font-weight-normal">
+                Congratulation! You have been accepted to {{currentInterview.roleName}} Role for {{currentProject.projectName}} project
+            </div>
+
+            <div class="flex-grow-1"></div> 
+            
+            <button class="btn bg-white color-blue" type="button" (click)="onAcceptClick()">ACCEPT</button>
+            <button class="btn bg-white color-blue" type="button" (click)="onDeclineClick()">DECLINE</button>
+      </div>
+      <div class="row">
+          <div class="col-12 col-sm-6 col-lg-4">
+              <div class="md-form">
+                  <div class="form-control input-data" *ngFor="let interviewSession of currentInterview.interviewSessions">
+                      <p *ngIf="interviewSession.interviewDate" class="mb-0">{{interviewSession.interviewDate | date:'MM.dd.yyyy'}} ({{interviewSession.fromTime}} - {{interviewSession.endTime}} - {{interviewSession.timezone}})</p>
+                  </div>
+                  <label class="active">Interview date</label>
+              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+              <div class="md-form">
+                  <div class="form-control input-data"><span class="badge badge-orange" [ngClass]="setProjectCssStatus(currentInterview.status)">{{currentInterview.status}}</span></div>
+                  <label class="active">Interview Status</label>
+              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+              <div class="md-form">
+                  <div class="form-control input-data">{{currentInterview.roleName}}</div>
+                  <label class="active">Role Name</label>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-12">
+              <div class="md-form">
+                  <textarea type="text" class="md-textarea form-control" placeholder="500 characters max"
+                    [(ngModel)]="currentInterview.proNote" maxlength=500 required></textarea>
+                  <label for="Form-pass1" class="active">Interview Notes <i class="mdi mdi-information-outline" id="tooltip-notes" title="You can use this field to prepare for interviews (such as listing out questions you want to ask; writing out talking points; etc.) and to take notes during the interview. These notes are only visible by you."></i></label>
+                  <div class="text-right" *ngIf="currentInterview.proNote">
+                        <small class="grey-text">{{ currentInterview.proNote.length }}/500</small>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="mt-16">
+          <div class="card card-pro">
+              <div class="pt-12 pb-12 card-header collapsed" data-toggle="collapse" data-target="#collapse-2">
+                  {{currentProject.projectName}}
+                  <span class="mdi mdi-chevron-down indicator"></span>
+              </div>
+              <div class="collapse" id="collapse-2">
+                  <div class="card-body">
+                      <div class="md-form">
+                          <div class="form-control input-data">{{currentProject.description}}</div>
+                          <label class="active">Description</label>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <div class="form-control input-data">{{currentProject.startDate | date:'MM/dd/yyyy'}}</div>
+                                  <label class="active">Project Start Date</label>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <div class="form-control input-data">{{currentProject.startDate | date:'MM/dd/yyyy'}}</div>
+                                  <label class="active">Project End Date</label>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <hr>
+      <div class="text-right">
+          <button class="btn btn-primary btn-primary-profile none-margin-all waves-effect waves-light" type="button" (click)="onSaveClick()">SAVE</button>
+      </div>
+  </div>
+</div>

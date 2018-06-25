@@ -1,0 +1,124 @@
+<div class="modal-profile save-popup">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="text-left">
+                <h5 class="modal-title">Update Bid</h5>
+            </div>
+            <button type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true" (click)="close();"></button>
+        </div>
+        <form action="" name="bidForm" role="form" #bidForm="ngForm">
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <textarea minlength=5 maxlength=100 required name="proposalText" [(ngModel)]="bid.proposalText" type="text" class="md-textarea form-control"
+                                placeholder="Provide a brief summary of your proposal. 500 characters max." rows="3"></textarea>
+                            <label for="Form-pass1" class="active">Proposal</label>
+
+                            <div [hidden]="!(bidForm.controls.proposalText?.dirty && bidForm.controls.proposalText?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.required" jhiTranslate="entity.validation.required">
+                                    Proposal is required.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+                                    translateValues="{min: '5'}">
+                                    Proposal is required to be at least 5 characters.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposalText?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+                                    translateValues="{max: '500'}">
+                                    Proposal cannot be longer than 500 characters.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="md-form">
+                            <input placeholder="$ Proposal Price" min="10.00" max="1000.00" type="text" name="proposedPrice" currencyMask [options]="{ align: 'left'}"
+                                [(ngModel)]="bid.proposedPrice" class="form-control">
+                            <label class="active">Proposal Price</label>
+
+                            <div [hidden]="!(bidForm.controls.proposedPrice?.dirty && bidForm.controls.proposedPrice?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.required" jhiTranslate="entity.validation.required">
+                                    Proposal Price is required.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.min">
+                                    Proposal Price cannot lower than $10.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!bidForm.controls.proposedPrice?.errors?.max">
+                                    Proposal Price cannot bigger than $1000.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <span class="mdi mdi-calendar icon-date"></span>
+                            <input [(ngModel)]="pickStartDate" name="startDate" type="text" id="startDate" class="form-control datepicker"/>
+                            <label>Start Date</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-form md-datepicker">
+                            <span class="mdi mdi-calendar icon-date"></span>
+                            <input [(ngModel)]="pickEndDate" name="endDate" type="text" id="endDate" class="form-control datepicker"/>
+                            <label>End Date</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary float-right">
+                                    <span>Choose file</span>
+                                    <input (change)="setFileData($event)" type="file"/>
+                                </div>
+                                <div class="file-path-wrapper pl-0">
+                                    <input type="text" class="file-path validate" placeholder="Upload your proposal">
+                                </div>
+                                <div [hidden]="!proposalIsOverSize">
+                                    <small class="form-text text-danger" [hidden]="!proposalIsOverSize">
+                                        Cannot upload Proposal file over 3Mb.
+                                    </small>
+                                </div>
+                            </div>
+                            <label for="Form-pass1" class="active">Your proposal</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary float-right">
+                                    <span>Choose files</span>
+                                    <input multiple (change)="setMultipleFileData($event)" type="file"/>
+                                </div>
+                                <div class="file-path-wrapper pl-0">
+                                    <input type="text" class="file-path validate errors" placeholder="Upload your portfolio">
+                                </div>
+                            </div>
+                            <label for="Form-pass1" class="active">Portfolio Files</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <textarea name="note" [(ngModel)]="bid.note" type="text" class="md-textarea form-control" placeholder="Address any additional bid requirements not covered above. 500 characters max." rows="3"></textarea>
+                            <label for="Form-pass1" class="active">Additional Comments</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-primary mr-20" data-dismiss="modal" (click)="close();">CANCEL</button>
+                <button type="button" [disabled]="bidForm.form.invalid || proposalIsOverSize" class="btn btn-primary" data-dismiss="modal" (click)="save();">SAVE</button>
+            </div>
+        </form>
+    </div>
+</div>

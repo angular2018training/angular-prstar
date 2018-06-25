@@ -1,0 +1,142 @@
+<ng-container *ngIf="disableNotice; then thenTemplate; else elseTemplate">
+  <div class="p-8 d-flex bdr-top-left-4 bdr-top-right-4 bdr-bottom-right-4 bdr-bottom-left-4 bg-primary color-white">
+    <div class="align-self-center font-weight-normal">
+      There are interview time waiting for your confirmation. Please select your availabity
+    </div>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+</ng-template>
+
+<div *ngIf="!isSubmit" class="alert alert-danger">
+  <strong>Please enter full date, time.</strong>
+</div>
+<h4 class="mt-32">Schedule</h4>
+<div class="box-schedule mt-5" *ngFor="let session of sessions;let key = index">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <div class="md-form">
+        <div class="form-control input-data">{{session?.interviewer?.firstName}}{{session?.interviewer?.lastName}}</div>
+        <label class="active">Interviewer</label>
+      </div>
+      <div class="md-form">
+        <div class="form-control input-data">{{session?.interviewType}}</div>
+        <label class="active">Interview Type</label>
+      </div>
+      <div class="md-form">
+        <div class="form-control input-data">{{session?.duration}} minutes</div>
+        <label class="active">Duration</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="md-form">
+        <div class="radio-save-box mt-16" *ngFor="let date of session?.suggestedInterviewSchedules; let i = index">
+          <input class="form-check-input" [checked]="checkDateAccept(date)" name="group{{key}}" type="radio" id="radio{{i+key*20}}" value={{date?.interviewDate}}
+            (click)="onClick($event, key, i)">
+          <label class="form-check-label" for="radio{{i+key*20}}">{{parseTime(date)}}</label>
+        </div>
+        <div class="radio-save-box mt-16">
+          <input class="form-check-input" name="group{{key}}" type="radio" id="radio{{key+100+key}}" (click)="onClick($event, key)"
+            value="request">
+          <label class="form-check-label" for="radio{{key+100+key}}">Request other availability</label>
+        </div>
+        <div class="radio-save-box mt-16">
+          <input class="form-check-input" name="group{{key}}" type="radio" id="radio{{key+100+1+key}}" value="add{{key}}" (click)="onClick($event, key)">
+          <label class="form-check-label" for="radio{{key+100+1+key}}">Or add your alternative</label>
+        </div>
+        <label class="active">{{role === 'ROLE_BIZ' ? 'Pro' : 'Biz'}} Availability</label>
+      </div>
+      <div *ngIf="disableList[key]['disable'+key]">
+        <div class="row mt-6">
+          <div class="col-2-4">
+            <span class="small fake-label">Date</span>
+          </div>
+          <div class="col-2-4">
+            <span class="small fake-label">Open time</span>
+          </div>
+          <div class="col-2-4">
+            <span class="small fake-label">To</span>
+          </div>
+        </div>
+        <div class="row list-availability" *ngFor="let line of lineDatas[key]['line'+key]; let i = index">
+          <div class="col-2-4">
+            <div class="md-form mt-0">
+              <schedule-datepicker [id]="i" [name]="'date'+i+key" (value)="recievedDate($event, key)">
+              </schedule-datepicker>
+            </div>
+          </div>
+          <div class="col-2-4">
+            <div class="md-form mt-0">
+              <schedule-timepicker [id]="i" [name]="'timeFrom'+i+key" [placeholder]="'Open from'" (value)="recievedTime($event, key)" [field]="'fromTime'">
+              </schedule-timepicker>
+            </div>
+          </div>
+          <div class="col-2-4">
+            <div class="md-form mt-0">
+              <schedule-timepicker [id]="i" [name]="'timeTo'+i+key" [placeholder]="'To'" (value)="recievedTime($event, key)" [field]="'toTime'">
+              </schedule-timepicker>
+            </div>
+          </div>
+          <!-- <div class="col-2-4">
+            <div class="md-form mt-0">
+              <select class="mdb-select">
+                <option value="1">(MST)</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+          </div> -->
+          <div class="col-2-4 align-self-end box-action">
+            <button *ngIf="lineDatas[key]['line'+key].length > 1" (click)="onRemoveLine(i, key)" class="btn btn-danger btn-circle-small btn-minus waves-effect waves-light"
+              type="button">
+              <span class="mdi mdi-minus" aria-hidden="true"></span>
+            </button>
+            <button (click)="onAddLine(key)" class="btn btn-blue btn-circle-small btn-plus waves-effect waves-light" type="button">
+              <span class="mdi mdi-plus" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="col-8 mt-2 mb-2">
+            <ng2-timezone-picker showOffset="true" guess="true" (change)="changeTimezone($event, i, key)"></ng2-timezone-picker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8">
+    <div class="md-form">
+      <h4 class="">
+        Message
+        <i class="mdi mdi-information-outline" id="tooltip-message" data-original-title="" title="Send this message alongside your interview response details"></i>
+        <!-- <span id="tooltip-message" title="Send this message alongside your interview response details" data-placement="bottom">?</span> -->
+      </h4>
+      <textarea 
+        type="text" 
+        class="md-textarea form-control" 
+        placeholder="Max 500 characters" 
+        rows="3" 
+        [(ngModel)]="note">
+      </textarea>
+      <div class="text-right" *ngIf="note">
+          <small class="grey-text">{{ note.length }}/500</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-8">
+      <div class="md-form">
+        <h4>History message</h4>
+        <span [innerHTML]="interview?.bizNote ? interview?.bizNote : 'No message'"></span>
+      </div>
+  </div>
+
+</div>
+<div class="text-right mt-20">
+  <button class="btn btn-danger btn-primary-profile none-margin-all waves-effect waves-light" type="submit" (click)="showConfirmDialog()">Cancel</button>
+  <button class="btn btn-primary btn-primary-profile none-margin-all waves-effect waves-light" type="submit" [disabled]="checkReply()"
+    (click)="onSubmitData(1)">REPLY</button>
+  <button class="btn btn-primary btn-primary-profile none-margin-all waves-effect waves-light" type="submit" [disabled]="checkAccept()"
+    (click)="onSubmitData(2)">ACCEPT SCHEDULE</button>
+</div>

@@ -1,0 +1,53 @@
+<!-- Modal sponsor -->
+<div class="modal-summary-profile" id="modal-success">
+    <div class="modal-content">
+        <!-- Title dialog [start] -->
+        <div class="modal-header">
+            <div>
+                <h4 class="modal-title" jhiTranslate="prostarsWebApp.vetting.applicantDetail.title">Summary Profile of Mike Jones</h4>
+            </div>
+            <button type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true" (click)="close()"></button>
+        </div>
+        <!-- Title dialog [end] -->
+        <div class="modal-body">
+            <form class="form-profile">
+                <div class="row">
+                    <!-- Email [start] -->
+                    <div class="col">
+                        <div class="md-form">
+                            <div class="form-control input-data">{{pro.account.login}}</div>
+                            <label class="active" jhiTranslate="prostarsWebApp.vetting.applicantDetail.email">Email</label>
+                        </div>
+                    </div>
+                    <!-- Email [end] -->
+                    <!-- Role [start] -->
+                    <div class="col">
+                        <div class="md-form">
+                            <jhi-role-common [isEditable]='false' [selectedRoles]="selectedRoles"></jhi-role-common>
+                        </div>
+                    </div>
+                    <!-- Role [end] -->
+                </div>
+                <!-- Summary Bio [start] -->
+                <div class="md-form">
+                    <div class="form-control input-data">{{pro.summaryBio}}</div>
+                    <label class="active" jhiTranslate="prostarsWebApp.vetting.applicantDetail.summaryBio">Summary Bio</label>
+                </div>
+                <!-- Summary Bio [end] -->
+
+                <div class="row" *ngIf="pro.skills.length != 0">
+                    <jhi-skill-common [skills]="pro.skills" [addMoreRowsFlag]=false></jhi-skill-common>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer text-right">
+            <button type="button" class="btn text-primary mr-24" data-dismiss="modal" jhiTranslate="prostarsWebApp.vetting.applicantDetail.backBtn"
+                (click)="close()">BACK TO PRO APPLICANT REPORT</button>
+            <button type="button" class="btn text-primary mr-24" data-dismiss="modal" jhiTranslate="prostarsWebApp.vetting.applicantDetail.rejectBtn"
+                *ngIf="pro.decision == 'AWAITING'"  (click)="reject()">REJECT</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" jhiTranslate="prostarsWebApp.vetting.applicantDetail.approveBtn"
+                *ngIf="pro.decision == 'AWAITING'" (click)="approve()">APPROVE</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="content-contract" id="main-content">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard" jhiTranslate="global.menu.dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item" *ngIf="isProUser">
+            <a routerLink="/pro-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item" *ngIf="isBizUser">
+            <a routerLink="/biz-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.contract.detail.title">
+            CONTRACT
+        </li>
+    </ol>
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">CONTRACT</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-role-status">
+            <tbody>
+                <tr>
+                    <td *ngIf="isBizUser">
+                        <a (click)="navigate('contract-template')" >
+                            <div class="number">{{countTemplate}}</div>
+                            <div class="unit">
+                                TEMPLATES
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a  (click)="navigate('contract-pending')">
+                            <div class="number">{{countInprocess}}</div>
+                            <div class="unit">
+                                PENDING CONTRACTS
+                            </div>
+                        </a>
+                    </td>
+                    <td class="active">
+                        <a (click)="navigate('contract-completed')">
+                            <div class="number">{{countCompleted}}</div>
+                            <div class="unit">
+                                COMPLETED CONTRACTS
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- <div class="card-body"> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="">CONTRACT NAME</th>
+                    <th style="">PRO NAME</th>
+                    <th style="">PROJECT NAME</th>
+                    <th style="width: 150px;">ROLE</th>
+                    <th style="width: 125px;">DATE CREATED</th>
+                    <th style="">CREATED BY</th>
+                    <th style="width: 125px;">BIZ STATUS</th>
+                    <th style="width: 125px;">PRO STATUS</th>
+                    <th class="text-right th-actions" style="width: 100px;"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="contracts">
+                <tr *ngFor="let item of contracts">
+                    <td>
+                        <a (click)="onClickDetail(contract.id)">{{item.name}}</a>
+                    </td>
+                    <td Readonly>
+                        {{item.pro.account.firstName + item.pro.account.lastName }}
+                    </td>
+                    <td Readonly>{{item.proRequirement.project.projectName}}</td>
+                    <td Readonly>{{item.proRequirement.role.name}}</td>
+                    <td Readonly>
+                        {{item.createdDate | date:'MM/dd/yyyy hh:mm:ss'}}
+                    </td>
+                    <td>
+                        <span  *ngIf="item.createdBy">{{item.createdBy.firstName + item.createdBy.lastName}}</span>
+                    </td>
+                    <td Readonly>
+                        {{item.bizStatus}}
+                    </td Readonly>
+                    <td Readonly>
+                        {{item.proStatus}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

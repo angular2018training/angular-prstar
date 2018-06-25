@@ -1,0 +1,64 @@
+{
+    "prostarsWebApp": {
+        "biz": {
+            "home": {
+                "title": "SETUP BIZ ACCOUNT",
+                "createLabel": "Create a new Biz",
+                "createOrEditLabel": "Create or edit a Biz"
+            },
+            "deleted": "Un Biz ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Biz {{ id }}?"
+            },
+            "detail": {
+                "title": "Biz"
+            },
+            "name": "Name",
+            "email": "Email",
+            "address": "Address",
+            "phone": "Phone",
+            "companyName": "Company Name",
+            "website": "Website",
+            "hqAddress": "Hq Address",
+            "companyBio": "Company Bio",
+            "contractTemplate": "Contract Template",
+            "account": "Account",
+            "companySize": "Company Size",
+            "industry": "Industry",
+            "bizMemberRole": "Biz Member Role",
+            "contactInfo": {
+                "title": "PRIMARY CONTACT",
+                "firstNamePlaceHolder": "First",
+                "middleNamePlaceHolder": "Middle",
+                "lastNamePlaceHolder": "Last",
+                "suffixPlaceHolder": "Suffix",
+                "email": "Email Address",
+                "emailPlaceHolder": "name@email.com",
+                "password": "Password",
+                "passwordPlaceHolder": "8-30 characters; must include 1 number",
+                "confirmPassword": "Confirm Password"
+            },
+            "welcome": "<p>Welcome to ProStars! Please create your profile to get started.<br>Once you're on board, you'll be able to add other users from your organization.</p>",
+            "next": "NEXT",
+            "summaryProfile": {
+                "contractInfo": "If you have a standard contract template you'd prefer to use, then please upload the current version(s). We will keep them on file to help facilitate the contracting process <br/>Upload your standard contract template for reference.",
+                "contractText": "Your Contract Template",
+                "contractPlaceHolder": "Upload your template",
+                "errorMessage": "Error",
+                "noticeMessage": "Success",
+                "successMessage": "Congratulations!"
+            },
+            "validate": {
+                "companyNameRequired": "Your Company Name is required.",
+                "companyMaxLength": "Your Company Name cannot be longer than 256 characters.",
+                "websiteRequired": "Your Web Site is required.",
+                "websiteMaxLength": "Your Web Site cannot be longer than 256 characters.",
+                "companyBioNameRequired": "Your Company Bio is required.",
+                "companyBioMaxLength": "Your Company Bio cannot be longer than 256 characters."
+            },
+            "tooltip" : {
+                "delegateTo" : "If you would like to have another individual within your Biz provide this information, you click this button and assign the responsibility to them."
+            }
+        }
+    }
+}

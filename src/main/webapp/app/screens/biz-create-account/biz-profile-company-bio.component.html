@@ -1,0 +1,151 @@
+<form class="form" role="form" #loginForm="ngForm">
+    <div class="card border-light mb-3"> 
+        
+        <!--[PROS-605] show company name of biz parent-->
+        <div class="card-header">
+                <div class="row">
+                    <div class="col-6">CONTACT INFO</div>
+                    <div class="col-6 text-md-right"><span class="invited"> <strong> <span *ngIf="companyName">{{companyName}}</span>  </strong></span></div>
+                </div>
+        </div>  
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-auto">
+                        <div class="card card-avatar-display">
+                            <img src="../../../content/img/svg/icon-company-avatar.svg" class="card-img-top" *ngIf="!companyLogoFile || !companyLogoFile.content">
+                            <img [src]="'data:' + companyLogoFile.contentType + ';base64,' + companyLogoFile.content" class="card-img-top" *ngIf="companyLogoFile && companyLogoFile.content">
+                            <div class="card-body p-0 pt-8 pb-8">
+                                <div class="file-field">
+                                    <div class="btn btn-primary">
+                                        <span>UPLOAD COMPANY LOGO</span>
+                                        <input type="file" id="file_logo" (change)="setLogoData($event)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                                    </div>
+                                    <small *ngIf="validateLogoFile.isNotImage" class="form-text text-danger">
+                                        Uploaded file is not image file type.
+                                    </small>
+                                    <small *ngIf="validateLogoFile.isOverSize" class="form-text text-danger">
+                                        Cannot upload Logo file over 3Mb.
+                                    </small>
+                                </div>
+                                <!-- <div class="text-center">
+                                    <button class="btn btn-primary m-0">UPLOAD COMPANY LOGO</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-form form-group">
+                            <span class="active">Company Name</span>
+                            <input type="text" #companyNameForm="ngModel" id="companyNameForm" required maxlength="256" name="companyNameForm"
+                                class="form-control" placeholder="ABC, Inc." [(ngModel)]="companyName">
+                            <div *ngIf="companyNameForm.dirty && companyNameForm.invalid">
+                                <small class="form-text text-danger" *ngIf="companyNameForm.errors.required"
+                                        jhiTranslate="prostarsWebApp.biz.validate.companyNameRequired">
+                                    Your Company Name is required.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="companyNameForm.errors.maxlength"
+                                        jhiTranslate="prostarsWebApp.biz.validate.companyMaxLength">
+                                    Your Company Name cannot be longer than 256 characters.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="md-form form-group">
+                            <span class="active">Web Site</span>
+                            <input type="text" #websiteForm="ngModel" id="websiteForm" required maxlength="256" name="websiteForm"
+                                class="form-control" placeholder="Enter url..." [(ngModel)]="website" [ngModelOptions]="{standalone: true}">
+                            <div *ngIf="websiteForm.dirty && websiteForm.invalid">
+                                <small class="form-text text-danger" *ngIf="websiteForm.errors.required"
+                                        jhiTranslate="prostarsWebApp.biz.validate.websiteRequired">
+                                    Your Web Site is required.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="websiteForm.errors.maxlength"
+                                        jhiTranslate="prostarsWebApp.biz.validate.websiteMaxLength">
+                                    Your Web Site cannot be longer than 256 characters.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="md-form form-group">
+                            <span>HQ Address</span>
+                            <jhi-address name="addressForm" [(address)]="hqAddress" [placeHolder]="'Street, City, State, Zip'" [controlType] = "'address'"></jhi-address>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="md-form form-group">
+                    <span class="active">Company Bio</span>
+                    <textarea [(ngModel)]="companyBio" #companyBioForm="ngModel" id="companyBioForm" required maxlength="256" name="companyBioForm"
+                        class="form-control md-textarea" rows="4" placeholder="A short overview of the company (history, industry, mission…)"></textarea>
+                    <div *ngIf="companyBioForm.dirty && companyBioForm.invalid">
+                        <small class="form-text text-danger" *ngIf="companyBioForm.errors.required"
+                                jhiTranslate="prostarsWebApp.biz.validate.companyBioNameRequired">
+                            Your Company Bio is required.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="companyBioForm.errors.maxlength"
+                                jhiTranslate="prostarsWebApp.biz.validate.companyBioMaxLength">
+                            Your Company Bio cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col">
+                        <div class="md-form form-group">
+                            <span>Industry(ies)</span>
+                            <angular2-multiselect [data]="dropdownIndustryList" [(ngModel)]="selectedIndustry" [settings]="dropdownIndustrySettings" [ngModelOptions]="{standalone: true}">
+                            </angular2-multiselect>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-form form-group">
+                            <span>Company Size</span>
+                            <angular2-multiselect [data]="dropdownCompanySizeList" [(ngModel)]="selectedCompanySize" [settings]="dropdownCompanySizeSettings" [ngModelOptions]="{standalone: true}">
+                            </angular2-multiselect>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="form-section mt-24 mb-32">Typical Resource Needs</h4>
+                <div class="row" *ngFor="let resourceNeed of resourceNeedList">
+                    <div class="col">
+                        <div class="md-form form-group">
+                            <jhi-role-common name="selectedRoles" ngDefaultControl [(selectedRoles)]="resourceNeed.role" [singleSelect]="'true'"></jhi-role-common>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-form form-group">
+                            <jhi-address [(address)]="resourceNeed.location" [controlType]="'(cities)'" [placeHolder]="'Location'"></jhi-address>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="md-form form-group">
+                    <button type="button" (click)="addResourceNeed()" class="btn btn-add-skill btn-rounded waves-effect">Add More</button>
+                </div>
+                <!-- Display delegate checkbox and dropdown if current biz user is not under delegation -->
+                <div class="row" *ngIf="!bizService.companyBioDelegate">
+                    <div class="col">
+                        <input type="checkbox" [(ngModel)]="delegateCheckbox" class="form-check-input" id="checkbox100" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label" for="checkbox100">Delegate to</label>
+                        <span class="mdi mdi-information-outline mdi-18px tooltip-question ml-16 section-name" id="tooltip-bill-rate"  data-toggle="tooltip" data-placement="bottom" title="{{'prostarsWebApp.biz.tooltip.delegateTo' | translate}}"></span>
+                    </div>
+                    <div class="col md-form form-group"  *ngIf="delegateCheckbox">
+                        <angular2-multiselect [data]="dropdownDelegateList" [(ngModel)]="selectedDelegate" [settings]="dropdownDelegateSettings" [ngModelOptions]="{standalone: true}">
+                        </angular2-multiselect>
+                    </div>
+                </div>
+                <div class="md-form">
+                    <hr/>
+                </div>
+                <!-- Display if current user is BIZ_ADMIN (not under delegation) -->
+                <div class="mt-24 text-right" *ngIf="!bizService.companyBioDelegate">
+                    <button class="btn btn-light mr-16 m-0 text-primary" type="button" [routerLink]="['/biz-profile/key-roles']" routerLinkActive="active">BACK</button>
+                    <button class="btn btn-primary m-0" type="button" (click)="onNext()" routerLinkActive="active">NEXT</button>
+                </div>
+                <!-- Display if current user is under delegation -->
+                <div class="mt-24 text-right" *ngIf="bizService.companyBioDelegate">
+                    <button class="btn btn-primary m-0" type="button" (click)="onSubmit()" routerLinkActive="active">SUBMIT</button>
+                </div>
+        </div>        
+    </div>
+</form>

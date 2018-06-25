@@ -1,0 +1,167 @@
+<div class="row">
+    <div class="col-md-6 text-right">
+        <img src="../../../../content/img/bg-intro-05.png" class="img-fluid wow fadeInUp" data-wow-delay="0s"/>
+    </div>
+    <div class="col-md-6">
+        <h4 class="income-title wow fadeInUp" data-wow-delay="0.2s" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.title">How much can your network add to your annual income?</h4>
+        <div class="media-income wow fadeInUp" data-wow-delay="0.4s">
+            <h4 class="mt-0">100%</h4>
+            <h5 class="mt-0" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.description.line1">YOU RECEIVE OF YOUR REVENUE</h5>
+        </div>
+        <div class="media-income wow fadeInUp" data-wow-delay="0.6s">
+            <h4 class="mt-0">{{commissionLevel1.commissionRate * 100}}%</h4>
+            <h5 class="mt-0" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.description.line2">YOU RECEIVE OF YOUR DIRECT REFERRALS' REVENUE</h5>
+        </div>
+        <div class="media-income wow fadeInUp" data-wow-delay="0.8s">
+            <h4 class="mt-0">{{commissionLevel2.commissionRate * 100}}%</h4>
+            <h5 class="mt-0" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.description.line3">YOU RECEIVE OF THEIR DIRECT REFERRALS' REVENUE</h5>
+        </div>
+    </div>
+</div>
+
+<form name="editForm" role="form" novalidate>
+
+    <div class="row">
+        <div class="col-md-6 col-referrals">
+
+            <legend jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsEstimate.title">Estimate of my Referrals</legend>
+            <!--NUMBER OF REFERRALS-->
+            <div class="md-form">
+                <input type="number" class="form-control" id="referralsNumber" name="referralsNumber"
+                       [(ngModel)]="calculatorForm.referralsNumber" (input)="recalculateIncome()" min="0" ng-pattern="/[^.]/"
+                />
+                <label for="referralsNumber"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsNumber"
+                       [ngClass]="{'active':calculatorForm.referralsNumber}">Referrals
+                    number</label>
+            </div>
+            <!--BILL RATE-->
+            <div class="md-form">
+                <i class="mdi mdi-currency-usd prefix-unit"
+                   [ngClass]="{'active':calculatorForm.referralsAverageBillRate}"></i>
+                <input type="number" class="form-control" id="referralsAverageBillRate"
+                       name="referralsAverageBillRate"
+                       [(ngModel)]="calculatorForm.referralsAverageBillRate" (input)="recalculateIncome()" min="0"/>
+                <label for="referralsAverageBillRate"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsAverageBillRate"
+                       [ngClass]="{'active':calculatorForm.referralsAverageBillRate}"
+                >What's their average bill rate?</label>
+            </div>
+
+            <!--NUMBER OF WEEKS-->
+            <div class="md-form">
+                <input type="number" class="form-control" id="referralsAverageWeeksNumberPerYears"
+                       name="referralsAverageWeeksNumberPerYears"
+                       [(ngModel)]="calculatorForm.referralsAverageWeeksNumberPerYears"
+                       (input)="recalculateIncome()" min="0"/>
+                <label for="referralsAverageWeeksNumberPerYears"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsAverageWeeksNumberPerYears"
+                       [ngClass]="{'active':calculatorForm.referralsAverageWeeksNumberPerYears}"
+                >How many work weeks in a year on average</label>
+            </div>
+
+            <!--# of REFERRALS-->
+            <div class="md-form">
+                <input type="number" class="form-control" id="referralsNumberOfReferrals"
+                       name="referralsNumberOfReferrals" min="0"
+                       [(ngModel)]="calculatorForm.referralsNumberOfReferrals" (input)="recalculateIncome()"/>
+                <label for="referralsNumberOfReferrals"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsNumberOfReferrals"
+                       [ngClass]="{'active':calculatorForm.referralsNumberOfReferrals}"
+                >What's the avg # of referrals from your Referrals?</label>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-contract">
+            <legend jhiTranslate="prostarsWebApp.introduction.incomeCalculator.contractingEstimate.title">Estimate of my Contracting</legend>
+            <!--PRO's BILL RATE-->
+            <div class="md-form">
+                <i class="mdi mdi-currency-usd prefix-unit" [ngClass]="{'active':calculatorForm.proAverageBillRate}"></i>
+                <input type="number" class="form-control" id="proAverageBillRate" name="proAverageBillRate"
+                       [(ngModel)]="calculatorForm.proAverageBillRate" (input)="recalculateIncome()" min="0"/>
+                <label for="proAverageBillRate"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.proAverageBillRate"
+                       [ngClass]="{'active':calculatorForm.proAverageBillRate}"
+                >What's my average bill rate?</label>
+            </div>
+            <!--PRO's NUMBER OF WEEKS-->
+            <div class="md-form">
+                <input type="number" class="form-control" id="proAverageWeeksNumberPerYears"
+                       name="proAverageWeeksNumberPerYears"
+                       [(ngModel)]="calculatorForm.proAverageWeeksNumberPerYears" (input)="recalculateIncome()" min="0"/>
+                <label for="proAverageWeeksNumberPerYears"
+                       jhiTranslate="prostarsWebApp.introduction.incomeCalculator.proAverageWeeksNumberPerYears"
+                       [ngClass]="{'active':calculatorForm.proAverageWeeksNumberPerYears}"
+                >How many work weeks in a year on average? </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <ul class="summary">
+                <li>
+                    <span class="badge"><i class="mdi mdi-currency-usd prefix-unit"></i>
+                    {{calculatorForm.referralsAmount  | number:'0.0-0'}}
+                    </span>
+                    <span>
+                    <span class="summary-label" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsAmount">
+                        Estimated $ from your Referrals
+                    </span>
+                    <sup>(1)</sup>
+                    </span>
+                </li>
+                <li>
+                    <span class="badge"><i class="mdi mdi-currency-usd prefix-unit"></i>
+                    {{calculatorForm.referralsAmountOfReferrals | number:'0.0-0'}}
+                    </span>
+                    <span>
+                    <span class="summary-label" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.referralsAmountOfReferrals">
+                        Estimated $ from your Referrals Referrals
+                    </span>
+                    <sup>(1)</sup>
+                    </span>
+                </li>
+                <li>
+                    <span class="badge"><i class="mdi mdi-currency-usd prefix-unit"></i>
+                     {{calculatorForm.networkReferralsIncome | number:'0.0-0'}}
+                    </span>
+                    <span class="summary-label" jhiTranslate="prostarsWebApp.introduction.incomeCalculator.networkReferralsIncome">Your estimated income from your network</span></li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <ul class="summary">
+                <li>
+                    <span class="badge"><i class="mdi mdi-currency-usd prefix-unit"></i>
+                        {{calculatorForm.contractIncome | number:'0.0-0'}}
+                    </span>
+                    <span class="summary-label">
+                        <span jhiTranslate="prostarsWebApp.introduction.incomeCalculator.contractIncome">My Contracting income from projects</span>
+                        <sup>(1)</sup>
+                    </span>
+                </li>
+                <li>
+                    <span class="badge total"><i class="mdi mdi-currency-usd prefix-unit"></i>
+                        {{calculatorForm.totalIncome | number:'0.0-0'}}
+                    </span>
+                    <span class="summary-label" >
+                        <span jhiTranslate="prostarsWebApp.introduction.incomeCalculator.totalIncome">
+                            My total estimated income from contracting and referrals
+                        </span>
+                            <sup>(2)</sup>
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <ul class="form-note">
+                <li>(1) assumes 40 hour work weeks</li>
+                <li>(2) assumes working half the year, 26 weeks</li>
+            </ul>
+        </div>
+    </div>
+</form>

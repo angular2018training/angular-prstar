@@ -1,0 +1,386 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+
+
+/* Main menu */
+.navbar-dashboard {
+    padding: 0 !important;
+    background: #fff;
+    > .col-left {
+    	width: 280px;
+    	// background-color: pink;
+    	padding: 0;
+    	> .row {
+			> .col-left {
+				// width: 64px;
+				padding-right: 0;
+				.btn.menu-collapsed {
+					margin: 0;
+		            width: 64px;
+		            height: 64px;
+		            padding: 14px;
+				}
+			}
+			> .col-center {
+				text-align: center;
+				padding-left: 0;
+				padding-right: 0;
+				.logo-dashboard {
+	                margin: 8px 0;
+	                height: 48px;
+	                display: inline-block;
+	            }
+			}
+			> .col-right {
+				width: 79px;
+				padding-left: 0;
+			}
+    	}
+    }
+    > .col-right {
+    	padding: 0;
+		> .row {
+			> .col-left {
+				padding-right: 0;
+		        // width: 64px;
+		        button {
+		            width: 64px;
+		            height: 64px;
+		            padding: 14px;
+		        }
+		    }
+		    > .col-center {
+				padding-left: 0;
+				padding-right: 0;
+		        width: 64px;
+		        button {
+		            width: 64px;
+		            height: 64px;
+		            padding: 14px;
+		        }
+		    }
+		    .col-right {
+		        // width: 64px;
+		        width: auto;
+		        padding-left: 0;
+		        ul.user-info {
+		        	> li {
+				        a.dropdown-toggle {
+				            padding: 14px;
+				            // &:after {
+				            //     display: none;
+				            // }
+				            &:after {
+					            display: inline-block;
+					            width: 0;
+					            height: 0;
+					            margin-left: 20px;
+					            vertical-align: 2px;
+					            content: "";
+					            border-top: .3em solid;
+					            border-right: .3em solid transparent;
+					            border-bottom: 0;
+					            border-left: .3em solid transparent;
+					        }
+				            img.avatar {
+						        height: 36px;
+						    }
+						    span.logged-in-name {
+						        display: inline-block;
+								margin-left: 10px;
+						    }
+				        }
+
+				        div.dropdown-menu {
+				            border-radius: 0 !important;
+				            border-top: none !important;
+				            border-right: none !important;
+				        }
+
+		        	}
+			    }
+
+
+		        
+		    }
+		}
+    	
+	    
+	    
+	    
+	    
+	    .input-group {
+	        .input-group-prepend {
+	            text-align: center;
+	            .input-group-text {
+	                width: 64px;
+	                height: 64px;
+	                padding: 14px;
+	                display: inline-block;
+	            }
+	        }
+	        .waves-input-wrapper {
+	            width: calc(100% - 64px);
+	            .input-search-top {
+	                border: none;
+	                padding: 12px;
+	                margin-top: 8px;
+	                &:focus {
+	                    border: none;
+	                    box-shadow: none;
+	                    background-color: #f2f2f2;
+	                }
+	            }
+	        }
+	    }
+
+    }
+}
+
+
+// @media (min-width: 1200px) {
+// 	.col-left-menu {
+// 		left: 0;
+
+// 	}
+// 	.navbar-dashboard {            
+// 	    .col-left-menu {
+// 	        transition: all 0.375s ease;
+// 	        background-color: #262a33;
+// 	        width: 100px;
+// 	        overflow: hidden;
+// 	        position: static;
+
+// 	        &.open {
+// 	            transition: all 0.375s ease;
+// 	            width: 260px;
+// 	            height: 100vh;
+// 	            position: static;
+// 	        }
+// 	    }
+
+// 	    .col-user-info {
+//             width: auto;
+//         }
+//         .user-info {
+//             .dropdown-toggle {
+//                 &:after {
+//                     display: inline-block;
+//                 }
+//             }
+//         }
+//         .logged-in-name {
+//             display: inline-block;
+//             margin-left: 10px;
+//         }
+
+// 	    .dropdown-toggle {
+// 	        &:after {
+// 	            display: inline-block;
+// 	            width: 0;
+// 	            height: 0;
+// 	            margin-left: 20px;
+// 	            vertical-align: 2px;
+// 	            content: "";
+// 	            border-top: .3em solid;
+// 	            border-right: .3em solid transparent;
+// 	            border-bottom: 0;
+// 	            border-left: .3em solid transparent;
+// 	        }
+	        
+// 	    }
+// 	}
+// }
+
+
+
+
+
+/* main menu on left side*/
+.col-main-menu {
+    transition: all 0.375s ease;
+    width: 280px;
+    left: -280px;
+    top: 64px;
+    position: fixed;
+    height: calc(100vh - 64px);
+    background-color: #262a33;
+    z-index: 999;
+    &.open {
+        left: 0px;
+    }
+	.left-menu-wrapper {
+	    .left-menu {
+	        color: #fff;
+	        .list-group {
+	        	padding-top: 1rem;
+	        	padding-bottom: 0.75rem;
+	        	.list-group-item {
+	        		color: #fff;
+	        		padding: 5px 1rem;
+	        		border-radius: 0;
+	        		background-color: #262b33;
+	        		border: none;
+	        		.mdi {
+						font-size: 20px;
+						margin-right: 12px;
+	        		}
+	        	}
+	        }
+	    }
+	}
+}
+
+/* Main content of the page */
+.col-main-content {
+	width: 100%;
+	margin-left: 280px;
+	padding: 24px 32px;
+	margin-top: 64px;
+}
+
+
+
+
+
+
+
+
+/* Breadcrumb */
+.breadcrumb {
+	padding: 0;
+	margin-bottom: 0;
+	background: none;
+}
+.breadcrumb-item + .breadcrumb-item:before {
+	color: #000;
+	content: "\F142";
+	font-family: "Material Design Icons";
+}
+.breadcrumb-item > a {
+	color: #2095f4;
+}
+.breadcrumb-item.active {
+	color: #000;
+}
+
+/* Page create */
+.card-create {
+    box-shadow: none;
+    border-radius: 0;
+    .card-header {
+        position: relative;
+        background-color: #fff;
+        border: solid 1px #e0e0e0;
+        // border-bottom: none;
+        border-radius: 0;
+        padding-left: 24px;
+        padding-right: 48px;
+        .col-total {
+            text-align: right;
+        }
+        // .indicator {
+        //     position: absolute;
+        //     top: 12px;
+        //     right: 20px;
+        //     transition: transform 0.2s;
+        // }
+        // &.collapsed {
+        //     .indicator {
+        //         transform: rotate(180deg);
+        //     } 
+        // }
+        // .badge-total {
+        //     background-color: transparent;
+        //     box-shadow: none;
+        //     font-size: 16px;
+        //     font-weight: 300;
+        //     color: #333 !important;
+        //     margin-right: 40px;
+        //     padding-left: 0;
+        //     padding-right: 0;
+
+        //     > i {
+        //         color: #1976d3;
+        //         font-weight: 300;
+        //         font-style: normal;
+        //     }
+        // }
+    }
+    .card-body {
+    	border-left: solid 1px #e0e0e0;
+    	border-right: solid 1px #e0e0e0;
+    	border-bottom: solid 1px #e0e0e0;
+    }
+    // .collapse {
+        
+    // }
+    // .table {
+    //     margin: 0;
+    //     > tbody {
+    //         > tr {
+    //             > td {
+    //                 padding: 14px 24px;
+    //                 vertical-align: middle;
+    //                 border: solid 1px #e0e0e0;
+    //                 &:first-child {
+    //                     @media (min-width: 576px) {
+    //                         border-right: none;
+    //                     }
+    //                 }
+    //                 &:last-child {
+    //                     border-left: none;
+    //                 }
+    //                 .media-user {
+    //                     img {
+    //                         width: 40px;
+    //                         height: 40px;
+    //                         border-radius: 50%;
+    //                     }
+    //                     .media-body {
+    //                         padding-left: 10px;
+    //                         h5 {
+    //                             font-size: 16px;
+    //                             color: #2196f3;
+    //                             line-height: 16px;
+    //                             margin-top: 5px;
+    //                             margin-bottom: 0px;
+    //                         }
+    //                         p {
+    //                             color: #333333;
+    //                             font-size: 12px;
+    //                             margin: 0;
+    //                             margin-top: 3px;
+    //                         }
+    //                     }
+    //                 }
+    //                 .badge-role {
+    //                     background-color: #13caa8;
+    //                     box-shadow: none;
+    //                     font-size: 12px;
+    //                     font-weight: 300;
+    //                 }
+    //             }
+    //             &:first-child {
+    //                 > td {
+    //                     border-top: none;
+    //                 }
+    //             }
+    //         }
+            
+    //     }
+    // }
+    // .card-footer {
+    //     background-color: #fff;
+    //     text-align: center;
+    //     border: solid 1px #e0e0e0;
+    //     border-top: none;
+    //     border-radius: 0;
+    //     a {
+    //         color: #333;
+    //     }
+    // }
+}

@@ -1,0 +1,23 @@
+{
+    "prostarsWebApp": {
+        "postWall": {
+            "home": {
+                "title": "Post Wall",
+                "dashboardNav": "Dashboard",
+                "matchNav": "Match",
+                "header":"POST WALL"
+            },
+            "endDate": "End Date",
+            "startDate": "Start Date ",
+            "searchButton": "SEARCH",
+            "advanceSearchButton": "ADVANCED SEARCH",
+            "lblView": "View",
+            "lblSort": "Sort by",
+            "hotJob": "Hot Jobs",
+            "latestJobs":"Latest Jobs",
+            "compatibility":"Compatibility with Project Need",
+            "btnSubmitted": "SUBMITTED",
+            "btnBid":"BID"
+        }
+    }
+}

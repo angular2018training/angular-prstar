@@ -1,0 +1,90 @@
+<div>
+    <h2>
+        <span jhiTranslate="prostarsWebApp.matching.home.title">Posted Project List</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <h3>
+        <span jhiTranslate="prostarsWebApp.matching.home.post">Post</span>
+    </h3>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="prostarsWebApp.matching.project">Project</span></th>
+            <th><span jhiTranslate="prostarsWebApp.matching.owner">Biz</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let post of posts ;trackBy: trackId">
+                <td><a [routerLink]="['../post', post.id ]">{{post.id}}</a></td>
+                <td>
+                    <div *ngIf="post.project">
+                        <a [routerLink]="['../project', post.project?.id ]" >{{post.project?.projectName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="post.owner">
+                        <a [routerLink]="['../biz', post.owner?.id ]" >{{post.owner?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="button"
+                                (click) = "pid(post.id)"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="prostarsWebApp.matching.action.pid">Pid</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>
+        <span jhiTranslate="prostarsWebApp.matching.home.pid">Pid</span>
+    </h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="prostarsWebApp.matching.project">Project</span></th>
+            <th><span jhiTranslate="prostarsWebApp.matching.owner">Biz</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let post of piddedPosts ;trackBy: trackId">
+                <td><a [routerLink]="['../post', post.id ]">{{post.id}}</a></td>
+                <td>
+                    <div *ngIf="post.project">
+                        <a [routerLink]="['../project', post.project?.id ]" >{{post.project?.projectName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="post.owner">
+                        <a [routerLink]="['../biz', post.owner?.id ]" >{{post.owner?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                (click) = "cancelPid(post.id)"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="prostarsWebApp.matching.action.cancelPid">Cancle</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

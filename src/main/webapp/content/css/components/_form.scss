@@ -1,0 +1,84 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+
+form {
+	legend {
+		font-family: 'Roboto Condensed';
+		font-size: 24px;
+		font-weight: 400;
+	}
+}
+.md-form {
+    margin-top: 2rem;
+	.prefix-unit {
+	    position: absolute;
+	    top: 0.25rem;
+	    transition: color .2s;
+		font-size: 16px;
+		opacity: 0;
+		transition: opacity 0.2s;
+		&.active {
+			opacity: 1;
+		}
+		&~.form-control {
+			padding-left: 24px;
+			box-sizing: border-box;
+		}
+	}
+	.suffix-unit {
+	    position: absolute;
+	    top: 0.25rem;
+	    right: 0;
+	    transition: color .2s;
+		font-size: 16px;
+		opacity: 0;
+		transition: opacity 0.2s;
+		&.active {
+			opacity: 1;
+		}
+		&~.form-control {
+			padding-right: 24px;
+			box-sizing: border-box;
+		}
+	}
+	.control-label {
+		padding: .3rem 0 .55rem;
+	}
+}
+
+.row {
+	div[class^='col-'] {
+		.md-form {
+			input {
+				margin-bottom: 0;
+			}
+			
+		}
+	}
+}
+
+.input-with-suffix {
+    position: relative;
+    input {
+        width: calc(100% - 2rem);
+        padding-right: 2rem !important;
+    }
+    i {
+        position: absolute;
+        right: 0;
+        top: 4px;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+}
+
+.form-control.input-data{
+	border: none;
+}
+
+.form-section {
+	font-size: 20px;
+	color: #1d1d1d;
+}

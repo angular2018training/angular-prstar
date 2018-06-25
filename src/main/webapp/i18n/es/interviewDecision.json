@@ -1,0 +1,10 @@
+{
+    "prostarsWebApp": {
+        "InterviewDecision" : {
+            "null": "",
+            "GO": "GO",
+            "NO_GO": "NO_GO",
+            "AWAITING": "AWAITING"
+        }
+    }
+}

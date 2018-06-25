@@ -1,0 +1,89 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "proRequirementIndustry",
+            "otherEntityName": "proRequirementIndustry",
+            "otherEntityRelationshipName": "proRequirement"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "proRequirementSkill",
+            "otherEntityName": "proRequirementSkill",
+            "otherEntityRelationshipName": "proRequirement"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paymentTerm",
+            "otherEntityName": "paymentTerm",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "invoiceTerm",
+            "otherEntityName": "invoiceTerm",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "workLocation",
+            "otherEntityName": "city",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "role",
+            "otherEntityName": "role",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "post",
+            "otherEntityName": "post",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "additionalCommmentary",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "projectType",
+            "fieldType": "ProjectType",
+            "fieldValues": "TIME,FIXED_FEE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "proposalTemplate",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "changelogDate": "20180327112515",
+    "entityTableName": "pro_requirement",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

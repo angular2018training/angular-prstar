@@ -1,0 +1,322 @@
+<div class="content-match">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/matching-landing']">Match</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/postWall']">Post Wall</a></li>
+        <li class="breadcrumb-item active">Post</li>
+    </ol>
+
+    <div class="card card-post-detail">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-lg-9">
+                    <h4 class="project-title blue-text">{{post?.project?.projectName}}</h4>
+
+                    <div class="form">
+                        <div class="md-form">
+                            <div class="form-control input-data">{{post?.project?.description}}</div>
+                            <label class="active">Description</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{post?.project?.startDate | date: 'MM.dd.yyyy'}}</div>
+                                    <label class="active">Project Start Date</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{post?.project?.endDate | date: 'MM.dd.yyyy'}}</div>
+                                    <label class="active">Project End Date</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="pie-box-legend mt-24 mb-24 d-none d-lg-block">
+                                    <span><i class="mdi mdi-chart-donut"></i> Compatibility with Project Need</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-pro" *ngFor="let proreq of post?.proRequests;  let i = index">
+                            <div class="card-header collapsed" data-toggle="collapse" [attr.data-target]="'#' + proreq?.id">
+                                <div class="row">
+                                    <div class="col col-title">{{ proreq?.role?.name }}</div>
+                                    <div class="col-auto col-action">
+                                        <button class="btn btn-like active" type="button"><i class="mdi mdi-heart-outline mdi-24px off"></i><i class="mdi mdi-heart mdi-24px on"></i></button>
+                                        <button type="button" class="btn btn-primary" *ngIf="!proreq?.isBid" (click)="onBidClick(proreq.id)">BID</button>
+                                        <button type="button" class="btn btn-light" *ngIf="proreq?.isBid">BID SUBMITTED</button>
+                                    </div>
+                                </div>
+                                <span class="mdi mdi-chevron-down indicator"></span>
+                            </div>
+                            <div class="collapse" id="{{proreq?.id}}">
+                                <table class="table" *ngIf="proreq?.isBid">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 300px;">
+                                                <div class="media media-user">
+                                                    <img [src]="'data:image/png;base64,' + proreq?.bid?.owner?.picture" class="img-fluid">
+                                                    <div class="media-body">
+                                                        <h5>
+                                                            <span *ngIf="proreq?.bid?.owner?.account?.firstName">{{proreq?.bid?.owner?.account?.firstName}}</span>
+                                                            <span *ngIf="proreq?.bid?.owner?.account?.lastName"> {{proreq?.bid?.owner?.account?.lastName}}</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="td-label">Proposal Price</p>
+                                                <p class="td-value"><strong>${{proreq?.bid?.proposedPrice}}</strong></p>
+                                            </td>
+                                            <td>
+                                                <p class="td-label">Start Date</p>
+                                                <p class="td-value">{{proreq?.startDate | date: 'MM.dd.yyyy'}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="td-label">End Date</p>
+                                                <p class="td-value">{{proreq?.endDate | date: 'MM.dd.yyyy'}}</p>
+                                            </td>
+                                            <td class="text-right">
+                                                <button type="button" class="btn btn-primary">CANCEL BID</button>
+                                                <button type="button" class="btn btn-primary">EDIT BID</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.additionalCommmentary}}</div>
+                                                <label class="active">Role Description</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                                            <div class="md-form">
+                                                <doughnut-chart [percent] = 'proreq.matchRate' [index]="i"></doughnut-chart>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="section-name mt-24">Skills</h5>
+                                            <div class="md-form">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-4">
+                                                        <h6><small class="grey-text">Skill</small></h6>
+                                                    </div>
+                                                    <div class="col-6 col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-6">
+                                                                <h6><small class="grey-text">Skill Strength (out of 5)</small></h6>
+                                                            </div>
+                                                            <div class="col-12 col-md-6 d-none d-md-block">
+                                                                <h6 class="text-center"><small class="grey-text">Years of Experience</small></h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngFor="let skill of proreq?.skills">
+                                                    <div class="row">
+                                                        <div class="col-6 col-md-4">
+                                                            <div class="md-form">
+                                                                <div class="chip none-margin-all mt-3px">
+                                                                    {{skill?.skill?.name}}
+                                                                    <i class="mdi mdi-close-circle"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <div class="md-form">
+                                                                        <div class="range-field pt-3px">
+                                                                            <input disabled=true type="range" min="0" max="5" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <div class="md-form">
+                                                                        <div class="form-control input-data text-md-center">{{skill?.yearsOfExperience}}</div>
+                                                                        <label class="active d-md-none">Years</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="section-name mt-4">Industries</h5>
+                                            <div class="md-form">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-4">
+                                                        <h6><small class="grey-text">Industry</small></h6>
+                                                    </div>
+                                                    <div class="col-6 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-12">
+                                                                <h6 class="text-md-center"><small class="grey-text">Years of Experience</small></h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngFor="let industry of proreq?.industries">
+                                                    <div class="row">
+                                                        <div class="col-6 col-md-4">
+                                                            <div class="md-form">
+                                                                <div class="chip none-margin-all mt-3px">
+                                                                    {{industry?.industry?.name}}
+                                                                    <i class="mdi mdi-close-circle"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 col-md-4">
+                                                            <div class="row">
+
+                                                                <div class="col-12 col-md-12">
+                                                                    <div class="md-form">
+                                                                        <div class="form-control input-data text-md-center">{{industry?.yearsOfExperience}}</div>
+                                                                        <label class="active d-md-none">Years</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.startDate | date: 'MM.dd.yyyy'}}</div>
+                                                <label class="active">ProStart Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.endDate | date: 'MM.dd.yyyy'}}</div>
+                                                <label class="active">Pro End Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <a href="#" class="d-flex align-items-center">
+                                                    <i class="fa-2x mdi mdi-attachment mdi-rotate-270"></i>
+                                                    Proposal Template
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.projectType}}</div>
+                                                <label class="active">Project Type</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.paymentTerm?.name}}</div>
+                                                <label class="active">Payment Terms</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proreq?.invoiceTerm?.name}}</div>
+                                                <label class="active">Invoice Terms</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="md-form">
+                                        <div class="form-control input-data">{{proreq?.workLocation?.name}}</div>
+                                        <label class="active">Work Location</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <div class="form-control input-data">{{proreq?.additionalCommmentary}}</div>
+                                        <label class="active">Additional Commentary</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-3" *ngIf="post">
+                    <p class="text-muted mb-8">{{post?.numberOfBids}} Bids</p>
+                    <p class="mb-24">Bid Deadline: <strong *ngIf="post?.proRequests[0]">{{post?.proRequests[0]?.bidDeadline | date : 'MM.dd.yyyy'}}</strong></p>
+                    <div class="card card-company-summary">
+                        <img [src]="'data:image/png;base64,' + post?.project?.owner?.companyLogo" width="100" height="100">
+                        <div class="card-body">
+                            <div class="md-form">
+                                <div class="form-control input-data">{{post?.project?.owner?.companyName}}</div>
+                                <label class="active">Company Name</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">
+                                    <span *ngIf="post?.owner?.firstName">{{post?.owner?.firstName}} </span>
+                                    <span *ngIf="post?.owner?.middleName">{{post?.owner?.middleName}} </span>
+                                    <span *ngIf="post?.owner?.lastName">{{post?.owner?.lastName}}</span>
+                                </div>
+                                <label class="active">Point of Contact</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">{{post?.owner?.email}}</div>
+                                <label class="active">Email Address</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">{{post?.project?.owner?.companyBio}}
+                                </div>
+                                <label class="active">Company Bio</label>
+                            </div>
+
+                            <div class="active-post mt-48">
+                                <h4>Other active posts from
+                                    <span *ngIf="post?.owner?.firstName">{{post?.owner?.firstName}} </span>
+                                    <span *ngIf="post?.owner?.middleName">{{post?.owner?.middleName}} </span>
+                                    <span *ngIf="post?.owner?.lastName">{{post?.owner?.lastName}}</span>
+                                </h4>
+                                <ul>
+                                    <li *ngIf="post?.relatedPost[0]">
+                                        <h5><a [routerLink]="['../../post-detail/', post?.relatedPost[0]?.id ]">{{post?.relatedPost[0]?.projectName}}</a></h5>
+                                        <h6>{{post?.relatedPost[0]?.roleName}}</h6>
+                                        <p>{{post?.relatedPost[0]?.createdDate | date : 'MMMM yyyy'}}</p>
+                                    </li>
+                                    <li *ngIf="post?.relatedPost[1]">
+                                        <h5><a [routerLink]="['../../post-detail/', post?.relatedPost[1]?.id ]">{{post?.relatedPost[1]?.projectName}}</a></h5>
+                                        <h6>{{post?.relatedPost[1]?.roleName}}</h6>
+                                        <p>{{post?.relatedPost[1]?.createdDate | date : 'MMMM yyyy'}}</p>
+                                    </li>
+                                    <li *ngIf="post?.relatedPost[2]">
+                                        <h5><a [routerLink]="['../../post-detail/', post?.relatedPost[2]?.id ]">{{post?.relatedPost[2]?.projectName}}</a></h5>
+                                        <h6>{{post?.relatedPost[2]?.roleName}}</h6>
+                                        <p>{{post?.relatedPost[2]?.createdDate | date : 'MMMM yyyy'}}</p>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

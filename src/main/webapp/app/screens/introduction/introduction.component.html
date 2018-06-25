@@ -1,0 +1,36 @@
+<div class="wrapper-main page-intro" [ngClass]="{'page-pro':isLearnMorePage,'page-biz':isBiz}">
+    <div class="container-main">
+        <div class="row">
+            <div class="col-xl-4 col-link">
+                <h1 class="account-type">
+                    <span *ngIf="isBiz" jhiTranslate="prostarsWebApp.introduction.home.title.isBiz">I'm a Biz</span>
+                    <span  *ngIf="!isBiz" jhiTranslate="prostarsWebApp.introduction.home.title.isPro">I'm a Pro</span>
+                </h1>
+                <nav class="nav nav-pills nav-fill flex-row flex-xl-column nav-intro">
+
+                    <a class="flex-xs-fill nav-link video" (click)="showProStarsVideo()">
+                        <span jhiTranslate="prostarsWebApp.introduction.action.prostarsVideo">ProStars Video</span>
+                    </a>
+                    <a class="flex-xs-fill nav-link calculator" [routerLink]="['./income-calculator']"
+                       routerLinkActive="active" *ngIf="!isBiz">
+                        <span jhiTranslate="prostarsWebApp.introduction.action.recruitingRevenue">Income Calculator</span>
+                    </a>
+                    <a class="flex-xs-fill nav-link join" [routerLink]="['./how-to-join']" routerLinkActive="active"
+                       *ngIf="!isBiz"
+                    >
+                        <span jhiTranslate="prostarsWebApp.introduction.action.howToJoin">How to join</span>
+                    </a>
+                    <a class="flex-xs-fill nav-link join" [routerLink]="['./biz']" routerLinkActive="active"
+                       *ngIf="isBiz"
+                    >
+                        <span jhiTranslate="prostarsWebApp.introduction.action.howToJoin">How to join</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="col-xl-8 col-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+
+</div>

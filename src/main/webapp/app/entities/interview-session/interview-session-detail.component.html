@@ -1,0 +1,56 @@
+
+<div *ngIf="interviewSession">
+    <h2><span jhiTranslate="prostarsWebApp.interviewSession.detail.title">Interview Session</span> {{interviewSession.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.interviewType">Interview Type</span></dt>
+        <dd>
+            <span>{{interviewSession.interviewType}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.interviewDate">Interview Date</span></dt>
+        <dd>
+            <span>{{interviewSession.interviewDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.fromTime">From Time</span></dt>
+        <dd>
+            <span>{{interviewSession.fromTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.duration">Duration</span></dt>
+        <dd>
+            <span>{{interviewSession.duration}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.timezone">Timezone</span></dt>
+        <dd>
+            <span>{{interviewSession.timezone}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.decision">Decision</span></dt>
+        <dd>
+            <span jhiTranslate="{{'prostarsWebApp.InterviewDecision.' + interviewSession.decision}}">{{interviewSession.decision}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.note">Note</span></dt>
+        <dd>
+            <span>{{interviewSession.note}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.interviewSession.interview">Interview</span></dt>
+        <dd>
+            <div *ngIf="interviewSession.interviewId">
+                <a [routerLink]="['/interview', interviewSession.interviewId]">{{interviewSession.interviewId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'interview-session/'+ interviewSession.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

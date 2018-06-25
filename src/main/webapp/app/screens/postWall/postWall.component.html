@@ -1,0 +1,178 @@
+<div class="content-match">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/pro-landing']">Match</a></li>
+        <li class="breadcrumb-item active">Post Wall</li>
+    </ol>
+
+    <div class="card card-post-wall">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">POST WALL</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="search-condition">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="md-form form-group">
+                            <jhi-address [(address)]="address"></jhi-address>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <!--<div class="md-form">
+                            <angular2-multiselect [data]="industries" [(ngModel)]="selected" [settings]="dropdownIndustrySettings" [ngModelOptions]="{standalone: true}">
+                            </angular2-multiselect>
+                        </div>-->
+                        <div class="md-form md-datepicker">
+                            <input id="startDate" type="text" class="form-control datepicker" name="startDate" [min]="currentDate" [(ngModel)]="criteria.startDate"
+                                required/>
+                            <label class="active" jhiTranslate="prostarsWebApp.post.startDate" for="startDate">Start Date</label>
+                            <!-- Validation -->
+                            <!--<div [hidden]="!(postForm.controls.startDate?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!postForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!postForm.controls.startDate?.errors?.min" jhiTranslate="entity.validation.min"
+                                    translateValues="{min: 'today'}">
+                                    Number of Pros is required to be at least 5.
+                                </small>
+                            </div>-->
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <!--<div class="md-form">
+                            <angular2-multiselect [data]="cities" [(ngModel)]="selected" [settings]="dropdownCitySettings" [ngModelOptions]="{standalone: true}">
+                            </angular2-multiselect>
+                        </div>-->
+                        <div class="md-form md-datepicker">
+                            <input id="endDate" type="text" class="form-control datepicker" name="endDate" [min]="criteria.startDate" [(ngModel)]="criteria.endDate"
+                                required/>
+                            <label class="active" jhiTranslate="prostarsWebApp.post.endDate" for="endDate">End Date</label>
+                            <!-- Validation -->
+                            <!--<div [hidden]="!(postForm.controls.endDate?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.date" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                                    This field should be a date and time.
+                                </small>
+                                <small class="form-text text-danger" [hidden]="!postForm.controls.endDate?.errors?.min" jhiTranslate="entity.validation.min"
+                                    translateValues="{min: 'start date'}">
+                                    Number of Pros is required to be at least 5.
+                                </small>
+                            </div>-->
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-2">
+                        <div class="md-form">
+                            <button class="btn btn-primary btn-block btn-search" (click)="search();">SEARCH</button>
+                            <!-- <button class="btn btn-primary btn-search-advanced">ADVANCED SEARCH</button> -->
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-3">
+                        <div class="md-form">
+                            <!-- <button class="btn btn-primary btn-search">SEARCH</button> -->
+                            <button class="btn btn-primary btn-block btn-search-advanced">ADVANCED SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-filter">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="btn-toolbar">
+                            <div class="input-group input-group-view-type">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">View</div>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn active pr-8"><i class="mdi mdi-view-list mdi-24px"></i></button>
+                                    <button type="button" class="btn pl-8"><i class="mdi mdi-view-module mdi-24px"></i></button>
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sort-by">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Sort by</div>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Best Fit</button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item">Best Fit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-2">
+                        <div class="pie-box-legend mt-40 d-none d-md-block">
+                            <span><i class="mdi mdi-square"></i> Compatibility with Project Need</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-auto col-md-3 col-lg-2 col-xl-3">
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let post of posts;  let i = index">
+                <div class="row">
+                    <div class="col">
+                        <div class="media media-company">
+                            <!--<img src="img/placeholder-1x1.png" class="img-fluid" style="background-image: url(img/avartar-company-example.png);" />-->
+                            <img [src]="'data:image/png;base64,' + post?.post?.project?.owner?.companyLogo" width="100" height="100">
+                            <div class="media-body">
+                                <h5 class="project-name"><a [routerLink]="['../post-detail/', post?.post?.id ]">{{post?.post?.project?.projectName}}</a></h5>
+                                <p>
+                                    <span *ngFor="let require of post?.requirements; let x = index">
+                                        <span *ngIf="x!==0">
+                                            <span class="divider"> | </span>
+                                        </span>
+                                        <span class="position-name">{{require?.number}} {{require?.name}}</span>
+                                    </span>
+                                </p>
+                                <p><span class="industry-name"><i class="mdi mdi-earth mdi-24px"></i>{{post?.post?.project?.owner?.industries[i]?.name}}</span>
+                                    <span class="location-name"><i class="mdi mdi-map-marker mdi-24px"></i>{{post?.post?.project?.owner?.city?.name}}</span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center">
+                        <doughnut-chart [percent] = 'post.matchPoint' [index]='i'></doughnut-chart>
+                    </div>
+                    <div class="col-12 col-sm-auto col-md-3 col-lg-2 col-xl-3 text-right">
+                        <button class="btn btn-like active" type="button"><i class="mdi mdi-heart-outline mdi-24px off"></i><i class="mdi mdi-heart mdi-24px on"></i></button>
+                        <button *ngIf="post?.bidded" class="btn btn-light" type="button">BID SUBMITTED</button>
+                        <button *ngIf="!post?.bidded" class="btn btn-primary" type="button" (click)="onBidClick(post?.post?.id)">BID</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="card-footer">
+            <div class="form-inline justify-content-end">
+                <label class="paging-size mr-16">Rows per page:</label>
+                <select class="mdb-select paging-size mr-32">
+                                            <option value="10" selected>10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                <span class="current-page mr-32">1 - 10 of 100</span>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-prev mr-16"><span class="mdi mdi-24px mdi-chevron-left"></span></button>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-next"><span class="mdi mdi-24px mdi-chevron-right"></span></button>
+            </div>
+        </div>
+    </div>
+</div>

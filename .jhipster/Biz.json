@@ -1,0 +1,82 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contractTemplates",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "biz"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resourceNeeds",
+            "otherEntityName": "resourceNeed",
+            "otherEntityRelationshipName": "biz"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "bizRole",
+            "otherEntityName": "bizRole",
+            "otherEntityRelationshipName": "biz"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "city",
+            "otherEntityName": "city",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companySize",
+            "otherEntityName": "companySize",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "biz",
+            "relationshipName": "industry",
+            "otherEntityName": "industry",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "companyName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "website",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "companyBio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "companyLogo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "street",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "suit",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180327112505",
+    "entityTableName": "biz",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

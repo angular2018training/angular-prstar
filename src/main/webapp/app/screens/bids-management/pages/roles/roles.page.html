@@ -1,0 +1,61 @@
+<div class="col-main-content content-match" id="main-content">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a href="#dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a [routerLink]="['/biz-landing']">Match</a>
+        </li>
+        <li class="breadcrumb-item active">Bid Wall</li>
+    </ol>
+
+    <div class="card card-match-report">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <h5>BIDS</h5>
+                    <span class="badge badge-status-open">{{projectData.status}}</span>
+                </div>
+                <div class="col-12 col-md-8 col-lg-9 text-left text-md-right">
+                    <h5 class="text-primary mb-8">{{projectData.projectName}}</h5>
+                    <p>Project ID: {{projectData.id}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <p>Inside, you'll find a total of {{totalBids}} bids of your
+                        <strong>{{projectData.projectName}}</strong>. You can review the bid of each pro by role.</p>
+                    <p>Click
+                        <button [disabled]="roles.length == 0" (click)="onReviewBids(roles[0])" type="button" class="btn btn-primary btn-sm waves-effect waves-light">REVIEW BIDS</button> to start the process!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let role of roles">
+                    <div class="card card-match">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-12 col-md-auto">
+                                    <h1 class="number">{{role.numberOfBids}}</h1>
+                                    <p class="unit">BIDS</p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="role text-center text-sm-center text-md-left">
+                                        <strong>{{role.roleName}}</strong> Role</h6>
+                                    <p class="status text-center text-sm-center text-md-left">Status:
+                                        <span class="badge badge-status-open" *ngIf="role?.isOpenRole">Open</span>
+                                        <span class="badge badge-status-closed" *ngIf="!role?.isOpenRole">Closed</span>
+                                    </p>
+                                    <div class="action text-center text-sm-center text-md-left">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" (click)="onReviewBids(role)">REVIEW BIDS</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

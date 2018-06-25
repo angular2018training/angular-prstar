@@ -1,0 +1,23 @@
+
+{
+    "prostarsWebApp": {
+        "contractTemplate" : {
+            "home": {
+                "title": "Contract Templates",
+                "createLabel": "Crear nuevo Contract Template",
+                "createOrEditLabel": "Crear o editar Contract Template"
+            },
+            "created": "Un nuevo Contract Template ha sido creado con el identificador {{ param }}",
+            "updated": "Un Contract Template ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Contract Template ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Contract Template {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract Template"
+            },
+            "name": "Name",
+            "createdDate": "Created Date"
+        }
+    }
+}

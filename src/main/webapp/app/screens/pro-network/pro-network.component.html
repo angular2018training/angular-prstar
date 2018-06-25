@@ -1,0 +1,219 @@
+<div class=" page-dashboard">
+    <div class="container-main" *ngIf="proNetwork">
+        <section>
+            <div class="row mb-10">
+                <div class="col-1">
+                    <span class="d-inline-flex">
+                        <i class="mdi-filter-outline mdi"></i> FILTER
+                    </span>
+                </div>
+                <div class="col-4">
+                    <angular2-multiselect class="form-control" [(ngModel)]="selectedFilter" [data]="filterData" [settings]="filterSettings" (onSelect)="onFilterSelect($event)"
+                    [ngModelOptions]="{standalone: true}">
+                    </angular2-multiselect>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12 col-md-2-4">
+                            <div class="card card-notification item-dashboard-new">
+                                <div class="card-body p-16">
+                                
+                                    <div class="media">
+                                        <div class="align-self-center d-flex mr-12 item-large text-center color-blue border-blue">
+                                            <i class="mdi mdi-share-variant"></i>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <p class="text-large mb-0 color-blue">15M+</p>
+                                            <p class="mb-0">My Network</p>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-2-4">
+                            <div class="card card-notification item-dashboard-new">
+                                <div class="card-body p-16">
+                                
+                                    <div class="media">
+                                        <div class="align-self-center d-flex mr-12 item-large text-center color-green border-green">    
+                                            <i class="mdi mdi-currency-usd"></i>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <p class="text-large mb-0 color-green">123</p>
+                                            <p class="mb-0">Lorem ipsum dolor</p>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-2-4">
+                            <div class="card card-notification item-dashboard-new">
+                                <div class="card-body p-16">
+                                
+                                    <div class="media">
+                                        <div class="align-self-center d-flex mr-12 item-large text-center color-yellow border-yellow">    
+                                            <i class="mdi mdi-file-document"></i>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <p class="text-large mb-0 color-yellow">86</p>
+                                            <p class="mb-0">Sed ut perspiciatis</p>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-2-4">
+                            <div class="card card-notification item-dashboard-new bg-blue">
+                                <div class="card-body p-16">
+                                
+                                    <div class="media">
+                                        <div class="align-self-center d-flex mr-12 item-large text-center color-white border-white">
+                                            <i class="mdi mdi-send"></i>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <a href="/#/sponsor">
+                                                <p class="mb-0 color-white">SPONSOR A PRO</p>
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-2-4">
+                            <div class="card card-notification item-dashboard-new bg-green">
+                                <div class="card-body p-16">
+                                
+                                    <div class="media">
+                                        <div class="align-self-center d-flex mr-12 item-large text-center color-white border-white">    
+                                            <i class="mdi mdi-check"></i>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <a href="/#/referral-status">
+                                                <p class="mb-0 color-white">CHECK REFERRAL STATUS</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-network">
+                        <div class="card-header" data-toggle="collapse" data-target="#collapse-1">
+                            <div class="row">
+                                
+                                <div class="col-12 col-lg-5">My Network Level One</div>
+                                <div class="col-12 col-lg-7 align-self-center">
+                                    <div class="row">
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>{{proNetwork.proNetworkLv1ItemList.length}}</i> Connections</span></div>
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>{{proNetwork.totalContractLv1}}</i> Contracts</span></div>
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>$ {{proNetwork.totalCommissionLv1}}</i> {{filterSettingValue}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <span class="mdi mdi-chevron-down indicator"></span>
+                        </div>
+                        <div class="collapse show" id="collapse-1">
+                            <div class="collapse-body">
+                                <div class="item" *ngFor="let proNetworkItem of proNetwork.proNetworkLv1ItemList">                                       
+                                    <div class="row">
+                                        <div class="col-12 col-lg-5">
+                                            <div class="media media-user">
+                                                <img src="../../../content/img/avatar-placeholder.jpg" class="img-fluid" *ngIf="!proNetworkItem.pro.pictureFile || !proNetworkItem.pro.pictureFile.content" />
+                                                <img [src]="'data:' + proNetworkItem.pro.pictureFile.contentType + ';base64,' + proNetworkItem.pro.pictureFile.content" class="img-fluid"
+                                                    *ngIf="proNetworkItem.pro.pictureFile && proNetworkItem.pro.pictureFile.content" />
+                                                <div class="media-body">
+                                                    <h5 *ngIf="proNetworkItem.pro.account.firstName">{{proNetworkItem.pro.account.firstName}}</h5>
+                                                    <p>Connected {{getConnectedDisplayValue(proNetworkItem.pro.connectedDay)}}
+                                                        ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-7 align-self-center">
+                                            <div class="row">
+                                                <div class="col"><span class="badge badge-role"  *ngFor="let role of proNetworkItem.pro.roles">{{role.role.name}}</span></div>
+                                                <div class="col">{{proNetworkItem.numOfContracts}}</div>
+                                                <div class="col">{{proNetworkItem.commission}}</div>
+                                            </div>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </section>
+
+        <section>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-network">
+                        <div class="card-header" data-toggle="collapse" data-target="#collapse-1">
+                            <div class="row">
+                                
+                                <div class="col-12 col-lg-5">My Network Level Two</div>
+                                <div class="col-12 col-lg-7 align-self-center">
+                                    <div class="row">
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>{{proNetwork.proNetworkLv2ItemList.length}}</i> Connections</span></div>
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>{{proNetwork.totalContractLv2}}</i> Contracts</span></div>
+                                        <!-- <div class="col"><i>$ {{proNetwork.totalCommissionLv2}}</i> {{filterSettingValue}}</div> -->
+                                        <div class="col"><span class="badge badge-total d-none d-lg-inline-block"><i>$ {{proNetwork.totalCommissionLv2}}</i> {{filterSettingValue}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <span class="mdi mdi-chevron-down indicator"></span>
+                        </div>
+                        <div class="collapse show" id="collapse-1">
+                            <div class="collapse-body">
+                                <div class="item" *ngFor="let proNetworkItem of proNetwork.proNetworkLv2ItemList">                                       
+                                    <div class="row">
+                                        <div class="col-12 col-lg-5">
+                                            <div class="media media-user">
+                                                <img src="../../../content/img/avatar-placeholder.jpg" class="img-fluid" *ngIf="!proNetworkItem.pro.pictureFile || !proNetworkItem.pro.pictureFile.content" />
+                                                <img [src]="'data:' + proNetworkItem.pro.pictureFile.contentType + ';base64,' + proNetworkItem.pro.pictureFile.content" class="img-fluid"
+                                                    *ngIf="proNetworkItem.pro.pictureFile && proNetworkItem.pro.pictureFile.content" />
+                                                <div class="media-body">
+                                                    <h5 *ngIf="proNetworkItem.pro.account.firstName">{{proNetworkItem.pro.account.firstName}}</h5>
+                                                    <p>Connected {{getConnectedDisplayValue(proNetworkItem.pro.connectedDay)}}
+                                                        ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-7 align-self-center">
+                                            <div class="row">
+                                                <div class="col"><span class="badge badge-role"  *ngFor="let role of proNetworkItem.pro.roles">{{role.name}}</span></div>
+                                                <div class="col">{{proNetworkItem.numOfContracts}}</div>
+                                                <div class="col">{{proNetworkItem.commission}}</div>
+                                            </div>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </section>
+
+        </div>
+        </div>

@@ -1,0 +1,41 @@
+
+{
+    "prostarsWebApp": {
+        "bid" : {
+            "home": {
+                "title": "Bids",
+                "createLabel": "Create a new Bid",
+                "createOrEditLabel": "Create or edit a Bid"
+            },
+            "created": "A new Bid is created with identifier {{ param }}",
+            "updated": "A Bid is updated with identifier {{ param }}",
+            "deleted": "A Bid is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Bid {{ id }}?"
+            },
+            "detail": {
+                "title": "Bid"
+            },
+            "proposal": "Proposal",
+            "proposedPrice": "Proposed Price",
+            "createdDate": "Created Date",
+            "create": {
+                "proposal": "Proposal",
+                "proposalPrice": "Propose Price",
+                "startDate": "Start Date",
+                "endDate": "End Date",
+                "proposalTemplate": "Your Proposal Template",
+                "answerBidRequirement": "Answers/Sastisfies All Bid Requirements",
+                "bid": "Bid",
+                "revise": "Revise",
+                "location": "Location",
+                "summaryBio": "Summary Bio",
+                "skill": "Skill",
+                "views": "Views",
+                "bids": "Bids"
+            },
+            "post": "Post",
+            "owner": "Owner"
+        }
+    }
+}

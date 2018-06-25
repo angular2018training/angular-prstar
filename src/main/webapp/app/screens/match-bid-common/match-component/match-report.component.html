@@ -1,0 +1,63 @@
+<div *ngIf="currentProList.length > 0">
+    <div class="row">
+        <div jhi-pro-list [currentProList]="currentProList" [roleName]="roleName" 
+            (selectedProChange)="onSelectedPro($event)" [currentProIndex]="currentProIndex" class="col-12 col-lg-5">
+        </div>
+        <div class="col-12 col-lg-7 mt-4 mt-lg-0 ">
+            <div jhi-pro-profile [currentPro]="currentPro" class="row">
+            </div>
+
+            <div class="md-form">
+                <div class="form-control input-data">{{currentPro?.summaryBio}}</div>
+                <label class="active">Summary Bio</label>
+            </div>
+
+            <div class="tab-box mt-16">
+                <!-- Nav tabs -->
+                <div class="tabs-wrapper"> 
+                    <ul class="nav" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link waves-light font-weight-bold active" data-toggle="tab" href="#panel51" role="tab">PROFILE</a>
+                        </li>
+                        <li *ngIf="selectedTab == 2" class="nav-item">
+                            <a class="nav-link waves-light font-weight-bold" data-toggle="tab" href="#panel52" role="tab">SCHEDULE INTERVIEW</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Tab panels -->
+                <div *ngIf='currentPro' class="tab-content">
+
+                    <!--Panel 1-->
+                    <div class="tab-pane fade in show active" id="panel51" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12 col-lg-7">
+                                <jhi-skill-common [skills]= "currentProskills" [addMoreRowsFlag]=false ></jhi-skill-common>
+                            </div>
+                            
+                            <div class="col-12 col-lg-4 offset-lg-1">
+                                <h5 class="section-name mt-4">Bill Rate</h5>
+                                <div class="md-form mt-48">
+                                    <div class="form-control input-data">${{currentPro?.lowDesiredRate}} - ${{currentPro?.hightDesiredRate}}</div>
+                                    <label class="active">Desired Hourly Rate</label>
+                                </div>
+                                <div class="md-form">
+                                    <div class="form-control input-data">${{currentPro?.lowDesiredRate * estimateHours}} - ${{currentPro?.hightDesiredRate * estimateHours}}</div>
+                                    <label class="active">Estimated Fees</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-right">
+                            <button class="btn mr-16 none-margin-all text-primary" type="button" [disabled]="disablePassButton" (click)="onPass()">PASS</button>
+                            <button class="btn mr-16 btn-primary btn-primary-profile none-margin-all" type="button" [disabled]="disableSaveButton" (click)="onSave()">SAVE</button>
+                        </div>
+                    </div>
+                    <!--Panel 2-->
+                    <div *ngIf="selectedTab == 2" class="tab-pane fade" id="panel52" role="tabpanel">
+                        <jhi-schedule-interview (increase)="onOutputIncreaseInterview($event)" [proID]="currentPro.id" [proRequirementID]="roleId"></jhi-schedule-interview>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,256 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+ .content-contract {
+    .card-create {
+        box-shadow: none;
+        border-radius: 0;
+        .card-header {
+            position: relative;
+            background-color: #fff;
+            border: solid 1px #e0e0e0;
+            border-bottom: none;
+            border-radius: 0;
+            padding-left: 24px;
+            padding-right: 48px;
+            .col-total {
+                text-align: right;
+            }
+        }
+        .card-body {
+            border-left: solid 1px #e0e0e0;
+            border-right: solid 1px #e0e0e0;
+            border-bottom: solid 1px #e0e0e0;
+        }
+
+
+        .table-role-status {
+            margin: 0;
+            > tbody {
+                > tr {
+                    > td {
+                        vertical-align: middle;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        width: 33.333333%;
+                        .number {
+                            font-size: 30px;
+                            font-weight: 500;
+                            text-align: center;
+                            color: #333;
+                        }
+                        .unit {
+                            font-weight: 300;
+                            text-align: center;
+                            color: #a5a5a5;
+                        }
+
+                        &.active {
+                            background-color: #d2eafd;
+                            .number {
+                                color: #1976d3;
+                            }
+                            .unit {
+                                color: #333;
+                            }
+                        }
+                    }
+                    &:first-child {
+                        > td {
+                            border-top: none;
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        .card-body {
+            border-top: solid 1px #e0e0e0;
+        }
+
+
+        .table {
+            margin: 0;
+            border-left: solid 1px #e0e0e0;
+            border-right: solid 1px #e0e0e0;
+            border-bottom: solid 1px #e0e0e0;
+            > thead {
+                > tr {
+                    th {
+                        // padding-top: 24px;
+                        padding-top: 36px;
+                        padding-bottom: 24px;
+
+                        border-bottom-width: 1px;
+                        font-size: 12px;
+                        line-height: 1em;
+                        &:first-child {
+                            padding-left: 24px;
+                        }
+                        &:last-child {
+                            padding-right: 24px;
+                        }
+                    }
+                    .th-actions {
+                        padding-bottom: 15px;
+                        .btn {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            > tbody {
+                > tr {
+                    > td {
+                        padding: 5px 12px;
+                        min-height: 48px;
+                        vertical-align: middle;
+                        // border-left: solid 1px #e0e0e0;
+                        // border-right: solid 1px #e0e0e0;
+                        &:first-child {
+                            padding-left: 24px;
+                        }
+                        &:last-child {
+                            padding-right: 24px;
+                        }
+                        .mdb-select {
+                            span.caret {
+                                top: 10px;
+                            }
+                            .select-dropdown {
+                                margin-bottom: 0;
+                                padding-top: 6px;
+                                padding-bottom: 6px;
+                            }
+                        }
+                        .md-form {
+                            margin: 0;
+                            .form-control {
+                                margin: 0;
+                                padding-top: 6px;
+                                padding-bottom: 6px;
+                            }
+
+                        }
+                        a:link, a:visited {
+                            color: #2196f3;
+                        }
+                    }
+                    &:first-child {
+                        > td {
+                            border-top: none;
+                        }
+                    }
+                    .btn-table-action {
+                        visibility: hidden;
+                        transition: none;
+                        transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out;
+
+                    }
+                    &:hover {
+                        .btn-table-action {
+                            visibility: visible;
+                        }
+                    }
+                }
+                
+            }
+        }
+        .card-footer {
+            background-color: #fff;
+            text-align: center;
+            border: solid 1px #e0e0e0;
+            border-top: none;
+            border-radius: 0;
+            padding: 24px;
+            text-align: right;
+            label.paging-size {
+                // margin-right: 24px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .mdb-select.paging-size {
+                width: 50px;
+                span.caret {
+                    top: 7px;
+                }
+                .select-dropdown {
+                    margin-bottom: 0;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    font-size: 12px;
+                    font-weight: 500px;
+                }
+            }
+            .current-page {
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .paging-prev, .paging-next {
+                width: 40px;
+                height: 40px;
+                margin: 0;
+                padding: 8px;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                color: #222 !important;
+                border: none !important;
+                .mdi:before {
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 24px;
+                }
+            }
+            .hint {
+                font-size: 12px;
+                font-weight: 500;
+                margin-top: 24px;
+                opacity: 0.54;
+            }
+        }
+    }
+    
+}
+
+.modal-upload-template,
+.modal-create-template,
+.modal-create-contract,
+.modal-change-request {
+    .modal-header {
+        background-color: #2095f4;
+        position: relative;
+        justify-content: flex-start;
+        align-items: center;
+        height: 90px;
+
+        > div {
+            text-align: center;
+            .modal-title {
+                color: #fff;
+                font-family: 'Roboto Condensed';
+                font-weight: 300;
+                font-size: 36px;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            opacity: 1;
+        }
+    }
+    .modal-body {
+        text-align: center;
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .modal-footer {
+        border-top: none;
+        justify-content: center;
+    }
+}

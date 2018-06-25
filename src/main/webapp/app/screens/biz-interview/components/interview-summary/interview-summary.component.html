@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="col-12">
+    <button type="button" class="btn btn-default" (click)="onPrevious()">Previous</button>
+    <button type="button" class="btn btn-primary" (click)="onAccept()" [disabled]="(interview.status === 'DECLINED' || interview.status === 'ACCEPTED')">Accept Pro for the role</button>
+    <button type="button" class="btn btn-danger" (click)="onPass()" [disabled]="(interview.status === 'DECLINED' || interview.status === 'ACCEPTED')">Pass on the Pro</button>
+  </div>
+</div>

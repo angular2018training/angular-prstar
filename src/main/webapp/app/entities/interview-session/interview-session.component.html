@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span jhiTranslate="prostarsWebApp.interviewSession.home.title">Interview Sessions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-interview-session" [routerLink]="['/', { outlets: { popup: ['interview-session-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="prostarsWebApp.interviewSession.home.createLabel">
+            Create new Interview Session
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="interviewSessions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.interviewType">Interview Type</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.interviewDate">Interview Date</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.fromTime">From Time</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.duration">Duration</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.timezone">Timezone</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.decision">Decision</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.note">Note</span></th>
+            <th><span jhiTranslate="prostarsWebApp.interviewSession.interview">Interview</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let interviewSession of interviewSessions ;trackBy: trackId">
+                <td><a [routerLink]="['../interview-session', interviewSession.id ]">{{interviewSession.id}}</a></td>
+                <td>{{interviewSession.interviewType}}</td>
+                <td>{{interviewSession.interviewDate | date:'medium'}}</td>
+                <td>{{interviewSession.fromTime}}</td>
+                <td>{{interviewSession.duration}}</td>
+                <td>{{interviewSession.timezone}}</td>
+                <td jhiTranslate="{{'prostarsWebApp.InterviewDecision.' + interviewSession.decision}}">{{interviewSession.decision}}</td>
+                <td>{{interviewSession.note}}</td>
+                <td>
+                    <div *ngIf="interviewSession.interviewId">
+                        <a [routerLink]="['../interview', interviewSession.interviewId  ]" >{{interviewSession.interviewId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../interview-session', interviewSession.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'interview-session/'+ interviewSession.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'interview-session/'+ interviewSession.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

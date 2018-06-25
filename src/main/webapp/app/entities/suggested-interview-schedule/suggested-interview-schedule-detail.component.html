@@ -1,0 +1,56 @@
+
+<div *ngIf="suggestedInterviewSchedule">
+    <h2><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.detail.title">Suggested Interview Schedule</span> {{suggestedInterviewSchedule.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.interviewDate">Interview Date</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.interviewDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.fromTime">From Time</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.fromTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.duration">Duration</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.duration}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.timezone">Timezone</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.timezone}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.note">Note</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.note}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.proAccepted">Pro Accepted</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.proAccepted}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.bizAccepted">Biz Accepted</span></dt>
+        <dd>
+            <span>{{suggestedInterviewSchedule.bizAccepted}}</span>
+        </dd>
+        <dt><span jhiTranslate="prostarsWebApp.suggestedInterviewSchedule.interviewSession">Interview Session</span></dt>
+        <dd>
+            <div *ngIf="suggestedInterviewSchedule.interviewSessionId">
+                <a [routerLink]="['/interview-session', suggestedInterviewSchedule.interviewSessionId]">{{suggestedInterviewSchedule.interviewSessionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'suggested-interview-schedule/'+ suggestedInterviewSchedule.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

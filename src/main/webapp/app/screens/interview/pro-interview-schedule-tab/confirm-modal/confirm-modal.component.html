@@ -1,0 +1,15 @@
+<div class="modal-pro-applicant-status" id="modal-status">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><span>Are you sure?</span></h4>
+            <button type="button" (click)="activeModal.dismiss('CANCEL')" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+        </div>
+        <div class="modal-body">
+            <p>Do you really want to delete these records? This process cannot be undone.</p>
+        </div>
+        <div class="modal-footer text-right">
+            <button type="button" (click)="activeModal.close('OK')" class="btn btn-primary" data-dismiss="modal">OK</button>
+            <button type="button" (click)="activeModal.dismiss('CANCEL')" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

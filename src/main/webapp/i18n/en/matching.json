@@ -1,0 +1,23 @@
+
+{
+    "prostarsWebApp": {
+        "matching" : {
+            "home": {
+                "title": "Posted Project List",
+                "pid":"Bids",
+                "post":"Posts"
+            },
+            "action":{
+                "pid":"Bid",
+                "cancelPid":"Cancel"
+            },
+            "project": "Project",
+            "owner" : "Biz",
+            "matchPros":"Match Pros",
+            "rating": "Rating",
+            "location": "Location",
+            "match": "Match"
+
+        }
+    }
+}

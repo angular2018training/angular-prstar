@@ -1,0 +1,56 @@
+<div class="card border-light mb-3">
+    <!-- HEADER -->
+    <div class="card-header">CONTRACTS</div>
+    <!-- BODY -->
+    <div class="card-body" >
+        <form class="form-profile pb-5" name="form" role="form" (ngSubmit)="onNext()" #registerForm="ngForm" *ngIf="!success">
+            <!-- INFORMATION TEXT -->
+            <div jhiTranslate="prostarsWebApp.biz.summaryProfile.contractInfo">
+                <p>
+                    If you have a standard contract template you'd prefer to use, then please upload the current version(s). We will keep them on file to help facilitate the contracting process.
+                </p>
+                <p>
+                    Upload your standard contract template for reference.
+                </p>
+            </div>
+            <!-- UPLOAD FIELD -->
+            <form class="md-form pb-5" >
+                <div class="file-field">
+                    <label class="active" for="Form-email1" jhiTranslate="prostarsWebApp.biz.summaryProfile.contractText">Your Contract Template</label>
+                    <div class="btn btn-primary btn-md float-right">
+                        <span class="chooseFile">Choose file</span>
+                        <input type="file" id="file_contractTemplate" multiple (change)="setFileData($event)">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="{{'prostarsWebApp.biz.summaryProfile.contractPlaceHolder' | translate}}"
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="bizService.biz.selectedContractTemplateDisplay">
+                    </div>
+                </div>
+            </form>
+            <!-- Display delegate checkbox and dropdown if current biz user is not under delegation -->
+            <div class="row" *ngIf="!bizService.contractsDelegate">
+                <div class="col">
+                    <input type="checkbox" [(ngModel)]="delegateCheckbox" class="form-check-input" id="checkbox100" [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="checkbox100">Delegate to</label>
+                    <span class="mdi mdi-information-outline mdi-18px tooltip-question ml-16 section-name" id="tooltip-bill-rate"  data-toggle="tooltip" data-placement="bottom" title="{{'prostarsWebApp.biz.tooltip.delegateTo' | translate}}"></span>
+                </div>
+                <div class="col md-form form-group" *ngIf="delegateCheckbox">
+                    <angular2-multiselect [data]="dropdownDelegateList" [(ngModel)]="selectedDelegate" [settings]="dropdownDelegateSettings" [ngModelOptions]="{standalone: true}">
+                    </angular2-multiselect>
+                </div>
+            </div>
+        </form>
+        <div class="md-form">
+            <hr/>
+        </div>
+        <!-- Display if current user is BIZ_ADMIN (not under delegation) -->
+        <div class="mt-24 text-right" *ngIf="!bizService.contractsDelegate">
+            <button class="btn btn-light mr-16 m-0 text-primary" type="button" [routerLink]="['/biz-profile/company-bio']" routerLinkActive="active">BACK</button>
+            <button class="btn btn-primary m-0" type="button" routerLinkActive="active" (click)="onNext()">NEXT</button>
+        </div>
+        <!-- Display if current user is under delegation -->
+        <div class="mt-24 text-right" *ngIf="bizService.contractsDelegate">
+            <button class="btn btn-primary m-0" type="button" routerLinkActive="active" (click)="onSubmit()">SUBMIT</button>
+        </div>
+    </div>
+</div>

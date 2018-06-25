@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "applicant",
+            "otherEntityName": "pro",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "veter",
+            "otherEntityName": "pro",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "createdDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "decision",
+            "fieldType": "Decision",
+            "fieldValues": "NO,YES,AWAITING"
+        },
+        {
+            "fieldName": "vetterComment",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180419075327",
+    "entityTableName": "vet_change_log",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

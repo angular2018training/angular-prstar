@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContractLabel" jhiTranslate="prostarsWebApp.contract.home.createOrEditLabel">Create or edit a Contract</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contract.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contract.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.contract.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="contract.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.contract.note" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                [(ngModel)]="contract.note" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.contract.createdDate" for="field_createdDate">Created Date</label>
+            <div class="d-flex">
+                <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="contract.createdDate"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.contract.bizStatus" for="field_bizStatus">Biz Status</label>
+            <select class="form-control" name="bizStatus" [(ngModel)]="contract.bizStatus" id="field_bizStatus"  required>
+                <option value="PENDING_APPROVAL">{{'prostarsWebApp.ContractStatus.PENDING_APPROVAL' | translate}}</option>
+                <option value="CHANGE_REQUESTED">{{'prostarsWebApp.ContractStatus.CHANGE_REQUESTED' | translate}}</option>
+                <option value="DECLINED">{{'prostarsWebApp.ContractStatus.DECLINED' | translate}}</option>
+                <option value="ACCEPTED">{{'prostarsWebApp.ContractStatus.ACCEPTED' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.bizStatus?.dirty && editForm.controls.bizStatus?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.bizStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="prostarsWebApp.contract.proStatus" for="field_proStatus">Pro Status</label>
+            <select class="form-control" name="proStatus" [(ngModel)]="contract.proStatus" id="field_proStatus"  required>
+                <option value="PENDING_APPROVAL">{{'prostarsWebApp.ContractStatus.PENDING_APPROVAL' | translate}}</option>
+                <option value="CHANGE_REQUESTED">{{'prostarsWebApp.ContractStatus.CHANGE_REQUESTED' | translate}}</option>
+                <option value="DECLINED">{{'prostarsWebApp.ContractStatus.DECLINED' | translate}}</option>
+                <option value="ACCEPTED">{{'prostarsWebApp.ContractStatus.ACCEPTED' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.proStatus?.dirty && editForm.controls.proStatus?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.proStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

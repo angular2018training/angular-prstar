@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-sm-12">
+      <!--Panel-->
+      <div class="card border-light mb-3">
+          <div class="card-header">DETAILED PRO PROFILE</div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-12 col-sm-auto">
+                      <div class="card card-avatar-display">
+                        <img src="../../../../content/img/avatar-placeholder.jpg" class="card-img-top" *ngIf="!backgroundData.avatarPhoto">
+                        <img [src]="'data:' + backgroundData.avatarPhotoContentType + ';base64,' + backgroundData.avatarPhoto" class="card-img-top" *ngIf="backgroundData.avatarPhoto">
+                          <div class="card-body">
+                              <div class="username mt-8">
+                                  {{contactData.user.firstName}} {{contactData.user.middleName}} {{contactData.user.lastName}} {{contactData.user.titleSuffix}}
+                              </div>
+                              <div class="attachment">
+                                  Resume: {{backgroundData.resumeFileName}}
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="col">
+                      <div class="md-form">
+                          <div class="form-control input-data">{{contactData.user.login}}</div>
+                          <label class="active">Email</label>
+                      </div>
+                      <div class="md-form" *ngFor="let phoneItem of contactData.phoneList; let i = index">
+                          <div class="form-control input-data">{{phoneItem.phoneNumber}}</div>
+                          <label class="active">Phone</label>
+                      </div>
+                      <div class="md-form">
+                          <div class="form-control input-data">{{contactData.address.displayText}}</div>
+                          <label class="active">Address</label>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <jhi-role-common [isEditable] = 'false' [selectedRoles] = "bioSkillData.selectedRoles"></jhi-role-common>
+
+                      <div class="form-check" *ngFor="let question of backgroundData?.checkboxAnswerQuestionList; let i = index">
+                        <input type="checkbox" [(ngModel)]="question.proAnswer" class="form-check-input filled-in" 
+                          [ngModelOptions]="{standalone: true}" id="checkbox{{i}}"/>
+                        <label for="checkbox{{i}}">{{question.question}}</label>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="md-form">
+                  <div class="form-control input-data">{{bioSkillData.summaryBio}}</div>
+                  <label class="active">Summary Bio</label>
+              </div>
+
+              <!-- <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-6">
+                        <jhi-skill-common [skills]= "bioSkillData.skills" [addMoreRowsFlag]=false></jhi-skill-common> 
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <h5 class="section-name mt-4">Bill Rate</h5>
+                        <div class="md-form mt-48">
+                            <div class="form-control input-data">${{bioSkillData.desiredRateLow}} - ${{bioSkillData.desiredRateHigh}}</div>
+                            <label class="active">Desired Rate</label>
+                        </div>
+                    </div>
+              </div> -->
+              <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <jhi-skill-common [skills]= "bioSkillData.skills" [addMoreRowsFlag]=false></jhi-skill-common> 
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <h5 class="section-name mt-4">Bill Rate</h5>
+                        <div class="row" *ngFor="let item of bioSkillData.selectedRoles; let i=index">
+                                <div class="col-12 col-sm-6">
+                                    <div class="md-form mt-48">
+                                        <div class="form-control input-data">{{item.itemName}}</div>
+                                        <label class="active">Role</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="md-form mt-48">
+                                        <div class="form-control input-data">${{item.lowRate}} - ${{item.highRate}}</div>
+                                        <label class="active">Desired Rate</label>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+              <h4 class="form-section mt-32 mb-24">Background</h4>
+              <div class="md-form" *ngFor="let question of backgroundData?.freeAnswerQuestionList">
+                <div class="form-control input-data">{{question.proAnswer}}</div>
+                <label class="active">{{question.question}}</label>
+              </div>
+
+              <div class="md-form"><hr/></div>
+
+              <div class="mt-24 text-right">
+                  <button (click)="onRevise()" class="btn btn-light mr-16 m-0" type="button">REVISE</button>
+                  <button (click)="onSubmit()" class="btn btn-primary m-0" type="button">CONFIRM</button>
+              </div>
+          </div>
+      </div>
+      <!--/.Panel-->
+  </div>
+</div>

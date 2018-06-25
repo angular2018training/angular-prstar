@@ -1,0 +1,34 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "matchReport",
+            "otherEntityName": "matchReport",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pros",
+            "otherEntityName": "pro",
+            "otherEntityRelationshipName": "roleMatch"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "roleName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        }
+    ],
+    "changelogDate": "20180510035826",
+    "entityTableName": "role_match",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

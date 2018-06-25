@@ -1,0 +1,88 @@
+<div class="content-match" id="main-content">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item"><a href="#dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/biz-landing']">Match</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/match-common-project']" [queryParams]="{requestid: requestId}">Match Report</a></li>
+        <li class="breadcrumb-item active">{{roleMatch.roleName}}</li>
+    </ol>
+
+    <div class="card card-match-role">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4 col-title">{{roleMatch.roleName}} ROLE 
+                    <span class="badge badge-status-awaiting-review" *ngIf="roleMatch.status =='Awaiting Review'" >{{roleMatch.status}}</span>
+                    <span class="badge badge-status-in-review" *ngIf="roleMatch.status == 'In Review'">{{roleMatch.status}}</span>
+                    <span class="badge badge-status-review-completed" *ngIf="roleMatch.status == 'Reviewed'">{{roleMatch.status}}</span>
+                </div>
+                <div class="col-lg-9 col-xl-8 text-right">
+                    <button class="btn btn-link btn-project-detail text-capitalize collapsed" type="button" data-toggle="collapse" data-target="#collapse-1">Project Details 
+                        <span class="mdi mdi-chevron-down indicator"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse" id="collapse-1">
+            <div class="card-body">
+                <h4 class="project-title">{{projectMatch.projectName}}</h4>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="form-control input-data">{{projectMatch.description}}</div>
+                            <label class="active">Description</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col col-xl-6">
+                                <div class="md-form">
+                                    <div class="form-control input-data" *ngIf="projectMatch?.startDate">{{projectMatch?.startDate | date:'MM.dd.yyyy'}}</div>
+                                    <label class="active">Project Start Date</label>
+                                </div>
+                            </div>
+                            <div class="col col-xl-6">
+                                <div class="md-form">
+                                    <div class="form-control input-data" *ngIf="projectMatch?.endDate">{{projectMatch?.endDate | date:'MM.dd.yyyy'}}</div>
+                                    <label class="active">Project End Date</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-role-status">
+            <tbody>
+                <tr>
+                    <td style="cursor: pointer;" [ngClass]="{'active': selectedTab == 1}" (click)="viewProList()">
+                        <div class="number">{{numberOfPro}}</div>
+                        <div class="unit">PROS</div>
+                    </td>
+                    <td style="cursor: pointer;" [ngClass]="{'active': selectedTab == 2}" (click)="viewSavedProList()">
+                        <div class="number">{{numberOfProSaved}}</div>
+                        <div class="unit">SAVED</div>
+                    </td>
+                    <!-- <td (click)="viewPassedProList()">
+                        <div class="number">{{roleMatch.passedPros.length}}</div>
+                        <div class="unit">PASSED</div>
+                    </td> -->
+                    <td style="cursor: pointer;" [ngClass]="{'active': selectedTab == 3}" (click)="viewInterviewProList()">
+                        <div class="number">{{numberOfProInterview}}</div>
+                        <div class="unit">INTERVIEW</div>
+                    </td>
+                    <td style="cursor: pointer;">
+                        <div class="number">0</div>
+                        <div class="unit">OFFER</div>
+                    </td>
+                    <td style="cursor: pointer;">
+                        <div class="number">0</div>
+                        <div class="unit">CONTRACT</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div jhi-match-report #yourChild [selectedTab]="selectedTab" [roleId]="roleId" [roleName]="roleMatch.roleName" [roleMatch]="projectMatch" class="card-body" (proListChange)="onProListChange($event)" (increase)="onIncreaseInterview($event)"></div>
+        
+    </div>
+</div>

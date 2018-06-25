@@ -1,0 +1,47 @@
+<!-- Modal sponsor -->
+<div class="modal-change-request" id="modal-change-request">
+    <div class="modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-left">
+                    <h5 class="modal-title">Change Request</h5>
+                </div>
+                <button type="button" (click)="cancel()" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary float-right">
+                                    <span>Choose file</span>
+                                    <input type="file" (change)="setChangeRequest($event)"/>
+                                </div>
+                                <div class="file-path-wrapper pl-0">
+                                    <input type="text" class="file-path validate" [ngModelOptions]="{standalone: true}" [(ngModel)]="contractData.file.name">
+                                </div>
+                                <small *ngIf="validateResumeFile.isOverSize" class="form-text text-danger">
+                                    Cannot upload Resume file over 3Mb.
+                                </small>
+                            </div>
+                            <label for="Form-pass1" class="active">Upload Contract File</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <textarea [(ngModel)]="contractData.note" type="text" class="md-textarea form-control" placeholder="500 characters max" rows="3"></textarea>
+                            <label for="Form-pass1" class="active">Notes</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button (click)="cancel()"  type="button" class="btn text-primary mr-20" data-dismiss="modal">CANCEL</button>
+                <button (click)="submitEditContract()" type="button" class="btn btn-primary" data-dismiss="modal">SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

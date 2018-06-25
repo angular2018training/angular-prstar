@@ -1,0 +1,95 @@
+
+{
+    "prostarsWebApp": {
+        "introduction" : {
+            "home": {
+                "title": {
+                    "isBiz": "I'M A BIZ",
+                    "isPro": "I'M A PRO"
+                }
+            },
+            "action": {
+                "prostarsVideo": "ProStars Video",
+                "recruitingRevenue": "Income Calculator",
+                "howToJoin": "How to Join",
+                "createAccount": "Create Account"
+            },
+            "learnMore": {
+                "welcomeInvitee": ", Welcome to ProStars!",
+                "welcomeInviteeSub": "thought you would be interested in becoming a member of the fastest growing network of highly qualified professionals.",
+                "welcomeAnonymous": "Everything you need as a Pro for <br/>zip-zilch-zero-nada!",
+                "description" : {
+                    "line1": "As an independent contractor, a.k.a. Pro, ProStars provides you with<br/>everything you need for free.",
+                    "line2": "everything you need for zip-zilch-zero-nada!"
+                },
+                "benefits" : {
+                    "line1" : "Matches your capabilities with businesses's needs.",
+                    "line2" : "Provides end-to-end collaboration and admin tools.",
+                    "line3" : "Pays you <strong>3%</strong> of the revenue earned from your network<br/>(this could double your income with little effort)"
+                }
+            },
+            "bizIntro": {
+                "title": "ProStars help’s you do more for less",
+                "description": {
+                    "title": "ProStars help's you do more for less",
+                    "line1" : "Easy to roll on & off, Pros are a perfect fit for your project related work. With ProStars, you can find one perfect Pro or a team of Pros for your project at a fraction of the cost. We are redefining the concept of work.",
+                    "line2" : "Join now and post a position or search for a Pro"
+                },
+                "benefits" : {
+                    "line1" : "Matches your business needs with highly qualified Pros",
+                    "line2" : "Provides end-to-end collaboration and admin tools",
+                    "line3" : "Single simple fee for our services added to bill rate",
+                    "line4" : "Allows you to convert contractors to employee at no cost"
+                }
+            },
+            "howToJoin": {
+                "title" : "How to Join ProStars",
+                "email" : {
+                    "title": "Member Pro's email:",
+                    "unExisted": "Email not valid, member not found."
+                },
+                "action": {
+                    "createSummaryProfile": "CREATE SUMMARY PROFILE"
+                },
+                "description" : "Becoming a Pro with ProStars requires either a referral invite from an existing Pro or submitting a summary profile of your capabilities for another Pro with similar background to approve your membership (this usually takes less than a day).</p><p>The good news, you’re already in thanks to your invite from {{ invited }}<span class='text-primary'><strong>{{sponsorName}}</strong></span></p><p>All you need to do now is create your Profile.",
+                "nonReferrals": {
+                    "title": "You can become a Pro with ProStars in two ways:",
+                    "description" : {
+
+                        "line1": "1. by email or text invite from an existing Pro, or",
+                        "line2": "2. by submitting a summary profile of your capabilities. A Pro with similar capabilities will review your profile and approve your membership(this typically takes less than a day).",
+                        "line3": "If you received an invite from a member, click on the link in the invite. If you've deleted the email, all you need to do is enter the Pro's email below."
+                    }
+                }
+            },
+            "incomeCalculator" : {
+                "title" : "How much ca your network add to your annual income?",
+                "description" : {
+                    "line1": "YOU RECEIVE OF YOUR REVENUE",
+                    "line2": "YOU RECEIVE OF YOUR DIRECT REFERRALS' REVENUE",
+                    "line3": "YOU RECEIVE OF THEIR DIRECT REFERRALS' REVENUE"
+                },
+                "referralsEstimate" : {
+                    "title" : "Estimate of my Referrals"
+                },
+                "contractingEstimate" : {
+                    "title" : "Estimate of my Contracting"
+                },
+                "referralsNumber" : "How many Referrals will be in your network?",
+                "referralsAverageBillRate" : "What's their average bill rate?",
+                "referralsAverageWeeksNumberPerYears" : "How many work weeks in a year on average?",
+                "referralsNumberOfReferrals" : "What's the avg # of referrals from your Referrals",
+                "referralsAmount" : "Estimated $ from your Referrals",
+                "referralsAmountOfReferrals" : "Estimated $ from your Referrals Referrals",
+                "referralsAmountOfReferralsNote" : "(assumes 40 hour work weeks)",
+                "networkReferralsIncome" : "Your estimated income from your network",
+                "proAverageBillRate" : "What's my average bill rate?",
+                "proAverageWeeksNumberPerYears" : "How many work weeks in a year on average?",
+                "contractIncome" : "My Contracting income from projects",
+                "contractIncomeNote" : "(assumes 40 hour work weeks)",
+                "totalIncome" : "My total estimated income from contracting and referrals",
+                "totalIncomeNote" : "(assumes working half the year, 26 weeks)"
+            }
+        }
+    }
+}

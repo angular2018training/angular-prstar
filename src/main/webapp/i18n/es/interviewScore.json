@@ -1,0 +1,24 @@
+
+{
+    "prostarsWebApp": {
+        "interviewScore" : {
+            "home": {
+                "title": "Interview Scores",
+                "createLabel": "Crear nuevo Interview Score",
+                "createOrEditLabel": "Crear o editar Interview Score"
+            },
+            "created": "Un nuevo Interview Score ha sido creado con el identificador {{ param }}",
+            "updated": "Un Interview Score ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Interview Score ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Interview Score {{ id }}?"
+            },
+            "detail": {
+                "title": "Interview Score"
+            },
+            "criteria": "Criteria",
+            "score": "Score",
+            "interviewSession": "Interview Session"
+        }
+    }
+}

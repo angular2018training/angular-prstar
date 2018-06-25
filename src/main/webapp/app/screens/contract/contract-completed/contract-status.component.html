@@ -1,0 +1,65 @@
+<div class="content-contract" id="main-content">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard" jhiTranslate="global.menu.dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item" *ngIf="isProUser">
+            <a routerLink="/pro-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item" *ngIf="isBizUser">
+            <a routerLink="/biz-landing" jhiTranslate="prostarsWebApp.matching.match">Match</a>
+        </li>
+        <li class="breadcrumb-item active" jhiTranslate="prostarsWebApp.contract.detail.title">
+            CONTRACT
+        </li>
+    </ol>
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">CONTRACT</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+        <!-- <div class="card-body"> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="">CONTRACT NAME</th>
+                    <th style="">PRO NAME</th>
+                    <th style="">PROJECT NAME</th>
+                    <th style="width: 150px;">ROLE</th>
+                    <th style="width: 125px;">DATE CREATED</th>
+                    <th style="">CREATED BY</th>
+                    <th style="width: 125px;">BIZ STATUS</th>
+                    <th style="width: 125px;">PRO STATUS</th>
+                    <th class="text-right th-actions" style="width: 100px;"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="contract">
+                <tr>
+                    <td>
+                        <a (click)="onClickDetail(contract.id)">{{contract.name}}</a>
+                    </td>
+                    <td Readonly>
+                        {{contract.pro.account.firstName + contract.pro.account.lastName }}
+                    </td>
+                    <td Readonly>{{contract.proRequirement.project.projectName}}</td>
+                    <td Readonly>{{contract.proRequirement.role.name}}</td>
+                    <td Readonly>
+                        {{contract.createdDate | date:'MM/dd/yyyy hh:mm:ss'}}
+                    </td>
+                    <td>
+                        <span *ngIf="contract.createdBy">{{contract.createdBy.firstName + contract.createdBy.lastName}}</span>
+                    </td>
+                    <td Readonly>
+                        {{contract.bizStatus}}
+                    </td Readonly>
+                    <td Readonly>
+                        {{contract.proStatus}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

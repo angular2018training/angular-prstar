@@ -1,0 +1,30 @@
+
+{
+    "prostarsWebApp": {
+        "contract" : {
+            "home": {
+                "title": "Contracts",
+                "createLabel": "Crear nuevo Contract",
+                "createOrEditLabel": "Crear o editar Contract"
+            },
+            "created": "Un nuevo Contract ha sido creado con el identificador {{ param }}",
+            "updated": "Un Contract ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Contract ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Contract {{ id }}?"
+            },
+            "contractPending": "Contract Pending",
+            "developerContract": "Developer Contract",
+            "completedContract": "Completed Contract",
+            "detail": {
+                "title": "Contract"
+            },
+            "name": "Name",
+            "note": "Note",
+            "createdDate": "Created Date",
+            "bizStatus": "Biz Status",
+            "proStatus": "Pro Status",
+            "histories": "Histories"
+        }
+    }
+}

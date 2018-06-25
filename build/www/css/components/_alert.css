@@ -1,0 +1,9 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+.alert-green {
+  background-color: #13caa8;
+  color: #fff; }
+  .alert-green .btn {
+    background-color: #fff; }

@@ -1,0 +1,39 @@
+<div class="wrapper-main-center page-profile">
+    <div class="container-main-center">
+
+  <!-- Horizontal Steppers -->
+  <div class="col-sm-12">
+      <!-- Stepers Wrapper -->
+      <h1 class="account-type">I’M A PRO</h1>
+      <div class="text-center">
+           <p>Welcome to ProStars! Please create your profiles to get started.</p>
+      </div>
+      <ul class="stepper stepper-horizontal">
+          <!-- First Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 1, '' : this.proService.currentStep !== 1}"> <!-- completed | active | warning -->
+              <a>
+                  <span class="circle">1</span>
+                  <span class="label hidden-sm">Create Account</span>
+              </a>
+          </li>
+          <!-- Second Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 2, '' : this.proService.currentStep !== 2}">
+              <a>
+                  <span class="circle">2</span>
+                  <span class="label hidden-sm">Bio/Skill/Bill Rate</span>
+              </a>
+          </li>
+          <!-- Third Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 3, '' : this.proService.currentStep !== 3}">
+              <a>
+                  <span class="circle">3</span>
+                  <span class="label hidden-sm">Review Profile</span>
+              </a>
+          </li>
+      </ul>
+      <!-- /.Stepers Wrapper -->
+<!-- /.Horizontal Steppers -->
+</div>
+<router-outlet></router-outlet>
+</div>
+</div>

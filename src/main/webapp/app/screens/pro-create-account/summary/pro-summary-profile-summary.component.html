@@ -1,0 +1,28 @@
+<div class="card border-light mb-3">
+    <div class="card-header">SUMMARY PROFILE</div>
+    <div class="card-body">
+        <form class="form-profile" (ngSubmit)="confirm()" #editForm="ngForm">
+            <div class="row">
+                <div class="col">
+                    <div class="md-form">
+                        <div class="form-control input-data">{{proService.pro.account.login}}</div>
+                        <label class="active">Email</label>
+                    </div>
+                </div>
+                <jhi-role-common [isEditable] = 'false' [selectedRoles] = "selectedRoles"></jhi-role-common>
+            </div>
+            <div class="md-form">
+                <div class="form-control input-data">{{proService.pro.summaryBio}}</div>
+                <label class="active">Summary Bio</label>
+            </div>
+            <jhi-skill-common [skills]="proService.pro.skills" [addMoreRowsFlag]=false></jhi-skill-common>
+            <div class="md-form">
+                <hr/>
+            </div>
+            <div class="md-form text-right">
+                <button class="btn mr-16 none-margin-all text-primary" type="button" (click)="onBack()">REVISE</button>
+                <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit" data-toggle="modal" data-target="#modal-success">CONFIRM</button>
+            </div>
+        </form>
+    </div>
+</div>

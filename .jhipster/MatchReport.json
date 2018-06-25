@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "roleMatches",
+            "otherEntityName": "roleMatch",
+            "otherEntityRelationshipName": "matchReport"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20180510035825",
+    "entityTableName": "match_report",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

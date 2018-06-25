@@ -1,0 +1,36 @@
+<div class="wrapper-main-center page-profile">
+    <div class="container-main-center">
+
+  <!-- Horizontal Steppers -->
+  <div class="col-sm-12">
+      <!-- Stepers Wrapper -->
+      <h1 class="account-type">I’M A PRO</h1>
+      <ul class="stepper stepper-horizontal">
+          <!-- First Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 1, '' : this.proService.currentStep !== 1}"> <!-- completed | active | warning -->
+              <a href="#!">
+                  <span class="circle">1</span>
+                  <span class="label hidden-sm">Create Account</span>
+              </a>
+          </li>
+          <!-- Second Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 2, '' : this.proService.currentStep !== 2}">
+              <a href="#!">
+                  <span class="circle">2</span>
+                  <span class="label hidden-sm">Summary Bio</span>
+              </a>
+          </li>
+          <!-- Third Step -->
+          <li [ngClass]="{ 'active': this.proService.currentStep === 3, '' : this.proService.currentStep !== 3}">
+              <a href="#!">
+                  <span class="circle">3</span>
+                  <span class="label hidden-sm">Skills</span>
+              </a>
+          </li>
+      </ul>
+      <!-- /.Stepers Wrapper -->
+<!-- /.Horizontal Steppers -->
+</div>
+<router-outlet></router-outlet>
+</div>
+</div>

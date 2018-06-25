@@ -1,0 +1,31 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <div class="col-sm-12">
+        <!--Panel-->
+        <div class="card border-light mb-3">
+           <div class="alert alert-danger" *ngFor="let error of errorList">
+                 {{error}}
+            </div>
+            <div class="card-header">SKILLS</div>
+            <div class="card-body">
+                <form class="form-profile">
+                    <div class="md-form">
+                        <div class="form-control input-data">
+                            <div class="chip none-margin-all mt-3px" *ngFor="let role of selectedRoles">{{role.itemName}}</div>
+                            &nbsp;
+                        </div>
+                        <label class="active">Role Title (s)</label>
+                    </div>
+                    <jhi-skill-common [(skills)]="proService.pro.skills" [addMoreRowsFlag]=true></jhi-skill-common>
+                    <div class="md-form">
+                        <hr/>
+                    </div>
+                    <div class="md-form text-right">
+                        <button class="btn mr-16 none-margin-all text-primary" type="submit" (click)="onBack()">BACK</button>
+                        <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit" (click)="onNext()">NEXT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--/.Panel-->
+    </div>
+</form>

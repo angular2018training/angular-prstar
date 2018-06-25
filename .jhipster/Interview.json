@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "InterviewStatus",
+            "fieldValues": "PENDING_AVAILABILITY,DECLINE_AVAILABILITY,SCHEDULED,COMPLETED,PENDING_ACCEPTANCE,ACCEPTED,DECLINED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180607142811",
+    "entityTableName": "interview",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

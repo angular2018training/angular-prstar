@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "skills",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "rate",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "roleName",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "rating",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "industryExpertise",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "MatchType",
+            "fieldValues": "POST,MATCH",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180509122108",
+    "entityTableName": "match_scoring_attribution",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,10 @@
+{
+    "prostarsWebApp": {
+        "Decision" : {
+            "null": "",
+            "NO": "NO",
+            "YES": "YES",
+            "AWAITING": "AWAITING"
+        }
+    }
+}

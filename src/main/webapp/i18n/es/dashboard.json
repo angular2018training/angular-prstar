@@ -1,0 +1,36 @@
+{
+    "prostarsWebApp": {
+        "dashboard": {
+            "home": {
+                "title": "Dashboard"
+            },
+            "action": {
+                "matching": "Matching",
+                "postsList": "Posts List"
+            },
+            "leftMenu": {
+                "dashboard":"Dashboard",
+                "findPro":"Find Pros",
+                "project":"Projects",
+                "payment":"Payments",
+                "refer":"Refer",
+                "rate":"Rate",
+                "report":"Report",
+                "toDo":"To Dos",
+                "notification":"Notifications",
+                "deliverable":"Deliverables",
+                "proApplicantReport":"Pro Applicants Report"
+            },
+            "rightMenu": {
+                "profile":"Profile",
+                "changePassword":"Change Password",
+                "logOut":"Log Out",
+                "signIn":"Sign In",
+                "home":"Home",
+                "learnMore":"Learn More",
+                "about":"About",
+                "applicantStatus":"Applicant Status"
+            }
+        }
+    }
+}

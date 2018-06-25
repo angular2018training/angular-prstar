@@ -1,0 +1,23 @@
+
+{
+    "prostarsWebApp": {
+        "bidChangeRequestHistory" : {
+            "home": {
+                "title": "Bid Change Request Histories",
+                "createLabel": "Crear nuevo Bid Change Request History",
+                "createOrEditLabel": "Crear o editar Bid Change Request History"
+            },
+            "created": "Un nuevo Bid Change Request History ha sido creado con el identificador {{ param }}",
+            "updated": "Un Bid Change Request History ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Bid Change Request History ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Bid Change Request History {{ id }}?"
+            },
+            "detail": {
+                "title": "Bid Change Request History"
+            },
+            "comment": "Comment",
+            "createdDate": "Created Date"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div *ngIf="isEditable">
+    <div class="md-form">
+        <label class="active" for="role"jhiTranslate="prostarsWebApp.role.home.profileTitle">Role Title (s)</label>
+        <angular2-multiselect [data]="dropdownRoleList" [(ngModel)]="selectedRoles" [settings]="dropdownRoleSettings" [ngModelOptions]="{standalone: true}"
+            (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+        </angular2-multiselect>
+    </div>
+</div>
+<div *ngIf="!isEditable">
+    <div class="col">
+        <div class="md-form">
+            <div class="form-control input-data">
+                <div class="chip none-margin-all mt-3px" *ngFor="let role of selectedRoles">{{role.itemName}}</div>
+            </div>
+            <label class="active" jhiTranslate="prostarsWebApp.role.home.profileTitle">Role Title (s)</label>
+        </div>
+    </div>
+</div>

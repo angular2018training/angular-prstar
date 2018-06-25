@@ -1,0 +1,228 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+ .page-profile {
+    h1 {
+        font-family: "Nexa Bold", "Roboto";
+        font-size: 24px;
+        font-weight: 700;
+        @media (min-width: 1200px) {
+            font-size: 32px;
+        }
+    }
+    .card {
+        border-radius: 0;
+        border: none;
+        background: #f2f2f2;
+        @media (min-width: 1200px) {
+            border: 1px solid #ced4da;
+            background: #ffffff;
+        }
+        .card-header {
+            font-weight: 600;
+            background: #f2f2f2;
+            padding: .75rem 0;
+            @media (min-width: 1200px) {
+                background: #fff;
+                padding: .75rem 1.5rem;
+            }
+            .invited {
+                font-weight: normal;
+            }
+        }
+        .card-body {
+            padding: 1.5rem 0;
+            background: #f2f2f2;
+            @media (min-width: 1200px) {
+                background: #fff;
+                padding: 1.5rem;
+            }
+            .form-profile {
+                hr {
+                    border-top: 1px solid #ced4da;
+                }
+            }
+        }
+        .card-footer {
+            background: none;
+            @media (min-width: 1200px) {
+                background: #fff;
+            }
+            border: none;
+            border-top: solid 1px #e0e0e0;
+            // border-top: none;
+            border-radius: 0;
+            padding: 24px;
+            text-align: right;
+        }
+    }
+
+    .btn-primary-profile {
+        background-color: #2196f3 !important;
+        color: #fff !important;
+    }
+
+    .btn-primary {
+        background-color: #2196f3 !important;
+        color: #fff !important;
+    }
+
+    .btn-light {
+        background-color: #e0e0e0 !important;
+        color: #2196f3 !important;
+    }
+
+    .card-avatar-upload {
+        box-shadow: none;
+        border: none;
+        .card-img-top {
+            border: solid 1px #e0e0e0;
+            border-radius: 0;
+            display: block;
+            @media (min-width: 576px) {
+                max-width: 200px;
+            }
+        }
+        .card-body {
+            padding: 8px;
+        }
+    }
+    .card-avatar-display {
+        box-shadow: none;
+        border: none;
+        .card-img-top {
+            border: solid 1px #e0e0e0;
+            border-radius: 0;
+            display: block;
+            @media (min-width: 576px) {
+                max-width: 200px;
+            }
+        }
+        .card-body {
+            padding: 8px;
+            .username {
+                text-align: center;
+                color: #2295f2;
+            }
+            .attachment {
+                text-align: center;
+            }
+        }
+    }
+    .btn-back {
+        background-color: #e0e0e0;
+    }
+    .block-multiple-phone {
+        .row {
+            .btn-add-phone, .btn-remove-phone {
+                padding: 2px;
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                span {
+                    display: block;
+                    line-height: 16px;
+                }
+
+            }
+            .btn-add-phone {
+                display: none;
+            }
+            .btn-remove-phone {
+                // display: inline-block;
+            }
+        }
+        .row:last-child {
+            .btn-add-phone {
+                display: inline-block;
+            }
+            .btn-remove-phone {
+                // display: none;
+            }
+        } 
+    }
+    .tooltip-question {
+        color: #b7b7b7;
+    }
+
+}
+
+.modal-profile {
+    .modal-header {
+        background-color: #2095f4;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        height: 190px;
+
+        > div {
+            text-align: center;
+            .modal-title {
+                color: #fff;
+                font-family: 'Roboto Condensed';
+                font-weight: 300;
+                font-size: 36px;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            opacity: 1;
+        }
+    }
+    .modal-body {
+        text-align: center;
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .modal-footer {
+        border-top: none;
+        justify-content: center;
+    }
+}
+
+.modal-pro-applicant-status {
+    .modal-header {
+        background-color: #2095f4;
+        position: relative;
+        justify-content: flex-start;
+        align-items: center;
+        height: 90px;
+
+        > div {
+            text-align: center;
+            .modal-title {
+                color: #fff;
+                font-family: 'Roboto Condensed';
+                font-weight: 300;
+                font-size: 36px;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            opacity: 1;
+        }
+    }
+    .modal-body {
+        
+        
+    }
+    .modal-footer {
+        border-top: none;
+        justify-content: flex-end;
+    }
+}
+
+.tooltip.tooltip-bill-rate {
+    .tooltip-inner {
+        max-width: 300px;
+        text-align: left;
+    }
+}

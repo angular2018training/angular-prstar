@@ -1,0 +1,280 @@
+<div class="card card-create">
+    <form class="form-profile" name="editForm" #editForm="ngForm">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4" jhiTranslate="prostarsWebApp.post.detailProgress.post">POST</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-lg-9">
+                    <!-- Project name [start] -->
+                    <h4 class="project-title">{{post.project.projectName}}</h4>
+                    <!-- Project name [end] -->
+                    <div class="form">
+                        <!-- Description [start] -->
+                        <div class="md-form">
+                            <div class="form-control input-data">{{post.project.description}}</div>
+                            <label class="active" jhiTranslate="prostarsWebApp.post.description">Description</label>
+                        </div>
+                        <!-- Description [end] -->
+                        <!-- Project date [start] -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{post.project.startDate}}</div>
+                                    <label class="active" jhiTranslate="prostarsWebApp.post.projectStartDate">Project Start Date</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="md-form">
+                                    <div class="form-control input-data">{{post.project.endDate}}</div>
+                                    <label class="active" jhiTranslate="prostarsWebApp.post.projectEndDate">Project End Date</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project date [end] -->
+
+                        <div class="card card-pro" *ngFor="let proRequest of post.proRequests; index as i">
+                            <!-- Role name [start] -->
+                            <div class="card-header collapsed" data-toggle="collapse" [attr.data-target]="'#' + i">
+                                {{proRequest.role.name}}
+                                <span class="mdi mdi-chevron-down indicator"></span>
+                            </div>
+                            <!-- Role name [end] -->
+                            <div class="collapse" id="{{i}}">
+                                <div class="card-body">
+                                    <!-- Skill [start] -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <jhi-skill-common [skills]="proRequest.skills" [addMoreFlag]="false"></jhi-skill-common>
+                                        </div>
+                                    </div>
+                                    <!-- Skill [end] -->
+                                    <!-- Industry [start] -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="section-name mt-4" jhiTranslate="prostarsWebApp.post.industry.industry">Industries
+                                            </h5>
+                                            <div class="md-form">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-4">
+                                                        <h6>
+                                                            <small class="grey-text" jhiTranslate="prostarsWebApp.post.industry.industry">Industry</small>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-6 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-12">
+                                                                <h6 class="text-md-center">
+                                                                    <small class="grey-text" jhiTranslate="prostarsWebApp.post.industry.year">Years of Experience</small>
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngFor="let proIndustry of proRequest.industries; index as i">
+                                                    <div class="col-6 col-md-4">
+                                                        <div class="md-form">
+                                                            <div class="chip none-margin-all mt-3px">
+                                                                {{proIndustry.industry.name}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-12">
+                                                                <div class="md-form">
+                                                                    <div class="form-control input-data text-md-center">{{proIndustry.yearsOfExperience}}</div>
+                                                                    <label class="active d-md-none">Years</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Industry [end] -->
+                                    <!-- Role date [start] -->
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.startDate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.roleStartDate">Pro Start Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.endDate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.roleEndDate">Pro End Date</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.bidDeadline}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.bidDeadline">Bid Deadline</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.decisionDate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.decisionDate">Decision Date</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Role date [end] -->
+                                    <div class="row">
+                                        <!-- Project type [start] -->
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.projectType}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.projectType">Project Type</label>
+                                            </div>
+                                        </div>
+                                        <!-- Project type [end] -->
+                                        <!-- Payment Terms [start] -->
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest?.paymentTerm?.name}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.paymentTerms">Payment Terms</label>
+                                            </div>
+                                        </div>
+                                        <!-- Payment Terms [end] -->
+                                        <!-- Invoice Terms [start] -->
+                                        <div class="col-12 col col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest?.invoiceTerm?.name}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.invoiceTerms">Invoice Terms</label>
+                                            </div>
+                                        </div>
+                                        <!-- Invoice Terms [end] -->
+                                    </div>
+                                    <!-- Target rate [start] -->
+                                    <div class="row" *ngIf="!post.isCreatePost">
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.lowTargetRate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.targetRate.low">Low</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.highTargetRate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.targetRate.high">High</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col col-md-4">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest.expenseRate}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.targetRate.expenseRate">Expense Rate</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Target rate [end] -->
+                                    <!-- Work location [start] -->
+                                    <div class="md-form" *ngIf="proRequest.workLocation">
+                                        <div class="form-control input-data">
+                                            {{proRequest.workLocation.displayText}}
+                                        </div>
+                                        <label class="active" jhiTranslate="prostarsWebApp.post.workingLocation">Work Location</label>
+                                    </div>
+                                    {{proRequest.workLocation}}
+                                    <!-- <div class="row">
+                                        <div class="col">
+                                            <div class="md-form" [ngSwitch]="proRequest?.justLocal">
+                                                <div class="form-control input-data" *ngSwitchCase="true" jhiTranslate="prostarsWebApp.post.justLocal">Just Local</div>
+                                                <div class="form-control input-data" *ngSwitchCase="false" jhiTranslate="prostarsWebApp.post.remote">Remote/Travel OK</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.workingLocation">Location</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest?.workLocation?.name}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.city">City</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <div class="form-control input-data">{{proRequest?.workLocation?.state?.name}}</div>
+                                                <label class="active" jhiTranslate="prostarsWebApp.post.state">State</label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- Work location [end] -->
+                                    <!-- Additional Commentary [start]-->
+                                    <div class="md-form">
+                                        <div class="form-control input-data">{{proRequest.additionalCommmentary}}</div>
+                                        <label class="active" jhiTranslate="prostarsWebApp.post.additionalCommentary">Additional Commentary</label>
+                                    </div>
+                                    <!-- Additional Commentary [end]-->
+                                    <!-- Proposal Template-->
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <!-- <div class="file-field medium">
+                                                    <div class="btn btn-outline-primary waves-effect float-left">
+                                                        <span jhiTranslate="prostarsWebApp.post.proposalTemplate">Proposal Template
+                                                            <i class="fa fa-cloud-upload ml-3" aria-hidden="true"></i>
+                                                        </span> -->
+                                                        <!--<input type="file" multiple>-->
+                                                    <!-- </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input disabled class="file-path validate" type="text" value="{{proRequest?.proposalTemplateFilePath}}">
+                                                    </div>
+                                                </div> -->
+                                                <div *ngIf="proRequest.proposalTemplateFile">
+                                                    <div class="form-control input-data">{{proRequest.proposalTemplateFile.name}}</div>
+                                                    <label class="active" jhiTranslate="prostarsWebApp.post.proposalTemplate"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ Proposal Template-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-3" *ngIf="biz">
+                    <div class="card card-company-summary">
+                        <!-- <img src="img/avartar-company-example.png" class="card-img-top"> -->
+                        <img src="../../../../../content/img/svg/icon-company-avatar.svg" class="card-img-top" *ngIf="!biz.companyLogoFile || !biz.companyLogoFile.content">
+                        <img [src]="'data:' + biz.companyLogoFile.contentType + ';base64,' + biz.companyLogoFile.content" class="card-img-top" *ngIf="biz.companyLogoFile && biz.companyLogoFile.content">
+                        <div class="card-body">
+                            <div class="md-form">
+                                <div class="form-control input-data">{{biz.companyName}}</div>
+                                <label class="active">Company Name</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">{{loginAccount.firstName}} {{loginAccount.middleName}} {{loginAccount.lastName}}</div>
+                                <label class="active">Point of Contact</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">{{loginAccount.email}}</div>
+                                <label class="active">Email Address</label>
+                            </div>
+                            <div class="md-form">
+                                <div class="form-control input-data">{{biz.companyBio}}</div>
+                                <label class="active">Company Bio</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn mr-16 none-margin-all text-primary" type="button" [routerLink]="['../project']" jhiTranslate="entity.action.revise">BACK</button>
+            <button *ngIf="post.isCreatePost; else match" class="btn btn-primary btn-primary-profile none-margin-all" type="submit" jhiTranslate="entity.action.post"
+                (click)="saveData()">NEXT</button>
+            <ng-template #match>
+                <button class="btn btn-primary btn-primary-profile none-margin-all" type="submit" jhiTranslate="entity.action.match" (click)="saveData()">MATCH</button>
+            </ng-template>
+        </div>
+
+    </form>
+</div>

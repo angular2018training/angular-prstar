@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "histories",
+            "otherEntityName": "contractHistory",
+            "otherEntityRelationshipName": "contract"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bizStatus",
+            "fieldType": "ContractStatus",
+            "fieldValues": "PENDING_APPROVAL,CHANGE_REQUESTED,DECLINED,ACCEPTED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "proStatus",
+            "fieldType": "ContractStatus",
+            "fieldValues": "PENDING_APPROVAL,CHANGE_REQUESTED,DECLINED,ACCEPTED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180607142817",
+    "entityTableName": "contract",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

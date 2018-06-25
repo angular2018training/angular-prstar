@@ -1,0 +1,27 @@
+.col-2-4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+.btn-circle-small {
+    padding: 0 !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.color-white {
+    color: white !important;
+}
+.bg-primary {
+    background: #13cba7 !important;
+}
+.box-schedule {
+    padding: 0 16px;
+    border: solid 1px #e0e0e0;
+}

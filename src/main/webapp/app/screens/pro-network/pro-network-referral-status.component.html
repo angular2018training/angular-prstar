@@ -1,0 +1,93 @@
+<div class="content-vet">
+    <ol class="breadcrumb mb-16">
+        <li class="breadcrumb-item">
+            <a href="#dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="#pro-network">Refer</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a href="#referral-status"></a>Referral Status</a>
+        </li>
+    </ol>
+    <div class="card card-create">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-3 col-xl-4">REFERRAL STATUS</div>
+                <div class="col-lg-9 col-xl-8 col-total"></div>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
+                                
+                            </div> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 75px;">APP ID</th>
+                    <th style="width: 300px;">NAME</th>
+                    <th style="width: 200px;">ROLE</th>
+                    <!-- <th>ALL STATUS</th> -->
+                    <th class="filterable" style="width: 300px;">
+                        <div class="block-column-filter">
+                            <div class="column-value">
+                                <angular2-multiselect class="form-control" [(ngModel)]="selectedFilter" [data]="filterData" [settings]="filterSettings" (onSelect)="onFilterSelect($event)"
+                                    [ngModelOptions]="{standalone: true}">
+                                </angular2-multiselect>
+                            </div>
+                        </div>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let referral of filteredReferralList; let i = index">
+                <tr *ngIf="referral">
+                    <td>{{i+1}}</td>
+                    <td>
+                        <a>{{referral.proName}}</a>
+                    </td>
+                    <td>
+                        <span class="badge badge-role">{{referral.roleName}}</span>
+                    </td>
+
+                    <!-- Show status -->
+                    <td *ngIf="referral.referralStatus == 'REFERRAL_SENT'">
+                        <span class="badge badge-status-sent" jhiTranslate="prostarsWebApp.pro.referral.sent">Referral Sent</span>
+                    </td>
+                    <td *ngIf="referral.referralStatus == 'IN_REVIEW'">
+                        <span class="badge badge-status-sent" jhiTranslate="prostarsWebApp.pro.referral.inReview">In Review</span>
+                    </td>
+                    <td *ngIf="referral.referralStatus == 'ACCEPTED'">
+                        <span class="badge badge-status-accepted" jhiTranslate="prostarsWebApp.pro.referral.accepted">Accepted</span>
+                    </td>
+                    <td *ngIf="referral.referralStatus == 'REJECTED'">
+                        <span class="badge badge-status-rejected" jhiTranslate="prostarsWebApp.pro.referral.rejected">Rejected</span>
+                    </td>
+                    <td *ngIf="referral.referralStatus == 'PROFILE_SETUP'">
+                        <span class="badge badge-status-accepted" jhiTranslate="prostarsWebApp.pro.referral.profileSetup">Profile Setup</span>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div class="card-footer">
+            <div class="form-inline justify-content-end">
+                <label class="paging-size mr-16">Rows per page:</label>
+                <select class="mdb-select paging-size mr-32">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span class="current-page mr-32">1 - 10 of 100</span>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-prev mr-16">
+                    <span class="mdi mdi-24px mdi-chevron-left"></span>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect paging-next">
+                    <span class="mdi mdi-24px mdi-chevron-right"></span>
+                </button>
+            </div>
+        </div> -->
+    </div>
+
+</div>

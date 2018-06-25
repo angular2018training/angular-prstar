@@ -1,0 +1,25 @@
+
+{
+    "prostarsWebApp": {
+        "contractHistory" : {
+            "home": {
+                "title": "Contract Histories",
+                "createLabel": "Create a new Contract History",
+                "createOrEditLabel": "Create or edit a Contract History"
+            },
+            "created": "A new Contract History is created with identifier {{ param }}",
+            "updated": "A Contract History is updated with identifier {{ param }}",
+            "deleted": "A Contract History is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contract History {{ id }}?"
+            },
+            "contractPending": "Contract Pending",
+            "detail": {
+                "title": "Contract History"
+            },
+            "note": "Note",
+            "createdDate": "Created Date",
+            "contract": "Contract"
+        }
+    }
+}

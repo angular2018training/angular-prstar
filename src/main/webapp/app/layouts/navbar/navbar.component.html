@@ -1,0 +1,581 @@
+<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
+    <div class="jh-logo-container float-left">
+        <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
+            <span class="logo-img"></span>
+            <span jhiTranslate="global.title" class="navbar-title">Prostars_web</span> <span class="navbar-version">{{version}}</span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.home">Home</span>
+                    </span>
+                </a>
+            </li>
+            <li *jhiHasAnyAuthority="['ROLE_PRO','ROLE_BIZ']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/dashboard" (click)="collapseNavbar()">
+                    <span>
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.dashboard">Dashboard</span>
+                    </span>
+                </a>
+            </li>
+            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span>
+                            Menu
+                        </span>
+                    </span>
+                </a>
+                <ul *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.biz">Biz</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.role">Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="company-size" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.companySize">Company Size</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="industry" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.industry">Industry</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizRole">Biz Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-member-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizMemberRole">Biz Member Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.pro">Pro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proSkill">Pro Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.skill">Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="project" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.project">Project</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirement">Pro Requirement</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="post" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.post">Post</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="bid" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bid">Bid</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirementSkill">Pro Requirement Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.biz">Biz</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.role">Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="company-size" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.companySize">Company Size</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="industry" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.industry">Industry</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizRole">Biz Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-member-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizMemberRole">Biz Member Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.pro">Pro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proSkill">Pro Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.skill">Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="project" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.project">Project</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirement">Pro Requirement</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="post" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.post">Post</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="bid" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bid">Bid</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirementSkill">Pro Requirement Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="invitee" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.invitee">Invitee</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="commission-level" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.commissionLevel">Commission Level</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="commission-level-changelog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.commissionLevelChangelog">Commission Level Changelog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-commission" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proCommission">Pro Commission</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.biz">Biz</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.role">Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="company-size" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.companySize">Company Size</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="industry" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.industry">Industry</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizRole">Biz Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="biz-member-role" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bizMemberRole">Biz Member Role</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.pro">Pro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proSkill">Pro Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.skill">Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="project" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.project">Project</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirement">Pro Requirement</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="post" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.post">Post</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="bid" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bid">Bid</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-requirement-skill" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequirementSkill">Pro Requirement Skill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="invitee" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.invitee">Invitee</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="commission-level" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.commissionLevel">Commission Level</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="commission-level-changelog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.commissionLevelChangelog">Commission Level Changelog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-commission" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proCommission">Pro Commission</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="pro-request" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.proRequest">Pro Request</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="match-scoring-attribution" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.matchScoringAttribution">Match Scoring Attribution</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.calendar">Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="skill-hierarchy-depth" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.skillHierarchyDepth">Skill Hierarchy Depth</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role-hierarchy-depth" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.roleHierarchyDepth">Role Hierarchy Depth</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="notification" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.notification">Notification</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="match-report" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.matchReport">Match Report</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role-match" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.roleMatch">Role Match</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="role-match-pro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.roleMatchPro">Role Match Pro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.interview">Interview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="interview-session" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.interviewSession">Interview Session</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="suggested-interview-schedule" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.suggestedInterviewSchedule">Suggested Interview Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="interview-score" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.interviewScore">Interview Score</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="interview-template" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.interviewTemplate">Interview Template</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="contract-template" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.contractTemplate">Contract Template</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="contract" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.contract">Contract</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="contract-history" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.contractHistory">Contract History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="bid-change-request-history" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.bidChangeRequestHistory">Bid Change Request History</span>
+                        </a>
+                    </li>
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                </ul>
+            </li>
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
+                    <span>
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.admin.main">Administration</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="user-management" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.userManagement">User management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="jhi-health" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-heart" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.health">Health</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="jhi-configuration" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-list" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.configuration">Configuration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="audits" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.audits">Audits</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="logs" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-tasks" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.logs">Logs</span>
+                        </a>
+                    </li>
+                    <li *ngIf="swaggerEnabled">
+                        <a class="dropdown-item" routerLink="docs" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-book" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.apidocs">API</span>
+                        </a>
+                    </li>
+                    <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+                    <li *ngIf="!inProduction">
+                        <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-hdd-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.database">Database</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown" *ngIf="languages.length > 1">
+                    <span>
+                        <i class="fa fa-flag" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.language">Language</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu *ngIf="languages.length > 1">
+                    <li *ngFor="let language of languages">
+                        <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li  ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+                  <span *ngIf="!getImageUrl()">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span jhiTranslate="global.menu.account.main">
+                      Account
+                    </span>
+                  </span>
+                  <span *ngIf="getImageUrl()">
+                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
+                  </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-wrench" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.settings">Settings</span>
+                        </a>
+                    </li>
+                    
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.password">Password</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="true" >
+                        <a class="dropdown-item" (click)="logout()" id="logout">
+                            <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                        </a>
+                    </li>
+                    <li  *ngSwitchCase="false">
+                        <a class="dropdown-item" (click)="login()" id="login">
+                            <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.login">Sign in</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item"
+                           [routerLink]="['/', { outlets: { popup: ['pro-new'] } }]"
+                           routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                            <span>Register Pro</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item" 
+                           [routerLink]="['/', { outlets: { popup: ['biz-new'] } }]"
+                           routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                            <span>Register Biz</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

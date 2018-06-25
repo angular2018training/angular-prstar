@@ -1,0 +1,47 @@
+<div class="card card-matching-pro">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-12">{{roleName}}</div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th jhiTranslate="prostarsWebApp.matching.matchPros" style="max-width: 300px;">Match Pros</th>
+                <th jhiTranslate="prostarsWebApp.matching.rating" style="max-width: 200px;">Rating</th>
+                <th style="max-width: 200px;">Location</th>
+                <th class="text-center" style="max-width: 100px;">DECISION</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pro of currentProList; let i = index" (click)="onSelectedPro(i)" style="cursor: pointer" [ngClass]="{'active': selectedProIndex == i}" >
+                <td>
+                    <div class="media media-user">
+                        <img class="img-fluid" src="../../../content/img/avatar-placeholder.jpg" *ngIf="!pro.pictureFile || !pro.pictureFile.content">
+                        <img class="img-fluid" [src]="'data:' + pro.pictureFile.contentType + ';base64,' + pro.pictureFile.content" *ngIf="pro.pictureFile && pro.pictureFile.content">
+                        <div class="media-body">
+                            <h5 *ngIf="pro.firstName">{{pro.firstName}} {{pro.lastName}}</h5>
+                            <h5 class="h5_custom" *ngIf="!pro.firstName">{{pro.login}}</h5>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <ul class="rating" *ngIf="pro.rating">
+                        <rating [(ngModel)]="pro.rating" [max]="5" [readonly]="true">
+                    </ul>
+                </td>
+                <td><span *ngIf="pro.cityName">{{pro.cityName}}</span><span *ngIf="pro.stateName">, {{pro.stateName}}</span></td>
+                <td class="text-center">
+                <span *ngIf="pro.status == 'PASS' || pro.status == 'PASSED'" class="btn btn-danger btn-circle-small btn-clear-style">
+                    <i class="fa fa-remove"></i>
+                </span>
+                <span *ngIf="pro.status == 'SAVE' || pro.status == 'SAVED'" class="btn btn-blue btn-circle-small btn-clear-style">
+                    <i class="fa fa-check"></i>
+                </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

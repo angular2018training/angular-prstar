@@ -1,0 +1,27 @@
+/*!
+ * PROSTARS Style Sheet
+ * Copyright 2018 PROSTAR
+ */
+.alert-action {
+	background-color: #13caa8;
+	color: #fff;
+	padding: 8px;
+	display: flex;
+	align-items: center;
+	min-height: 54px;
+	.content {
+		flex: 1;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+	.btn {
+		background-color: #fff;
+		margin: 0 0 0 8px;
+		align-self: flex-start;
+	}
+	// .btn + .btn {
+	// 	margin-left: 8px;
+	// }
+
+}
+

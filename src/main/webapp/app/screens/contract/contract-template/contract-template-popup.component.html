@@ -1,0 +1,96 @@
+<div class="modal-create-template" *ngIf="contractTemplateId == null">
+    <div class="modal-">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-left">
+                    <h5 class="modal-title">Create Contract Template</h5>
+                </div>
+                <button type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></button>
+            </div>
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <input type="text" class="form-control" placeholder=" Name Contract" [(ngModel)]="contractTemplate.name">
+                            <label class="active">Contract Template Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary float-right">
+                                    <span>Choose file</span>
+                                    <input type="file" (change)="setFileData($event)" />
+                                </div>
+                                <div class="file-path-wrapper pl-0">
+                                    <input type="text" class="file-path validate" placeholder="Upload Contract Template File" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="contractTemplate.file.name">
+                                </div>
+                                <small *ngIf="validateResumeFile.isOverSize" class="form-text text-danger">
+                                    Cannot upload file over 3Mb.
+                                </small>
+                                <small class="form-text text-danger" *ngFor="let error of errorList">
+                                    {{error}}
+                                </small>
+                            </div>
+                            <label for="Form-pass1" class="active">Select Contract File</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-primary mr-20" data-dismiss="modal" (click)="cancel();">CANCEL</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitAddTemplate()">SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-upload-template" *ngIf="contractTemplateId != null">
+    <div class="modal-">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-left">
+                    <h5 class="modal-title">Edit Contract Template</h5>
+                </div>
+                <button (click)="cancel()" type="button" class="close mdi mdi-close-circle" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <input type="text" class="form-control" [(ngModel)]="contractTemplateName" readonly>
+                            <label class="active">Contract Template Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary float-right">
+                                    <span>Choose file</span>
+                                    <input type="file" (change)="setEditFileData($event)" />
+                                </div>
+                                <div class="file-path-wrapper pl-0">
+                                    <input type="text" class="file-path validate" placeholder="Upload Contract Template File" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="contractTemplate.file.name">
+                                </div>
+                                <small *ngIf="validateResumeFile.isOverSize" class="form-text text-danger">
+                                    Cannot upload Resume file over 3Mb.
+                                </small>
+                            </div>
+                            <label for="Form-pass1" class="active">Select Contract File</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="cancel()" type="button" class="btn text-primary mr-20" data-dismiss="modal">CANCEL</button>
+                <button (click)="submitEditTemplate()" type="button" class="btn btn-primary" data-dismiss="modal">UPLOAD</button>
+            </div>
+        </div>
+    </div>
+</div>

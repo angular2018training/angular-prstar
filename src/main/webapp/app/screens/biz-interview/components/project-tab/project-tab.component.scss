@@ -1,0 +1,9 @@
+[type=radio]{
+  &:disabled{
+    &:checked+label{
+      &:after{
+        border-color: transparent #fff #fff transparent !important;
+      }
+    }
+  }
+}
